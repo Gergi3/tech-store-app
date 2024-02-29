@@ -8,6 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DC72210F-8614-48FC-BA9B-DB7BE7BE85FF}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.eslintrc.json = .eslintrc.json
+		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		package-lock.json = package-lock.json
 		package.json = package.json
