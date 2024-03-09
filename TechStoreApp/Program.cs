@@ -1,3 +1,5 @@
+using DotNetEd.CoreAdmin;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TechStoreApp.Data;
 using TechStoreApp.Infrastructure.Data.Entities;
@@ -26,6 +28,19 @@ builder.Services.AddControllersWithViews()
 builder.Services.AddRouting(
 	options => options.LowercaseUrls = true);
 
+builder.Services.AddCoreAdmin(new CoreAdminOptions()
+{
+	IgnoreEntityTypes = new List<Type>()
+	{
+		typeof(IdentityUserClaim<Guid>),
+		typeof(IdentityUserRole<Guid>),
+		typeof(IdentityUserLogin<Guid>),
+		typeof(IdentityRoleClaim<Guid>),
+		typeof(IdentityUserToken<Guid>)
+	},
+	//RestrictToRoles = ["Admin"]
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -42,13 +57,14 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseCoreAdminCustomTitle("Tech Store CMS");
+
 app.UseRouting();
+app.UseCoreAdminCustomUrl("admin");
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapDefaultControllerRoute();
 app.MapRazorPages();
 
 app.Run();
