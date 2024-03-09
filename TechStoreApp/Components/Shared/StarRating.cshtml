@@ -1,0 +1,17 @@
+﻿@model StarRatingViewModel
+
+<div class="tp-product-rating d-flex align-items-center">
+    <div class="tp-product-rating-icon">
+        @for (var i = 0; i < Model.Stars; i++)
+        {
+            <span><i class="fa-solid fa-star"></i></span>
+        }
+        @for (var i = 0; i < 5 - Model.Stars; i++)
+        {
+            <span><i class="fa-regular fa-star"></i></span>
+        }
+    </div>
+    <div class="tp-product-rating-text">
+        <span>(@Model.Reviews Reviews)</span>
+    </div>
+</div>

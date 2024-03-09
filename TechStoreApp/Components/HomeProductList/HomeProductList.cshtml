@@ -1,0 +1,30 @@
+﻿@model List<HomeProductListItemViewModel>
+
+<section class="tp-product-area pb-25">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-6 col-md-5">
+                <div class="tp-section-title-wrapper mb-40">
+                    <h3 class="tp-section-title">@ViewBag.Title</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="tp-product-tab-content">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="new-tab-pane" role="tabpanel"
+                             aria-labelledby="new-tab" tabindex="0">
+                            <div class="row">
+                                @foreach (var item in Model)
+                                {
+                                    <vc:home-product-item item="item"></vc:home-product-item>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

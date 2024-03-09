@@ -1,0 +1,14 @@
+﻿@model List<ProductListItemViewModel>
+
+<div class="tp-shop-items-wrapper tp-shop-item-primary">
+    <div class="tab-content" id="productTabContent">
+        <div class="tab-pane fade show active" id="grid-tab-pane" role="tabpanel" aria-labelledby="grid-tab" tabindex="0">
+            <div class="row infinite-container">
+                @foreach (var item in Model)
+                {
+                    <vc:product-item item="item"></vc:product-item>
+                }
+            </div>
+        </div>
+    </div>
+</div>

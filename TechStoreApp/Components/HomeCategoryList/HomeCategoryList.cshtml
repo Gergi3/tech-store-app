@@ -1,0 +1,12 @@
+﻿@model List<HomeCategoryItemViewModel>
+
+<section class="tp-product-category pt-60 pb-15">
+    <div class="container">
+        <div class="row row-cols-xl-5 row-cols-lg-5 row-cols-md-4">
+            @foreach (var categoryItem in Model)
+            {
+                <vc:home-category-item item="categoryItem"></vc:home-category-item>
+            }
+        </div>
+    </div>
+</section>

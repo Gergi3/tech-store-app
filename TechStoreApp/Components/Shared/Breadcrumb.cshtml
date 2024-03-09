@@ -1,0 +1,31 @@
+﻿@model List<BreadcrumbItemViewModel>
+
+
+@if (Model.Count > 0)
+{
+    <section class="breadcrumb__area include-bg pt-40 pb-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="breadcrumb__content p-relative z-index-1">
+                        <h3 class="breadcrumb__title">@Model[Model.Count - 1].Name</h3>
+                        <div class="breadcrumb__list">
+                            @foreach (var item in Model)
+                            {
+
+                                @if (item.Path != null)
+                                {
+                                    <span><a asp-action="@item.Path.Value.ActionName" asp-controller="@item.Path.Value.ControllerName">Home</a></span>
+                                }
+                                else
+                                {
+                                    <span>@item.Name</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

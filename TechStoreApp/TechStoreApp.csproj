@@ -15,4 +15,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TechStoreApp.Common\TechStoreApp.Common.csproj" />
+    <ProjectReference Include="..\TechStoreApp.Core\TechStoreApp.Core.csproj" />
+  </ItemGroup>
+
 </Project>

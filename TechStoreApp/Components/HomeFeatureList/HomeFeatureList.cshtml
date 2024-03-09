@@ -1,0 +1,12 @@
+﻿@model List<HomeFeatureItemViewModel>
+
+<section class="tp-feature-area tp-feature-border-radius pb-70">
+    <div class="container">
+        <div class="row gx-1 gy-1 gy-xl-0">
+            @foreach (var item in Model)
+            {
+                <vc:home-feature-item item="item"></vc:home-feature-item>
+            }
+        </div>
+    </div>
+</section>

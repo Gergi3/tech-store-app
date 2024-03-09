@@ -1,0 +1,28 @@
+﻿@model List<BannerSliderItemViewModel>
+
+<section class="tp-slider-area p-relative z-index-1">
+    <div class="tp-slider-active tp-slider-variation swiper-container">
+        <div class="swiper-wrapper">
+            @foreach (var sliderItem in Model)
+            {
+                <vc:banner-slider-item item="sliderItem">
+                </vc:banner-slider-item>
+            }
+        </div>
+        <div class="tp-slider-arrow tp-swiper-arrow d-none d-lg-block">
+            <button type="button" class="tp-slider-button-prev">
+                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                </svg>
+            </button>
+            <button type="button" class="tp-slider-button-next">
+                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+        <div class="tp-slider-dot tp-swiper-dot"></div>
+    </div>
+</section>

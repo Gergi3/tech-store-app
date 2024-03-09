@@ -1,11 +1,52 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Tech Store</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    @* <link rel="shortcut icon" type="image/x-icon" href="img/logo/favicon.png"> *@
+
+    <link rel="stylesheet" href="~/css/bootstrap.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/animate.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/swiper-bundle.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/slick.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/magnific-popup.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/font-awesome-pro.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/flaticon_shofy.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/spacing.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true">
 </head>
 <body>
+    <header>
+        <div class="tp-header-area p-relative z-index-11">
+            <partial name="_Header" />
+        </div>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+
+    <partial name="_Footer" />
+
+    <script src="~/js/vendor/jquery.js"></script>
+    <script src="~/js/vendor/waypoints.js"></script>
+    <script src="~/js/bootstrap-bundle.js"></script>
+    <script src="~/js/meanmenu.js"></script>
+    <script src="~/js/swiper-bundle.js"></script>
+    <script src="~/js/slick.js"></script>
+    <script src="~/js/range-slider.js"></script>
+    <script src="~/js/magnific-popup.js"></script>
+    <script src="~/js/nice-select.js"></script>
+    <script src="~/js/purecounter.js"></script>
+    <script src="~/js/countdown.js"></script>
+    <script src="~/js/wow.js"></script>
+    <script src="~/js/isotope-pkgd.js"></script>
+    <script src="~/js/imagesloaded-pkgd.js"></script>
+    <script src="~/js/ajax-form.js"></script>
+    <script src="~/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
