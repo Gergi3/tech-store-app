@@ -1,6 +1,8 @@
 using DotNetEd.CoreAdmin;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TechStoreApp.Core.Contracts;
+using TechStoreApp.Core.Services;
 using TechStoreApp.Data;
 using TechStoreApp.Infrastructure.Data.Entities;
 using static TechStoreApp.Common.ConfigConstants;
@@ -11,6 +13,9 @@ public static class ServiceCollectionExtensions
 {
 	public static IServiceCollection AddAppServices(this IServiceCollection services)
 	{
+		services.AddScoped<ICategoryService, CategoryService>();
+		services.AddScoped<IProductService, ProductService>();
+
 		return services;
 	}
 
