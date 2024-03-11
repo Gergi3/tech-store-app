@@ -1,54 +1,35 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using TechStoreApp.Core.Contracts;
+using TechStoreApp.Core.Models;
 using TechStoreApp.Core.Models.Components;
 
 namespace TechStoreApp.Controllers;
 public class CategoriesController : Controller
 {
-	public IActionResult Index()
+	private readonly ICategoryService _categoryService;
+	private readonly IMapper _mapper;
+
+	public CategoriesController(ICategoryService categoryService, IMapper mapper)
 	{
-		this.ViewBag.CategoryItems = new List<CategoryListItemViewModel>()
-		{
-			new CategoryListItemViewModel() {
-				Count = 76,
-				Id = new Guid("97c23877-7059-41bd-8f7b-4ce3f6196be2"),
-				Name = "Some Category"
-			},
-			new CategoryListItemViewModel() {
-				Count = 76,
-				Id = new Guid("97c23877-7059-41bd-8f7b-4ce3f6196be2"),
-				Name = "Some Category"
-			},
-			new CategoryListItemViewModel() {
-				Count = 76,
-				Id = new Guid("97c23877-7059-41bd-8f7b-4ce3f6196be2"),
-				Name = "Some Category"
-			},
-			new CategoryListItemViewModel() {
-				Count = 76,
-				Id = new Guid("97c23877-7059-41bd-8f7b-4ce3f6196be2"),
-				Name = "Some Category"
-			},
-			new CategoryListItemViewModel() {
-				Count = 76,
-				Id = new Guid("97c23877-7059-41bd-8f7b-4ce3f6196be2"),
-				Name = "Some Category"
-			},
-			new CategoryListItemViewModel() {
-				Count = 76,
-				Id = new Guid("97c23877-7059-41bd-8f7b-4ce3f6196be2"),
-				Name = "Some Category"
-			},
-			new CategoryListItemViewModel() {
-				Count = 76,
-				Id = new Guid("97c23877-7059-41bd-8f7b-4ce3f6196be2"),
-				Name = "Some Category"
-			},
-			new CategoryListItemViewModel() {
-				Count = 76,
-				Id = new Guid("97c23877-7059-41bd-8f7b-4ce3f6196be2"),
-				Name = "Some Category"
-			},
-		};
+		this._categoryService = categoryService;
+		this._mapper = mapper;
+	}
+
+	public async Task<IActionResult> Index()
+	{
+		List<CategoryDTO> categories = await this._categoryService.All();
+
+		List<CategoryListItemViewModel> categoryItems = categories
+			.Select(x => new CategoryListItemViewModel()
+			{
+				Count = x.Count,
+				Id = x.Id,
+				Name = x.Name,
+			})
+			.ToList();
+
+		this.ViewBag.CategoryItems = categoryItems;
 
 		this.ViewBag.BreadcrumbList = new List<BreadcrumbItemViewModel>()
 		{

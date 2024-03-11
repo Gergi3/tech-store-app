@@ -23,11 +23,11 @@ public static class AppExtension
 		app.UseCoreAdminCustomTitle(CoreAdminTitle);
 
 		app.UseRouting();
-		app.UseCoreAdminCustomUrl(CoreAdminUrl);
 
 		app.UseAuthorization();
 
 		app.MapDefaultControllerRoute();
+		app.UseCoreAdminCustomUrl(CoreAdminUrl);
 		app.MapRazorPages();
 
 		return app;
