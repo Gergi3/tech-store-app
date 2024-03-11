@@ -9,12 +9,12 @@ namespace TechStoreApp.Infrastructure.Data.Entities;
 public class ProductCategory
 {
 	[Required]
-	[ForeignKey(nameof(Product))]
+	[ForeignKey(nameof(ProductsId))]
+	public virtual Product Product { get; set; } = null!;
 	public Guid ProductsId { get; set; }
-	public Product Product { get; set; } = null!;
 
 	[Required]
-	[ForeignKey(nameof(Category))]
+	[ForeignKey(nameof(CategoriesId))]
+	public virtual Category Category { get; set; } = null!;
 	public Guid CategoriesId { get; set; }
-	public Category Category { get; set; } = null!;
 }

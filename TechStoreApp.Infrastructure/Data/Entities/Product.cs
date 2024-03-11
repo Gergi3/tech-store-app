@@ -11,6 +11,7 @@ namespace TechStoreApp.Infrastructure.Data.Entities;
 public class Product
 {
 	[Key]
+	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 	public Guid Id { get; set; }
 
 	[Required]
@@ -22,4 +23,9 @@ public class Product
 	public decimal Price { get; set; }
 
 	public List<Category> Categories { get; } = [];
+
+	public override string ToString()
+	{
+		return this.Name.ToString();
+	}
 }

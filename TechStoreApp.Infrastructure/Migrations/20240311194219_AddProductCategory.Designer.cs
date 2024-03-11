@@ -12,8 +12,8 @@ using TechStoreApp.Data;
 namespace TechStoreApp.Infrastructure.Migrations
 {
     [DbContext(typeof(TechStoreDbContext))]
-    [Migration("20240311081013_AddProductCategories")]
-    partial class AddProductCategories
+    [Migration("20240311194219_AddProductCategory")]
+    partial class AddProductCategory
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
