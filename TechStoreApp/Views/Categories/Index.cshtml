@@ -1,4 +1,5 @@
-﻿<vc:breadcrumb items="ViewBag.BreadcrumbList"></vc:breadcrumb>
+﻿@using TechStoreApp.ViewModels
+@model CategoryIndexViewModel
 
-<vc:category-list items="ViewBag.CategoryItems"></vc:category-list>
-<!-- category area end -->
+<vc:breadcrumb items="Model.Breadcrumb"></vc:breadcrumb>
+<vc:category-list skip="0" take="3"></vc:category-list>

@@ -1,16 +1,17 @@
-using static TechStoreApp.Common.ConfigConstants;
 using DotNetEd.CoreAdmin;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Mappers;
 using TechStoreApp.Core.Services;
 using TechStoreApp.Data;
 using TechStoreApp.Infrastructure.Data.Common;
 using TechStoreApp.Infrastructure.Data.Entities;
-using TechStoreApp.Common.Exceptions;
+using TechStoreApp.Mappers;
+using static TechStoreApp.Common.ConfigConstants;
 
-namespace TechStoreApp.Extensions;
+namespace TechStoreApp.Config;
 
 public static class ServiceCollectionExtensions
 {
@@ -29,6 +30,8 @@ public static class ServiceCollectionExtensions
 			configAction: (cfg) =>
 			{
 				cfg.AddProfile<CategoryProfile>();
+				cfg.AddProfile<ProductProfile>();
+				cfg.AddProfile<ViewComponentsProfile>();
 			},
 			assemblies: typeof(Program).Assembly);
 
@@ -61,7 +64,8 @@ public static class ServiceCollectionExtensions
 
 	public static IServiceCollection AddAppMVC(this IServiceCollection services)
 	{
-		services.AddControllersWithViews()
+		services
+			.AddControllersWithViews()
 			.AddRazorOptions(options =>
 			{
 				options.ViewLocationFormats.Add(AdditionalViewLocationFormat);
@@ -72,7 +76,11 @@ public static class ServiceCollectionExtensions
 	public static IServiceCollection AddAppMVCRouting(this IServiceCollection services)
 	{
 		services.AddRouting(
-			options => options.LowercaseUrls = true);
+			options =>
+			{
+				options.ConstraintMap["slugify"] = typeof(SlugifyEndpointsTransformer);
+				options.LowercaseUrls = true;
+			});
 
 		return services;
 	}

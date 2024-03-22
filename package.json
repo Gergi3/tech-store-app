@@ -1,5 +1,9 @@
 {
-  "devDependencies": {
-    "eslint": "^8.57.0"
-  }
+	"devDependencies": {
+		"@types/jquery": "^3.5.29",
+		"eslint": "^8.57.0"
+	},
+	"dependencies": {
+		"jquery": "3.6.0"
+	}
 }

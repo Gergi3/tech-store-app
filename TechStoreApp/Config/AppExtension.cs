@@ -1,6 +1,6 @@
 using static TechStoreApp.Common.ConfigConstants;
 
-namespace TechStoreApp.Extensions;
+namespace TechStoreApp.Config;
 
 public static class AppExtension
 {
@@ -28,7 +28,16 @@ public static class AppExtension
 
 		app.UseAuthorization();
 
-		app.MapDefaultControllerRoute();
+		app.MapControllerRoute(
+			name: "default",
+			pattern: "{controller:slugify=Home}/{action:slugify=Index}/{id?}");
+
+		app.MapControllerRoute(
+			name: "products",
+			pattern: "categories/{categoryName:slugify}/products",
+			defaults: new { controller = "Products", action = "Index" }
+		);
+
 		app.UseCoreAdminCustomUrl(CoreAdminUrl);
 		app.MapRazorPages();
 

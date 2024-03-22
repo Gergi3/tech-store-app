@@ -11,7 +11,6 @@ public abstract class BaseViewComponent : ViewComponent
 	private static Dictionary<string, string> GetComponents()
 	{
 		Dictionary<string, string> validDirectories = new();
-
 		var directories = Directory.GetFiles("Components", "*.cshtml", SearchOption.AllDirectories);
 
 		foreach (var dir in directories)
@@ -34,21 +33,24 @@ public abstract class BaseViewComponent : ViewComponent
 		return validDirectories;
 	}
 
-	private string? GetViewName()
+	public static string? GetViewName(
+		string shortName)
 	{
 		var fileName = string.Format(
 			CultureInfo.InvariantCulture,
 			"{0}.cshtml",
-			this.ViewComponentContext.ViewComponentDescriptor.ShortName);
+			shortName);
 
 		components.TryGetValue(fileName, out var value);
 		return value;
 	}
 
+	private string? CurrentViewName => GetViewName(this.ViewComponentContext.ViewComponentDescriptor.ShortName);
+
 	/// <inheritdoc />
 	public new ViewViewComponentResult View()
 	{
-		var viewName = this.GetViewName();
+		var viewName = this.CurrentViewName;
 
 		if (viewName == null)
 		{
@@ -61,7 +63,7 @@ public abstract class BaseViewComponent : ViewComponent
 	/// <inheritdoc />
 	public new ViewViewComponentResult View<TModel>(TModel? model)
 	{
-		var viewName = this.GetViewName();
+		var viewName = this.CurrentViewName;
 
 		if (viewName == null)
 		{

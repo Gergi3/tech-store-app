@@ -1,13 +1,13 @@
-﻿@model CategoryListItemViewModel
+﻿@using TechStoreApp.Components.CategoryList
+@model CategoryItemViewModel
 
-<div class="col-lg-4 col-sm-6">
-    <div class="tp-category-main-box mb-25 p-relative fix" data-bg-color="#F3F5F7">
-        <div class="tp-category-main-thumb include-bg transition-3" data-background="/img/category/main/category-main-1.jpg"></div>
-        <div class="tp-category-main-content">
-            <h3 class="tp-category-main-title">
-                <a href="@($"/categories/{Model.Id}")">@Model.Name</a>
-            </h3>
-            <span class="tp-category-main-item">@Model.Count Products</span>
-        </div>
+<div class="tp-category-main-box mb-25 p-relative fix">
+    <div class="tp-category-main-thumb include-bg transition-3"
+         style="background-image:url(/img/category/main/category-main-1.jpg)"></div>
+    <div class="tp-category-main-content">
+        <h3 class="tp-category-main-title">
+            <a href="@($"/categories/{Model.Id}")">@Model.Name</a>
+        </h3>
+        <span class="tp-category-main-item">@Model.Count Products</span>
     </div>
 </div>

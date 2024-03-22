@@ -10,4 +10,6 @@ public static class ConfigConstants
 	public static readonly string CoreAdminTitle = "Tech Store CMS";
 
 	public static readonly string CoreAdminUrl = "admin";
+
+	public static readonly string HostName = "AppHost";
 }

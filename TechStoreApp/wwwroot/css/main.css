@@ -14648,7 +14648,8 @@ div.tp-author-info-avater img {
 
 /* home grocery */
 .tp-category-main-box {
-  height: 420px;
+	height: 420px;
+	background-color: #F3F5F7;
 }
 .tp-category-main-box:hover .tp-category-main-thumb {
   -webkit-transform: scale(1.1);
@@ -14675,12 +14676,12 @@ div.tp-author-info-avater img {
   color: var(--tp-theme-primary);
 }
 .tp-category-main-content {
-  position: absolute;
-  bottom: 30px;
-  left: 20px;
-  right: 20px;
-  z-index: 1;
-  text-align: center;
+	position: absolute;
+	bottom: 30px;
+	left: 20px;
+	right: 20px;
+	z-index: 1;
+	text-align: center;
 }
 .tp-category-main-item {
   font-weight: 500;

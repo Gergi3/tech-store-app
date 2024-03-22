@@ -1,8 +1,9 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using TechStoreApp.Components.CategoryList;
 using TechStoreApp.Core.Contracts;
-using TechStoreApp.Core.Models;
-using TechStoreApp.Core.Models.Components;
+using TechStoreApp.ViewModels;
 
 namespace TechStoreApp.Controllers;
 public class CategoriesController : Controller
@@ -16,23 +17,12 @@ public class CategoriesController : Controller
 		this._mapper = mapper;
 	}
 
+	[HttpGet]
 	public async Task<IActionResult> Index()
 	{
-		List<CategoryDTO> categories = await this._categoryService.All();
+		var viewModel = new CategoryIndexViewModel();
 
-		List<CategoryListItemViewModel> categoryItems = categories
-			.Select(x => new CategoryListItemViewModel()
-			{
-				Count = x.Count,
-				Id = x.Id,
-				Name = x.Name,
-			})
-			.ToList();
-
-		this.ViewBag.CategoryItems = categoryItems;
-
-		this.ViewBag.BreadcrumbList = new List<BreadcrumbItemViewModel>()
-		{
+		viewModel.Breadcrumb = [
 			new()
 			{
 				Name = "Home",
@@ -42,8 +32,15 @@ public class CategoriesController : Controller
 			{
 				Name = "Categories",
 			}
-		};
+		];
 
-		return this.View();
+		return this.View(viewModel);
+	}
+
+	[HttpPost]
+	[EnableCors("AllowSpecificOrigins")]
+	public ViewComponentResult CategoryList(int skip, int take)
+	{
+		return this.ViewComponent(typeof(CategoryList), new { skip, take, layout = false });
 	}
 }

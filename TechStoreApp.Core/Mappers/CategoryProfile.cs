@@ -9,7 +9,6 @@ public class CategoryProfile : Profile
 	public CategoryProfile()
 	{
 		this.CreateMap<Category, CategoryDTO>();
-
 		this.CreateProjection<Category, CategoryDTO>()
 			.ForMember(
 				dest => dest.Count,

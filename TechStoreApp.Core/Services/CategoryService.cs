@@ -18,11 +18,20 @@ public class CategoryService : ICategoryService
 		this._mapper = mapper;
 	}
 
-	public async Task<List<CategoryDTO>> All()
+	public async Task<List<CategoryDTO>> All(int count = 3, int skip = 0)
 	{
 		return await this._repo
-			.All<Category>()
+			.AllReadonly<Category>()
+			.Skip(skip)
+			.Take(count)
 			.ProjectTo<CategoryDTO>(this._mapper.ConfigurationProvider)
 			.ToListAsync();
+	}
+
+	public async Task<int> Count()
+	{
+		return await this._repo
+			.AllReadonly<Category>()
+			.CountAsync();
 	}
 }
