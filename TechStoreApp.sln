@@ -5,7 +5,13 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechStoreApp", "TechStoreApp\TechStoreApp.csproj", "{27610D42-FDC5-43A2-8A51-F81228C2052D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DC72210F-8614-48FC-BA9B-DB7BE7BE85FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechStoreApp.Core", "TechStoreApp.Core\TechStoreApp.Core.csproj", "{646DBF11-FFE4-4FD6-B461-12CDC8499D21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechStoreApp.Infrastructure", "TechStoreApp.Infrastructure\TechStoreApp.Infrastructure.csproj", "{08B42C1E-FB93-4968-A924-4BD98D46C1AA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechStoreApp.Common", "TechStoreApp.Common\TechStoreApp.Common.csproj", "{DE80B5C4-7041-4A76-8BE7-D80D3322DFEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C9D6B001-C902-4FDC-B219-5006BF69E2A9}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.eslintrc.json = .eslintrc.json
@@ -15,12 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		package.json = package.json
 		README.md = README.md
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechStoreApp.Core", "TechStoreApp.Core\TechStoreApp.Core.csproj", "{646DBF11-FFE4-4FD6-B461-12CDC8499D21}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechStoreApp.Infrastructure", "TechStoreApp.Infrastructure\TechStoreApp.Infrastructure.csproj", "{08B42C1E-FB93-4968-A924-4BD98D46C1AA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechStoreApp.Common", "TechStoreApp.Common\TechStoreApp.Common.csproj", "{DE80B5C4-7041-4A76-8BE7-D80D3322DFEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

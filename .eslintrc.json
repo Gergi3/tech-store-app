@@ -1,11 +1,14 @@
 {
 	"env": {
 		"browser": true,
-		"es6": true
+		"es6": true,
+		"jquery": true
 	},
-	"extends": "eslint:recommended",
+	"extends": [ "eslint:recommended", "plugin:@typescript-eslint/recommended" ],
 	"overrides": [
 	],
+	"parser": "@typescript-eslint/parser",
+	"plugins": [ "@typescript-eslint" ],
 	"parserOptions": {
 		"ecmaVersion": 6,
 		"sourceType": "module"
@@ -16,5 +19,14 @@
 		"restParams": true
 	},
 	"rules": {
-	}
+		"quotes": [
+			2,
+			"single"
+		],
+		"no-debugger": "warn"
+	},
+	"ignorePatterns": [
+		"gulpfile.js",
+		"**/wwwroot/lib/*"
+	]
 }

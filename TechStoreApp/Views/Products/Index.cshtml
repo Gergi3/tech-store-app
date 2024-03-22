@@ -1,5 +1,8 @@
-﻿<!-- breadcrumb area start -->
-<vc:breadcrumb items="ViewBag.BreadcrumbList"></vc:breadcrumb>
+﻿@using TechStoreApp.ViewModels
+@model ProductIndexViewModel
+
+<!-- breadcrumb area start -->
+<vc:breadcrumb items="@Model.Breadcrumb"></vc:breadcrumb>
 <!-- breadcrumb area end -->
 
 <!-- shop area start -->
@@ -399,7 +402,7 @@
                         </div>
                     </div>
 
-                    <vc:product-list items="ViewBag.ProductItems"></vc:product-list>
+                    <vc:product-list query-params="@Model.Query"></vc:product-list>
 
                     <div class="tp-shop-pagination mt-20">
                         <div class="tp-pagination">

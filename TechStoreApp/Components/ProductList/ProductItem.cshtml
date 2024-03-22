@@ -1,12 +1,12 @@
-﻿@model ProductListItemViewModel
+﻿@using TechStoreApp.Components.ProductList
+@model ProductItemViewModel
 
 <div class="col-xl-4 col-md-6 col-sm-6 infinite-item">
     <div class="tp-product-item-2 mb-40">
         <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img">
-            <a href="@($"/products/{Model.ProductId}")">
+            <a asp-action="Details" asp-controller="Products" asp-route-id="@Model.Id">
                 <img src="/img/product/2/prodcut-1.jpg" alt="">
             </a>
-            <!-- product action -->
             <div class="tp-product-action-2 tp-product-action-blackStyle">
                 <div class="tp-product-action-item-2 d-flex flex-column">
                     <button type="button" class="tp-product-action-btn-2 tp-product-add-cart-btn">
@@ -48,16 +48,26 @@
         </div>
         <div class="tp-product-content-2 pt-15">
             <div class="tp-product-tag-2">
-                <a href="@($"/categories/{Model.CategoryId}")">@Model.CategoryName</a>
+
+                @foreach (var category in Model.Categories)
+                {
+                    <a href=@($"/categories/{category.Name.ToLower()}/products")>
+                        @category.Name
+                    </a>
+                }
             </div>
             <h3 class="tp-product-title-2">
-                <a href="@($"/products/{Model.ProductId}")">@Model.ProductName</a>
+                <a asp-action="Details" asp-controller="Products" asp-route-id="@Model.Id">
+                    @Model.Name
+                </a>
             </h3>
-            <vc:star-rating stars="@Model.Stars"
-                            reviews="@Model.Reviews">
+            <vc:star-rating stars="2"
+                            reviews="32">
             </vc:star-rating>
             <div class="tp-product-price-wrapper-2">
-                <span class="tp-product-price-2 new-price">$@Model.Price</span>
+                <span class="tp-product-price-2 new-price">
+                    @Model.Price
+                </span>
                 @* <span class="tp-product-price-2 old-price">$475.00</span> *@
             </div>
         </div>

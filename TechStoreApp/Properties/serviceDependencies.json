@@ -4,5 +4,5 @@
 			"type": "mssql",
 			"connectionId": "ConnectionStrings:DefaultConnection"
 		}
-	},
+	}
 }

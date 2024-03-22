@@ -1,9 +1,30 @@
 {
+	"name": "tech-store-app",
+	"version": "1.0.0",
+	"description": "",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Gergi3/tech-store-app.git"
+	},
+	"author": "Georgi Petrov",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Gergi3/tech-store-app/issues"
+	},
+	"homepage": "https://github.com/Gergi3/tech-store-app#readme",
+	"dependencies": {
+		"jquery": "^3.7.1",
+		"jquery-validation": "^1.20.0",
+		"jquery-validation-unobtrusive": "^4.0.0"
+	},
 	"devDependencies": {
 		"@types/jquery": "^3.5.29",
-		"eslint": "^8.57.0"
-	},
-	"dependencies": {
-		"jquery": "3.6.0"
+		"@typescript-eslint/eslint-plugin": "^7.2.0",
+		"@typescript-eslint/parser": "^7.2.0",
+		"del": "^7.1.0",
+		"eslint": "^8.57.0",
+		"gulp": "^4.0.2",
+		"rimraf": "^5.0.5",
+		"typescript": "^5.4.2"
 	}
 }

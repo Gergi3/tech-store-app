@@ -1,68 +1,30 @@
 using Microsoft.AspNetCore.Mvc;
-using TechStoreApp.Core.Models.Components;
+using TechStoreApp.Core.Contracts;
+using TechStoreApp.Core.Models;
+using TechStoreApp.ViewModels;
 
 namespace TechStoreApp.Controllers;
 
 public class ProductsController : BaseController
 {
-	public IActionResult Index()
+	public IProductService _productService { get; set; }
+	public ProductsController(IProductService productService)
 	{
-		this.ViewBag.ProductItems = new List<ProductListItemViewModel>()
+		this._productService = productService;
+	}
+
+	public async Task<IActionResult> Index(string? categoryName)
+	{
+		var viewModel = new ProductIndexViewModel();
+
+		ProductQueryParamsDTO queryParams = new()
 		{
-			new ProductListItemViewModel()
-			{
-				Stars = 5,
-				CategoryId = new Guid("e5b88296-1188-4854-bdcc-fa5260cfe46e"),
-				CategoryName = "Category Name",
-				Price = 10.36m,
-				ProductId = new Guid("c877a290-b458-4dca-b173-b8a16d317ec5"),
-				ProductName = "Product name of the phone gotta be long so i can test if long ones fit",
-				Reviews = 23,
-			},
-			new ProductListItemViewModel()
-			{
-				Stars = 5,
-				CategoryId = new Guid("e5b88296-1188-4854-bdcc-fa5260cfe46e"),
-				CategoryName = "Category Name",
-				Price = 10.36m,
-				ProductId = new Guid("c877a290-b458-4dca-b173-b8a16d317ec5"),
-				ProductName = "Product name of the phone gotta be long so i can test if long ones fit",
-				Reviews = 23
-			},
-			new ProductListItemViewModel()
-			{
-				Stars = 5,
-				CategoryId = new Guid("e5b88296-1188-4854-bdcc-fa5260cfe46e"),
-				CategoryName = "Category Name",
-				Price = 10.36m,
-				ProductId = new Guid("c877a290-b458-4dca-b173-b8a16d317ec5"),
-				ProductName = "Product name of the phone gotta be long so i can test if long ones fit"
-			},
-			new ProductListItemViewModel()
-			{
-				Stars = 5,
-				CategoryId = new Guid("e5b88296-1188-4854-bdcc-fa5260cfe46e"),
-				CategoryName = "Category Name",
-				Price = 10.15m,
-				ProductId = new Guid("c877a290-b458-4dca-b173-b8a16d317ec5"),
-				ProductName = "Product name of the phone gotta be long so i can test if long ones fit",
-				Reviews = 23
-			}
+			CategoryName = categoryName
 		};
 
-		this.ViewBag.BreadcrumbList = new List<BreadcrumbItemViewModel>()
-		{
-			new()
-			{
-				Name = "Home",
-				Path = ("Home", "Index")
-			},
-			new()
-			{
-				Name = "Products",
-			}
-		};
+		viewModel.Breadcrumb = await this._productService.ConstructBreadcrumb(queryParams);
+		viewModel.Query = queryParams;
 
-		return this.View();
+		return this.View(viewModel);
 	}
 }
