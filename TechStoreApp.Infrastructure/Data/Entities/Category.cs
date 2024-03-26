@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -19,8 +20,9 @@ public class Category
 	[StringLength(MaxNameLength)]
 	public string Name { get; set; } = null!;
 
+	[Required]
 	[StringLength(MaxNameLength)]
-	public string? Slug { get; set; }
+	public string Slug { get; set; } = null!;
 
 	public List<Product> Products { get; } = [];
 
