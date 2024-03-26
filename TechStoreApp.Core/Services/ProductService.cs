@@ -71,7 +71,7 @@ public class ProductService : IProductService
 				throw new CategoryNotFoundException();
 			}
 
-			breadcrumb[breadcrumb.Count - 1].Path = ("Products", "Index");
+			breadcrumb[^1].Path = ("Products", "Index");
 
 			breadcrumb.Add(new()
 			{
