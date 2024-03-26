@@ -58,7 +58,7 @@ public class ProductService : IProductService
 			new()
 			{
 				Name = "Products",
-			}
+			},
 		];
 
 		string? categorySlug = query.CategorySlug;
@@ -70,6 +70,8 @@ public class ProductService : IProductService
 			{
 				throw new CategoryNotFoundException();
 			}
+
+			breadcrumb[breadcrumb.Count - 1].Path = ("Products", "Index");
 
 			breadcrumb.Add(new()
 			{

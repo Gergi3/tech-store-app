@@ -15,7 +15,7 @@
 
                                 @if (item.Path != null)
                                 {
-                                    <span><a asp-action="@item.Path.Value.ActionName" asp-controller="@item.Path.Value.ControllerName">Home</a></span>
+                                    <span><a asp-action="@item.Path.Value.ActionName" asp-controller="@item.Path.Value.ControllerName">@item.Name</a></span>
                                 }
                                 else
                                 {
