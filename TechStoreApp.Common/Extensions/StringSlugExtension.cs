@@ -14,6 +14,11 @@ public static class StringSlugExtension
 
 	public static string ToSlug(this string str)
 	{
+		if (str.IsSlug())
+		{
+			return str;
+		}
+
 		// decode cyrillics and such
 		string slugged = Unidecoder.Unidecode(str).ToLower();
 
