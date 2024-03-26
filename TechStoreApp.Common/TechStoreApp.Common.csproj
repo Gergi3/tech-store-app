@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Unidecode.Net8\Unidecode.Net8.csproj" />
+  </ItemGroup>
+
 </Project>

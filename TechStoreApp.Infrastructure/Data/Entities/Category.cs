@@ -8,6 +8,7 @@ namespace TechStoreApp.Infrastructure.Data.Entities;
 
 [EntityTypeConfiguration(typeof(CategoryConfiguration))]
 [Index(nameof(Name), IsUnique = true)]
+[Index(nameof(Slug), IsUnique = true)]
 public class Category
 {
 	[Key]
@@ -17,6 +18,9 @@ public class Category
 	[Required]
 	[StringLength(MaxNameLength)]
 	public string Name { get; set; } = null!;
+
+	[StringLength(MaxNameLength)]
+	public string? Slug { get; set; }
 
 	public List<Product> Products { get; } = [];
 

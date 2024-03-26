@@ -22,6 +22,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unidecode.Net8", "Unidecode.Net8\Unidecode.Net8.csproj", "{44CAB84E-491C-4733-96D0-A82290F4AEE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unidecode.Net8.Test", "Unidecode.Net8.Test\Unidecode.Net8.Test.csproj", "{3C1761C5-07A7-4D0A-BA54-DD8F43108381}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +48,14 @@ Global
 		{DE80B5C4-7041-4A76-8BE7-D80D3322DFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE80B5C4-7041-4A76-8BE7-D80D3322DFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE80B5C4-7041-4A76-8BE7-D80D3322DFEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44CAB84E-491C-4733-96D0-A82290F4AEE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44CAB84E-491C-4733-96D0-A82290F4AEE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44CAB84E-491C-4733-96D0-A82290F4AEE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44CAB84E-491C-4733-96D0-A82290F4AEE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C1761C5-07A7-4D0A-BA54-DD8F43108381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C1761C5-07A7-4D0A-BA54-DD8F43108381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C1761C5-07A7-4D0A-BA54-DD8F43108381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C1761C5-07A7-4D0A-BA54-DD8F43108381}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

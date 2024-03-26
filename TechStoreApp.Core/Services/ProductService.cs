@@ -33,11 +33,11 @@ public class ProductService : IProductService
 			.Include(x => x.Categories)
 			.AsQueryable();
 
-		if (query.CategoryName != null)
+		if (query.CategorySlug != null)
 		{
 			productsQueryable = productsQueryable
 				.Where(x => x.Categories
-					.Any(x => x.Name == query.CategoryName));
+					.Any(x => x.Slug == query.CategorySlug));
 		}
 
 		return await productsQueryable
@@ -61,11 +61,11 @@ public class ProductService : IProductService
 			}
 		];
 
-		string? categoryName = query.CategoryName;
+		string? categorySlug = query.CategorySlug;
 
-		if (categoryName != null)
+		if (categorySlug != null)
 		{
-			string? dbName = await this._categoryService.GetDbName(categoryName);
+			string? dbName = await this._categoryService.GetDbNameBySlug(categorySlug);
 			if (dbName == null)
 			{
 				throw new CategoryNotFoundException();

@@ -34,7 +34,7 @@ public static class AppExtension
 
 		app.MapControllerRoute(
 			name: "products",
-			pattern: "categories/{categoryName:slugify}/products",
+			pattern: "categories/{categorySlug}/products",
 			defaults: new { controller = "Products", action = "Index" }
 		);
 

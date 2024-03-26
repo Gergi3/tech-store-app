@@ -13,13 +13,13 @@ public class ProductsController : BaseController
 		this._productService = productService;
 	}
 
-	public async Task<IActionResult> Index(string? categoryName)
+	public async Task<IActionResult> Index(string? categorySlug)
 	{
 		var viewModel = new ProductIndexViewModel();
 
 		ProductQueryParamsDTO queryParams = new()
 		{
-			CategoryName = categoryName
+			CategorySlug = categorySlug
 		};
 
 		viewModel.Breadcrumb = await this._productService.ConstructBreadcrumb(queryParams);

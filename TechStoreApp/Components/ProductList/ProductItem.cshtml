@@ -51,7 +51,7 @@
 
                 @foreach (var category in Model.Categories)
                 {
-                    <a href=@($"/categories/{category.Name.ToLower()}/products")>
+                    <a href=@($"/categories/{category.Slug}/products")>
                         @category.Name
                     </a>
                 }

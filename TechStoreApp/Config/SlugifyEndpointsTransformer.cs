@@ -1,10 +1,10 @@
-using System.Text.RegularExpressions;
+using TechStoreApp.Common.Extensions;
 
 namespace TechStoreApp.Config;
 
 public class SlugifyEndpointsTransformer : IOutboundParameterTransformer
 {
-	public string TransformOutbound(object value)
+	public string TransformOutbound(object? value)
 	{
 		if (value == null)
 		{
@@ -18,9 +18,6 @@ public class SlugifyEndpointsTransformer : IOutboundParameterTransformer
 			return null!;
 		}
 
-		string regex = "([a-z])([A-Z])";
-		string result = Regex.Replace(valueStringified, regex, "$1-$2");
-
-		return result.ToLower();
+		return valueStringified.ToSlug();
 	}
 }

@@ -35,19 +35,12 @@ public class CategoryService : ICategoryService
 			.CountAsync();
 	}
 
-	public async Task<bool> ExistsByName(string categoryName)
+	public async Task<string?> GetDbNameBySlug(string categorySlug)
 	{
 		return await this._repo
 			.AllReadonly<Category>()
-			.AnyAsync(x => x.Name == categoryName);
-	}
-
-	public async Task<string?> GetDbName(string categoryName)
-	{
-		return await this._repo
-			.AllReadonly<Category>()
+			.Where(x => x.Slug == categorySlug.ToLower())
 			.Select(x => x.Name)
-			.Where(x => x.ToLower() == categoryName.ToLower())
 			.FirstOrDefaultAsync();
 	}
 }
