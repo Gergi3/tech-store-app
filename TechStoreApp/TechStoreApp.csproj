@@ -4,15 +4,12 @@
     <TypeScriptTarget>ES5</TypeScriptTarget>
   </PropertyGroup>
 
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <TypeScriptTarget>ES5</TypeScriptTarget>
-  </PropertyGroup>
-
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-TechStoreApp-e253e2c7-68f9-4021-8ce6-7fea9ac21511</UserSecretsId>
+		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
 
   <ItemGroup>
