@@ -20,6 +20,7 @@ public static class ServiceCollectionExtensions
 		services.AddScoped<IRepository, Repository>();
 		services.AddScoped<ICategoryService, CategoryService>();
 		services.AddScoped<IProductService, ProductService>();
+		services.AddScoped<IUIService, UIService>();
 
 		return services;
 	}
@@ -70,6 +71,7 @@ public static class ServiceCollectionExtensions
 			{
 				options.ViewLocationFormats.Add(AdditionalViewLocationFormat);
 			});
+
 		return services;
 	}
 
@@ -78,7 +80,7 @@ public static class ServiceCollectionExtensions
 		services.AddRouting(
 			options =>
 			{
-				options.ConstraintMap["slugify"] = typeof(SlugifyEndpointsTransformer);
+				options.ConstraintMap.Add("slugify", typeof(SlugifyEndpointsTransformer));
 				options.LowercaseUrls = true;
 			});
 
