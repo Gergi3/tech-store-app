@@ -10,8 +10,9 @@ public class CategoryDTO
 	[StringLength(MaxNameLength, MinimumLength = MinNameLength)]
 	public string Name { get; set; } = null!;
 
+	[Required]
 	[StringLength(MaxNameLength, MinimumLength = MinNameLength)]
-	public string? Slug { get; set; }
+	public string Slug { get; set; } = null!;
 
 	public int Count { get; set; }
 }
