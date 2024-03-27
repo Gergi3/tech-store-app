@@ -39,7 +39,7 @@ public class CategoriesController : Controller
 		return this.View(viewModel);
 	}
 
-	[HttpGet]
+	[HttpPost]
 	[EnableCors("AllowSpecificOrigins")]
 	public ViewComponentResult CategoryList(int skip, int take)
 	{
