@@ -35,7 +35,7 @@ public class CategoryService : ICategoryService
 			.CountAsync();
 	}
 
-	public async Task<string?> GetDbNameBySlug(string categorySlug)
+	public async Task<string?> GetNameBySlug(string categorySlug)
 	{
 		return await this._repo
 			.AllReadonly<Category>()
