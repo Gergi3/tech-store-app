@@ -3,44 +3,52 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Components.CategoryList;
 using TechStoreApp.Core.Contracts;
+using TechStoreApp.Core.Models;
 using TechStoreApp.ViewModels;
+using static TechStoreApp.Common.QueryConstants.Category;
 
 namespace TechStoreApp.Controllers;
 public class CategoriesController : Controller
 {
-	private readonly ICategoryService _categoryService;
+	private readonly IUIService _uiService;
 	private readonly IMapper _mapper;
 
-	public CategoriesController(ICategoryService categoryService, IMapper mapper)
+	public CategoriesController(IUIService uiService, IMapper mapper)
 	{
-		this._categoryService = categoryService;
+		this._uiService = uiService;
 		this._mapper = mapper;
 	}
 
 	[HttpGet]
-	public async Task<IActionResult> Index()
+	public IActionResult Index()
 	{
-		var viewModel = new CategoryIndexViewModel();
+		var breadcrumb = this._uiService.ConstructCategoriesPageBreadcrumb();
 
-		viewModel.Breadcrumb = [
-			new()
-			{
-				Name = "Home",
-				Path = ("Home", "Index")
-			},
-			new()
-			{
-				Name = "Categories",
-			}
-		];
+		var query = new CategoryQueryParamsDTO()
+		{
+			Skip = DefaultSkip,
+			Take = DefaultTake
+		};
+
+		var viewModel = new CategoryIndexViewModel()
+		{
+			Breadcrumb = breadcrumb,
+			Query = query
+		};
 
 		return this.View(viewModel);
 	}
 
-	[HttpPost]
+	[HttpGet]
 	[EnableCors("AllowSpecificOrigins")]
-	public ViewComponentResult CategoryList(int skip, int take)
+	public ViewComponentResult CCCCategoryLLLLList(int skip, int take)
 	{
-		return this.ViewComponent(typeof(CategoryList), new { skip, take, layout = false });
+		var query = new CategoryQueryParamsDTO()
+		{
+			Skip = skip,
+			Take = take
+		};
+
+		return this.ViewComponent(typeof(CategoryList), new { query, layout = false });
 	}
 }

@@ -5,5 +5,5 @@ public interface ICategoryService
 {
 	Task<List<CategoryDTO>> All(CategoryQueryParamsDTO query);
 	Task<int> Count();
-	Task<string?> GetDbNameBySlug(string categorySlug);
+	Task<string?> GetNameBySlug(string categorySlug);
 }
