@@ -17,15 +17,14 @@ public class CategoryList : BaseViewComponent
 	}
 
 	public async Task<IViewComponentResult> InvokeAsync(
-		int skip,
-		int take,
+		CategoryQueryParamsDTO query,
 		bool layout = true
 	)
 	{
-		int allCount = await this._categoryService.Count();
+		int categoriesCount = await this._categoryService.Count();
 
-		List<CategoryDTO> categoryDTOs = await this._categoryService
-			.All(take, skip);
+		var categoryDTOs = await this._categoryService
+			.All(query);
 
 		var categoryViewModels = this._mapper
 			.Map<List<CategoryItemViewModel>>(categoryDTOs);
@@ -33,9 +32,9 @@ public class CategoryList : BaseViewComponent
 		return this.View(new CategoryListViewModel()
 		{
 			Items = categoryViewModels,
-			AllCount = allCount,
-			Take = take,
-			Skip = skip,
+			AllCount = categoriesCount,
+			Take = query.Take,
+			Skip = query.Skip,
 			Layout = layout
 		});
 	}

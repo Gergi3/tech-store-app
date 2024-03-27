@@ -18,12 +18,12 @@ public class CategoryService : ICategoryService
 		this._mapper = mapper;
 	}
 
-	public async Task<List<CategoryDTO>> All(int take = 3, int skip = 0)
+	public async Task<List<CategoryDTO>> All(CategoryQueryParamsDTO query)
 	{
 		return await this._repo
 			.AllReadonly<Category>()
-			.Skip(skip)
-			.Take(take)
+			.Skip(query.Skip)
+			.Take(query.Take)
 			.ProjectTo<CategoryDTO>(this._mapper.ConfigurationProvider)
 			.ToListAsync();
 	}
