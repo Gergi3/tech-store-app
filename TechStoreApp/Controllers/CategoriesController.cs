@@ -41,7 +41,7 @@ public class CategoriesController : Controller
 
 	[HttpGet]
 	[EnableCors("AllowSpecificOrigins")]
-	public ViewComponentResult CCCCategoryLLLLList(int skip, int take)
+	public ViewComponentResult CategoryList(int skip, int take)
 	{
 		var query = new CategoryQueryParamsDTO()
 		{
