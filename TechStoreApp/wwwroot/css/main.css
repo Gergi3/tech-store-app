@@ -164,12 +164,12 @@ li,
   transform: translateY(-1px);
 }
 
-.tp-order-details-icon span svg, .tp-cart-list tr td .tp-cart-action-btn svg, .tp-shop-top-tab .nav-tabs .nav-item .nav-link svg, .tp-product-details-thumb-wrapper .nav-tabs .nav-link .nav-video-btn svg, .tp-product-details-thumb-arrow button svg, .tp-product-details-action-sm-btn svg, .tp-product-details-wishlist-btn svg, .tp-product-action-btn-3 svg, .tp-special-arrow button svg, .tp-product-action-btn svg, .tp-product-add-cart-btn-large svg, .tp-app-btn .app-icon span svg, .tp-brand-slider-arrow button svg, .tp-testimonial-arrow button svg, .tp-feature-icon span svg, .tp-feature-icon-5 span svg, .tp-slider-feature-icon-3 span svg, .tp-slider-arrow-4 button svg, .tp-blog-grid-meta span span svg, .tp-blog-grid-tab .nav-tabs .nav-link svg, .tp-blog-meta-2 span svg, .tp-sidebar-search-input button svg, .tp-postbox-details-meta span svg, .tp-postbox-details-navigation-icon span svg, .tp-category-menu nav ul li a span svg, .tp-category-mobile-menu ul li a svg, .tp-main-menu-mobile ul li > a svg, .tp-header-search-input-5 span svg, .tp-header-action-5 button svg, .tp-header-action-5 a svg, .tp-header-info-item a span svg, .tp-header-search-btn button svg, .tp-header-login-icon span svg, .tp-header-contact-icon span svg, .tp-hotspot svg, .tp-pagination ul li a svg, .tp-pagination ul li span svg, .tp-swiper-arrow button svg, .tp-btn svg, .tp-btn-green svg, .tp-load-more-btn svg, .tp-filter-btn svg {
-  -webkit-transform: translateY(-2px);
-  -moz-transform: translateY(-2px);
-  -ms-transform: translateY(-2px);
-  -o-transform: translateY(-2px);
-  transform: translateY(-2px);
+.tp-order-details-icon span svg, .tp-cart-list tr td .tp-cart-action-btn svg, .tp-shop-top-tab .nav-tabs .nav-item .nav-link svg, .tp-product-details-thumb-wrapper .nav-tabs .nav-link .nav-video-btn svg, .tp-product-details-thumb-arrow button svg, .tp-product-details-action-sm-btn svg, .tp-product-details-wishlist-btn svg, .tp-product-action-btn-3 svg, .tp-special-arrow button svg, .tp-product-action-btn svg, .tp-product-add-cart-btn-large svg, .tp-app-btn .app-icon span svg, .tp-brand-slider-arrow button svg, .tp-testimonial-arrow button svg, .tp-feature-icon span svg, .tp-feature-icon-5 span svg, .tp-slider-feature-icon-3 span svg, .tp-slider-arrow-4 button svg, .tp-blog-grid-meta span span svg, .tp-blog-grid-tab .nav-tabs .nav-link svg, .tp-blog-meta-2 span svg, .tp-sidebar-search-input button svg, .tp-postbox-details-meta span svg, .tp-postbox-details-navigation-icon span svg, .tp-category-menu nav ul li a span svg, .tp-category-mobile-menu ul li a svg, .tp-main-menu-mobile ul li > a svg, .tp-header-search-input-5 span svg, .tp-header-action-5 button svg, .tp-header-action-5 a svg, .tp-header-info-item a span svg, .tp-header-search-btn button svg, .tp-header-login-icon span svg, .tp-header-contact-icon span svg, .tp-hotspot svg, .tp-pagination ul li a svg, .tp-pagination ul li button svg, .tp-pagination ul li span svg, .tp-swiper-arrow button svg, .tp-btn svg, .tp-btn-green svg, .tp-load-more-btn svg, .tp-filter-btn svg {
+	-webkit-transform: translateY(-2px);
+	-moz-transform: translateY(-2px);
+	-ms-transform: translateY(-2px);
+	-o-transform: translateY(-2px);
+	transform: translateY(-2px);
 }
 
 .tp-product-add-to-cart-4 svg, .tp-best-add-to-cart-btn svg, .tp-category-add-to-cart-4 svg, .tp-footer-contact-icon span svg, .tp-header-search-2 button svg {
@@ -2622,21 +2622,21 @@ div.demo img {
 .tp-pagination ul li:not(:last-child) {
   margin-right: 6px;
 }
-.tp-pagination ul li a, .tp-pagination ul li span {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  line-height: 38px;
-  text-align: center;
-  border: 1px solid rgba(1, 15, 28, 0.1);
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--tp-text-body);
+.tp-pagination ul li a, .tp-pagination ul li span, .tp-pagination ul li button {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	line-height: 38px;
+	text-align: center;
+	border: 1px solid rgba(1, 15, 28, 0.1);
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--tp-text-body);
 }
-.tp-pagination ul li a:hover, .tp-pagination ul li a.current, .tp-pagination ul li span:hover, .tp-pagination ul li span.current {
-  background: var(--tp-theme-primary);
-  border-color: var(--tp-theme-primary);
-  color: var(--tp-common-white);
+.tp-pagination ul li a:hover, .tp-pagination ul li button:hover, .tp-pagination ul li button.current .tp-pagination ul li a.current, .tp-pagination ul li span:hover, .tp-pagination ul li span.current {
+	background: var(--tp-theme-primary);
+	border-color: var(--tp-theme-primary);
+	color: var(--tp-common-white);
 }
 /*----------------------------------------*/
 /*  2.10 Offcanvas

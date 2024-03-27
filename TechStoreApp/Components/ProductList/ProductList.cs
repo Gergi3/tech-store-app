@@ -17,17 +17,21 @@ public class ProductList : BaseViewComponent
 	}
 
 	public async Task<IViewComponentResult> InvokeAsync(
-		ProductQueryParamsDTO queryParams
+		ProductQueryParamsDTO query
 	)
 	{
-		List<ProductDTO> products = await this._productService.All(queryParams);
+		int productsCount = await this._productService.Count(query);
 
-		List<ProductItemViewModel> productViewModels = this._mapper
-			.Map<List<ProductItemViewModel>>(products);
+		var productDTOs = await this._productService.All(query);
+		var productViewModels = this._mapper
+			.Map<List<ProductItemViewModel>>(productDTOs);
 
 		return this.View(new ProductListViewModel()
 		{
-			Items = productViewModels
+			Items = productViewModels,
+			AllCount = productsCount,
+			Page = query.Page,
+			PerPage = query.PerPage
 		});
 	}
 }

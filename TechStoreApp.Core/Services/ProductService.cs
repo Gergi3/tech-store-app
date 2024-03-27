@@ -1,12 +1,11 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models;
-using TechStoreApp.Core.Models.Components;
 using TechStoreApp.Infrastructure.Data.Common;
 using TechStoreApp.Infrastructure.Data.Entities;
+using static TechStoreApp.Common.QueryConstants.Product;
 
 namespace TechStoreApp.Core.Services;
 
@@ -26,7 +25,38 @@ public class ProductService : IProductService
 		this._categoryService = categoryService;
 	}
 
+
 	public async Task<List<ProductDTO>> All(ProductQueryParamsDTO query)
+	{
+		if (query.Page <= 0)
+		{
+			query.Page = DefaultFirstPage;
+		}
+
+		if (query.PerPage <= 0)
+		{
+			query.PerPage = DefaultPerPage;
+		}
+
+		var productsQueryable = this.AllAsQueryable(query)
+			.Skip((query.Page - 1) * query.PerPage)
+			.Take(query.PerPage);
+
+		return await productsQueryable
+			.ProjectTo<ProductDTO>(this._mapper.ConfigurationProvider)
+			.ToListAsync();
+	}
+
+	public async Task<int> Count(ProductQueryParamsDTO query)
+	{
+		return await
+			this.AllAsQueryable(query)
+			.CountAsync();
+	}
+
+
+
+	private IQueryable<Product> AllAsQueryable(ProductQueryParamsDTO query)
 	{
 		var productsQueryable = this._repo
 			.AllReadonly<Product>()
@@ -40,45 +70,7 @@ public class ProductService : IProductService
 					.Any(x => x.Slug == query.CategorySlug));
 		}
 
-		return await productsQueryable
-			.ProjectTo<ProductDTO>(this._mapper.ConfigurationProvider)
-			.ToListAsync();
+		return productsQueryable;
 	}
 
-	public async Task<List<BreadcrumbItemViewModel>> ConstructBreadcrumb(
-		ProductQueryParamsDTO query
-	)
-	{
-		List<BreadcrumbItemViewModel> breadcrumb = [
-			new()
-			{
-				Name = "Home",
-				Path = ("Home", "Index")
-			},
-			new()
-			{
-				Name = "Products",
-			},
-		];
-
-		string? categorySlug = query.CategorySlug;
-
-		if (categorySlug != null)
-		{
-			string? dbName = await this._categoryService.GetDbNameBySlug(categorySlug);
-			if (dbName == null)
-			{
-				throw new CategoryNotFoundException();
-			}
-
-			breadcrumb[^1].Path = ("Products", "Index");
-
-			breadcrumb.Add(new()
-			{
-				Name = dbName
-			});
-		}
-
-		return breadcrumb;
-	}
 }

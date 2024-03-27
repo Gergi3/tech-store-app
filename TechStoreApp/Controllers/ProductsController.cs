@@ -2,28 +2,37 @@ using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models;
 using TechStoreApp.ViewModels;
+using static TechStoreApp.Common.QueryConstants.Product;
 
 namespace TechStoreApp.Controllers;
 
 public class ProductsController : BaseController
 {
-	public IProductService _productService { get; set; }
-	public ProductsController(IProductService productService)
+	public IUIService _uiService { get; set; }
+	public ProductsController(IUIService uiService)
 	{
-		this._productService = productService;
+		this._uiService = uiService;
 	}
 
-	public async Task<IActionResult> Index(string? categorySlug)
+	public async Task<IActionResult> Index(
+		string? categorySlug,
+		int page = DefaultFirstPage,
+		int perPage = DefaultPerPage)
 	{
-		var viewModel = new ProductIndexViewModel();
-
-		ProductQueryParamsDTO queryParams = new()
+		var query = new ProductQueryParamsDTO()
 		{
-			CategorySlug = categorySlug
+			CategorySlug = categorySlug,
+			Page = page,
+			PerPage = perPage
 		};
 
-		viewModel.Breadcrumb = await this._productService.ConstructBreadcrumb(queryParams);
-		viewModel.Query = queryParams;
+		var breadcrumb = await this._uiService.ConstructProductsPageBreadcrumb(query);
+
+		var viewModel = new ProductIndexViewModel()
+		{
+			Query = query,
+			Breadcrumb = breadcrumb
+		};
 
 		return this.View(viewModel);
 	}
