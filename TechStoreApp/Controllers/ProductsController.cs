@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using TechStoreApp.Components.CategoryList;
 using TechStoreApp.Components.ProductList;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models;
