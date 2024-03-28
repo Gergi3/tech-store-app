@@ -1,10 +1,9 @@
-﻿@using TechStoreApp.Components.ProductList
-@model ProductItemViewModel
+﻿@model ProductItemViewModel
 
 <div class="col-xl-4 col-md-6 col-sm-6 infinite-item">
     <div class="tp-product-item-2 mb-40">
         <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img">
-            <a asp-action="Details" asp-controller="Products" asp-route-id="@Model.Id">
+            <a href=@($"/products/details/{Model.Slug}")>
                 <img src="/img/product/2/prodcut-1.jpg" alt="">
             </a>
             <div class="tp-product-action-2 tp-product-action-blackStyle">
@@ -57,7 +56,7 @@
                 }
             </div>
             <h3 class="tp-product-title-2">
-                <a asp-action="Details" asp-controller="Products" asp-route-id="@Model.Id">
+                <a href=@($"/products/details/{Model.Slug}")>
                     @Model.Name
                 </a>
             </h3>

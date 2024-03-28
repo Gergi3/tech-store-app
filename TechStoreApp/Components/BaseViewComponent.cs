@@ -1,17 +1,22 @@
 using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 
 namespace TechStoreApp.Components;
 
 public abstract class BaseViewComponent : ViewComponent
 {
-	private static readonly Dictionary<string, string> components = GetComponents();
+	//private static readonly Dictionary<string, string> components = GetComponents();
+
+	// DEVELOPMENT PURPOSES
+	private static Dictionary<string, string> components => GetComponents();
+	// DEVELOPMENT PURPOSES
 
 	private static Dictionary<string, string> GetComponents()
 	{
 		Dictionary<string, string> validDirectories = new();
-		var directories = Directory.GetFiles("Components", "*.cshtml", SearchOption.AllDirectories);
+		var directories = Directory.GetFiles("Views", $"*{RazorViewEngine.ViewExtension}", SearchOption.AllDirectories);
 
 		foreach (var dir in directories)
 		{

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using TechStoreApp.ViewModels.Components;
 
 namespace TechStoreApp.Components.CategoryList;
 

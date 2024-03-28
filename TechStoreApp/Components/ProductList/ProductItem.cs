@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using TechStoreApp.ViewModels.Components;
 
 namespace TechStoreApp.Components.ProductList;
 
@@ -8,6 +9,6 @@ public class ProductItem : BaseViewComponent
 		ProductItemViewModel item
 	)
 	{
-		return this.View(item);
+		return View(item);
 	}
 }

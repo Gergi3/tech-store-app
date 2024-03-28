@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Components.CategoryList;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models;
-using TechStoreApp.ViewModels;
+using TechStoreApp.ViewModels.Pages;
 using static TechStoreApp.Common.QueryConstants.Category;
 
 namespace TechStoreApp.Controllers;
@@ -30,7 +30,7 @@ public class CategoriesController : Controller
 			Take = DefaultTake
 		};
 
-		var viewModel = new CategoryIndexViewModel()
+		var viewModel = new CategoryIndexPageViewModel()
 		{
 			Breadcrumb = breadcrumb,
 			Query = query

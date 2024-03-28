@@ -1,0 +1,329 @@
+﻿@using TechStoreApp.Components.ProductDetails
+@model ProductDetailsBottomViewModel
+
+<div class="tp-product-details-bottom pb-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="tp-product-details-tab-nav tp-tab">
+                    <nav>
+                        <div class="nav nav-tabs justify-content-center p-relative tp-product-tab" id="navPresentationTab" role="tablist">
+                            <button class="nav-link" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true">Description</button>
+                            <button class="nav-link active" id="nav-addInfo-tab" data-bs-toggle="tab" data-bs-target="#nav-addInfo" type="button" role="tab" aria-controls="nav-addInfo" aria-selected="false">Additional information</button>
+                            <button class="nav-link" id="nav-review-tab" data-bs-toggle="tab" data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review" aria-selected="false">Reviews (2)</button>
+
+                            <span id="productTabMarker" class="tp-product-details-tab-line"></span>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="navPresentationTabContent">
+                        <div class="tab-pane fade" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab" tabindex="0">
+                            <div class="tp-product-details-desc-wrapper pt-80">
+                                <div class="row justify-content-center">
+                                    <div class="col-xl-10">
+                                        <div class="tp-product-details-desc-item pb-105">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="tp-product-details-desc-content pt-25">
+                                                        <span>Galaxy A8 tablet</span>
+                                                        <h3 class="tp-product-details-desc-title">Your world at a glance</h3>
+                                                        <p>With a slim design, a vibrant entertainment system, and <br> outstanding performance, the new Galaxy Tab A7 is a stylish new <br> companion for your life.Dive head-first into the things you love, <br> and easily share your favorite moments. Learn, explore, connect <br> and be inspired.</p>
+                                                    </div>
+                                                    <div class="tp-product-details-desc-content">
+                                                        <h3 class="tp-product-details-desc-title">Draw inspiration with S Pen</h3>
+                                                        <p>S Pen is a bundle of writing instruments in one. Its natural grip, <br> low latency and impressive pressure sensitivity will make it your go-to for everything from drawing to editing documents. And S Pen won't get misplaced thanks.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="tp-product-details-desc-thumb">
+                                                        <img src="~/img/product/details/desc/product-details-desc-1.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tp-product-details-desc-item  pb-75">
+                                            <div class="row">
+
+                                                <div class="col-lg-7">
+                                                    <div class="tp-product-details-desc-thumb">
+                                                        <img src="~/img/product/details/desc/product-details-desc-2.jpg" alt="">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-5 order-first order-lg-last">
+                                                    <div class="tp-product-details-desc-content des-content-2 pl-40">
+                                                        <h3 class="tp-product-details-desc-title">Carry with <br> Confidence and style</h3>
+                                                        <p>Wrap your tablet in a sleek case that's as stylish as it is convenient. Galaxy Tab S6 Lite Book Cover folds around and clings magnetically, so you can easily gear up as you're headed out the door. There's even a compartment for S pen, so you can be sure it doesn't get left behind.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tp-product-details-desc-item">
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="tp-product-details-desc-banner text-center m-img">
+                                                        <h3 class="tp-product-details-desc-banner-title tp-product-details-desc-title">Speed Memory Power = Epic Races</h3>
+                                                        <img src="~/img/product/details/desc/product-details-desc-3.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show active" id="nav-addInfo" role="tabpanel" aria-labelledby="nav-addInfo-tab" tabindex="0">
+
+                            <div class="tp-product-details-additional-info ">
+                                <div class="row justify-content-center">
+                                    <div class="col-xl-10">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Standing screen display size</td>
+                                                    <td>Screen display Size 10.4</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Color</td>
+                                                    <td>Gray, Dark gray, Mystic black</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Screen Resolution</td>
+                                                    <td>1920 x 1200 Pixels</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Max Screen Resolution</td>
+                                                    <td>2000 x 1200</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Processor</td>
+                                                    <td>2.3 GHz (128 GB)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Graphics Coprocessor</td>
+                                                    <td>Exynos 9611, Octa Core (4x2.3GHz + 4x1.7GHz)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Wireless Type</td>
+                                                    <td>802.11a/b/g/n/ac, Bluetooth</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Average Battery Life (in hours)</td>
+                                                    <td>13 Hours</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Series</td>
+                                                    <td>Samsung Galaxy tab S6 Lite WiFi</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Item model number</td>
+                                                    <td>SM-P6102ZAEXOR</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Hardware Platform</td>
+                                                    <td>Android</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Operating System</td>
+                                                    <td>Android 12</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Batteries</td>
+                                                    <td>1 Lithium Polymer batteries required. (included)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Product Dimensions</td>
+                                                    <td>0.28 x 6.07 x 9.63 inches</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab" tabindex="0">
+                            <div class="tp-product-details-review-wrapper pt-60">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="tp-product-details-review-statics">
+                                            <!-- number -->
+                                            <div class="tp-product-details-review-number d-inline-block mb-50">
+                                                <h3 class="tp-product-details-review-number-title">Customer reviews</h3>
+                                                <div class="tp-product-details-review-summery d-flex align-items-center">
+                                                    <div class="tp-product-details-review-summery-value">
+                                                        <span>4.5</span>
+                                                    </div>
+                                                    <div class="tp-product-details-review-summery-rating d-flex align-items-center">
+                                                        <span><i class="fa-solid fa-star"></i></span>
+                                                        <span><i class="fa-solid fa-star"></i></span>
+                                                        <span><i class="fa-solid fa-star"></i></span>
+                                                        <span><i class="fa-solid fa-star"></i></span>
+                                                        <span><i class="fa-solid fa-star"></i></span>
+                                                        <p>(36 Reviews)</p>
+                                                    </div>
+                                                </div>
+                                                <div class="tp-product-details-review-rating-list">
+                                                    <!-- single item -->
+                                                    <div class="tp-product-details-review-rating-item d-flex align-items-center">
+                                                        <span>5 Start</span>
+                                                        <div class="tp-product-details-review-rating-bar">
+                                                            <span class="tp-product-details-review-rating-bar-inner" data-width="82%"></span>
+                                                        </div>
+                                                        <div class="tp-product-details-review-rating-percent">
+                                                            <span>82%</span>
+                                                        </div>
+                                                    </div> <!-- end single item -->
+                                                    <!-- single item -->
+                                                    <div class="tp-product-details-review-rating-item d-flex align-items-center">
+                                                        <span>4 Start</span>
+                                                        <div class="tp-product-details-review-rating-bar">
+                                                            <span class="tp-product-details-review-rating-bar-inner" data-width="30%"></span>
+                                                        </div>
+                                                        <div class="tp-product-details-review-rating-percent">
+                                                            <span>30%</span>
+                                                        </div>
+                                                    </div> <!-- end single item -->
+                                                    <!-- single item -->
+                                                    <div class="tp-product-details-review-rating-item d-flex align-items-center">
+                                                        <span>3 Start</span>
+                                                        <div class="tp-product-details-review-rating-bar">
+                                                            <span class="tp-product-details-review-rating-bar-inner" data-width="15%"></span>
+                                                        </div>
+                                                        <div class="tp-product-details-review-rating-percent">
+                                                            <span>15%</span>
+                                                        </div>
+                                                    </div> <!-- end single item -->
+                                                    <!-- single item -->
+                                                    <div class="tp-product-details-review-rating-item d-flex align-items-center">
+                                                        <span>2 Start</span>
+                                                        <div class="tp-product-details-review-rating-bar">
+                                                            <span class="tp-product-details-review-rating-bar-inner" data-width="6%"></span>
+                                                        </div>
+                                                        <div class="tp-product-details-review-rating-percent">
+                                                            <span>6%</span>
+                                                        </div>
+                                                    </div> <!-- end single item -->
+                                                    <!-- single item -->
+                                                    <div class="tp-product-details-review-rating-item d-flex align-items-center">
+                                                        <span>1 Start</span>
+                                                        <div class="tp-product-details-review-rating-bar">
+                                                            <span class="tp-product-details-review-rating-bar-inner" data-width="10%"></span>
+                                                        </div>
+                                                        <div class="tp-product-details-review-rating-percent">
+                                                            <span>10%</span>
+                                                        </div>
+                                                    </div> <!-- end single item -->
+                                                </div>
+                                            </div>
+
+                                            <!-- reviews -->
+                                            <div class="tp-product-details-review-list pr-110">
+                                                <h3 class="tp-product-details-review-title">Rating & Review</h3>
+                                                <div class="tp-product-details-review-avater d-flex align-items-start">
+                                                    <div class="tp-product-details-review-avater-thumb">
+                                                        <a href="#">
+                                                            <img src="~/img/users/user-3.jpg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="tp-product-details-review-avater-content">
+                                                        <div class="tp-product-details-review-avater-rating d-flex align-items-center">
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                        </div>
+                                                        <h3 class="tp-product-details-review-avater-title">Eleanor Fant</h3>
+                                                        <span class="tp-product-details-review-avater-meta">06 March, 2023 </span>
+
+                                                        <div class="tp-product-details-review-avater-comment">
+                                                            <p>Designed very similarly to the nearly double priced Galaxy tab S6, with the only removal being.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tp-product-details-review-avater d-flex align-items-start">
+                                                    <div class="tp-product-details-review-avater-thumb">
+                                                        <a href="#">
+                                                            <img src="~/img/users/user-2.jpg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="tp-product-details-review-avater-content">
+                                                        <div class="tp-product-details-review-avater-rating d-flex align-items-center">
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                        </div>
+                                                        <h3 class="tp-product-details-review-avater-title">Shahnewaz Sakil</h3>
+                                                        <span class="tp-product-details-review-avater-meta">06 March, 2023 </span>
+
+                                                        <div class="tp-product-details-review-avater-comment">
+                                                            <p>This review is for the Samsung Tab S6 Lite, 64gb wifi in blue. purchased this product performed.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end col -->
+                                    <div class="col-lg-6">
+                                        <div class="tp-product-details-review-form">
+                                            <h3 class="tp-product-details-review-form-title">Review this product</h3>
+                                            <p>Your email address will not be published. Required fields are marked *</p>
+                                            <form action="#">
+                                                <div class="tp-product-details-review-form-rating d-flex align-items-center">
+                                                    <p>Your Rating :</p>
+                                                    <div class="tp-product-details-review-form-rating-icon d-flex align-items-center">
+                                                        <span><i class="fa-solid fa-star"></i></span>
+                                                        <span><i class="fa-solid fa-star"></i></span>
+                                                        <span><i class="fa-solid fa-star"></i></span>
+                                                        <span><i class="fa-solid fa-star"></i></span>
+                                                        <span><i class="fa-solid fa-star"></i></span>
+                                                    </div>
+                                                </div>
+                                                <div class="tp-product-details-review-input-wrapper">
+                                                    <div class="tp-product-details-review-input-box">
+                                                        <div class="tp-product-details-review-input">
+                                                            <textarea id="msg" name="msg" placeholder="Write your review here..."></textarea>
+                                                        </div>
+                                                        <div class="tp-product-details-review-input-title">
+                                                            <label for="msg">Your Name</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tp-product-details-review-input-box">
+                                                        <div class="tp-product-details-review-input">
+                                                            <input name="name" id="name" type="text" placeholder="Shahnewaz Sakil">
+                                                        </div>
+                                                        <div class="tp-product-details-review-input-title">
+                                                            <label for="name">Your Name</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tp-product-details-review-input-box">
+                                                        <div class="tp-product-details-review-input">
+                                                            <input name="email" id="email" type="email" placeholder="shofy@mail.com">
+                                                        </div>
+                                                        <div class="tp-product-details-review-input-title">
+                                                            <label for="email">Your Email</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tp-product-details-review-suggetions mb-20">
+                                                    <div class="tp-product-details-review-remeber">
+                                                        <input id="remeber" type="checkbox">
+                                                        <label for="remeber">Save my name, email, and website in this browser for the next time I comment.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="tp-product-details-review-btn-wrapper">
+                                                    <button class="tp-product-details-review-btn">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

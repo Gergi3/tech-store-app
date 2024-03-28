@@ -1,5 +1,6 @@
 using DotNetEd.CoreAdmin;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Core.Contracts;
@@ -69,7 +70,10 @@ public static class ServiceCollectionExtensions
 			.AddControllersWithViews()
 			.AddRazorOptions(options =>
 			{
-				options.ViewLocationFormats.Add(AdditionalViewLocationFormat);
+				foreach (var item in AdditionalViewLocationFormats)
+				{
+					options.ViewLocationFormats.Add(item + RazorViewEngine.ViewExtension);
+				}
 			});
 
 		return services;

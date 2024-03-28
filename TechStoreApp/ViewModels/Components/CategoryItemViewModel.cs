@@ -1,4 +1,4 @@
-namespace TechStoreApp.Components.CategoryList;
+namespace TechStoreApp.ViewModels.Components;
 
 public class CategoryItemViewModel
 {

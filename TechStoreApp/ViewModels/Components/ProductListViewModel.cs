@@ -1,4 +1,4 @@
-namespace TechStoreApp.Components.ProductList;
+namespace TechStoreApp.ViewModels.Components;
 
 public class ProductListViewModel
 {

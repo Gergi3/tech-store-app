@@ -6,4 +6,6 @@ public interface IProductService
 {
 	Task<List<ProductDTO>> All(ProductQueryParamsDTO query);
 	Task<int> Count(ProductQueryParamsDTO query);
+	Task<string?> GetNameBySlug(string productSlug);
+	Task<ProductDTO?> GetBySlug(string slug);
 }

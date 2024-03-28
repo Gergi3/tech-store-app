@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models;
+using TechStoreApp.ViewModels.Components;
 
 namespace TechStoreApp.Components.CategoryList;
 

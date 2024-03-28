@@ -30,7 +30,7 @@ public static class AppExtension
 
 		app.MapControllerRoute(
 			name: "default",
-			pattern: "{controller:slugify=Home}/{action:slugify=Index}/{id?}");
+			pattern: "{controller:slugify=Home}/{action:slugify=Index}/{slug?}");
 
 		app.MapControllerRoute(
 			name: "products",

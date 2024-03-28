@@ -7,9 +7,11 @@ namespace TechStoreApp.Core.Services;
 public class UIService : IUIService
 {
 	private readonly ICategoryService _categoryService;
-	public UIService(ICategoryService categoryService)
+	private readonly IProductService _productService;
+	public UIService(ICategoryService categoryService, IProductService productService)
 	{
 		this._categoryService = categoryService;
+		this._productService = productService;
 	}
 
 	public List<BreadcrumbItemViewModel> ConstructCategoriesPageBreadcrumb()
@@ -26,6 +28,41 @@ public class UIService : IUIService
 				Name = "Categories",
 			}
 		};
+
+		return breadcrumb;
+	}
+
+	public async Task<List<BreadcrumbItemViewModel>> ConstructProductDetailsPageBreadcrumb(string slug)
+	{
+		List<BreadcrumbItemViewModel> breadcrumb = [
+			new()
+			{
+				Name = "Home",
+				Path = ("Home", "Index")
+			},
+			new()
+			{
+				Name = "Products",
+				Path = ("Products", "Index")
+			},
+		];
+
+		if (slug == null)
+		{
+			throw new SlugNullException();
+		}
+
+		var name = await this._productService.GetNameBySlug(slug);
+
+		if (name == null)
+		{
+			throw new ProductNotFoundException();
+		}
+
+		breadcrumb.Add(new()
+		{
+			Name = name
+		});
 
 		return breadcrumb;
 	}

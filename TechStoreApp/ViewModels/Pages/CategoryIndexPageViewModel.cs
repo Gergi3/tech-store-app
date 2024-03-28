@@ -1,10 +1,10 @@
 using TechStoreApp.Core.Models;
 using TechStoreApp.Core.Models.Components;
 
-namespace TechStoreApp.ViewModels;
+namespace TechStoreApp.ViewModels.Pages;
 
-public class ProductIndexViewModel
+public class CategoryIndexPageViewModel
 {
 	public List<BreadcrumbItemViewModel> Breadcrumb { get; set; } = [];
-	public ProductQueryParamsDTO Query { get; set; } = null!;
+	public CategoryQueryParamsDTO Query { get; set; } = null!;
 }

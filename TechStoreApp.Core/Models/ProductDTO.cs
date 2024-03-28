@@ -7,8 +7,12 @@ public class ProductDTO
 	public Guid Id { get; set; }
 
 	[Required]
-	[StringLength(MaxNameLength)]
+	[StringLength(MaxNameLength, MinimumLength = MinNameLength)]
 	public string Name { get; set; } = null!;
+
+	[Required]
+	[StringLength(MaxNameLength, MinimumLength = MinNameLength)]
+	public string Slug { get; set; } = null!;
 
 	[Required]
 	public decimal Price { get; set; }

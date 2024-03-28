@@ -25,6 +25,13 @@ public class ProductService : IProductService
 		this._categoryService = categoryService;
 	}
 
+	public async Task<ProductDTO?> GetBySlug(string slug)
+	{
+		return await this._repo
+			.AllReadonly<Product>()
+			.ProjectTo<ProductDTO>(this._mapper.ConfigurationProvider)
+			.FirstOrDefaultAsync(x => x.Slug == slug);
+	}
 
 	public async Task<List<ProductDTO>> All(ProductQueryParamsDTO query)
 	{
@@ -54,8 +61,6 @@ public class ProductService : IProductService
 			.CountAsync();
 	}
 
-
-
 	private IQueryable<Product> AllAsQueryable(ProductQueryParamsDTO query)
 	{
 		var productsQueryable = this._repo
@@ -73,4 +78,12 @@ public class ProductService : IProductService
 		return productsQueryable;
 	}
 
+	public async Task<string?> GetNameBySlug(string productSlug)
+	{
+		return await this._repo
+			.AllReadonly<Product>()
+			.Where(x => x.Slug == productSlug)
+			.Select(x => x.Name)
+			.FirstOrDefaultAsync();
+	}
 }

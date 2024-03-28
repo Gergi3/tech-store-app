@@ -1,5 +1,4 @@
-﻿@using TechStoreApp.Components.ProductList
-@model ProductListViewModel
+﻿@model ProductListViewModel
 
 @{
     int previousPage = Model.Page - 1;
@@ -94,7 +93,7 @@
                 <div class="row infinite-container">
                     @foreach (var product in Model.Items)
                     {
-                        <vc:product-item item="product"></vc:product-item>
+                        <partial name="Index/_ProductItem" model="@product" />
                     }
                 </div>
             </div>
