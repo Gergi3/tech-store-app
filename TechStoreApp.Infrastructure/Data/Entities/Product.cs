@@ -8,6 +8,8 @@ using static TechStoreApp.Common.DataConstants.Product;
 namespace TechStoreApp.Infrastructure.Data.Entities;
 
 [EntityTypeConfiguration(typeof(ProductConfiguration))]
+[Index(nameof(Name), IsUnique = true)]
+[Index(nameof(Slug), IsUnique = true)]
 public class Product
 {
 	[Key]
@@ -17,6 +19,10 @@ public class Product
 	[Required]
 	[StringLength(MaxNameLength)]
 	public string Name { get; set; } = null!;
+
+	[Required]
+	[StringLength(MaxNameLength)]
+	public string Slug { get; set; } = null!;
 
 	[Required]
 	[Column(TypeName = DataConstants.SqlServerTypes.MoneyType)]
