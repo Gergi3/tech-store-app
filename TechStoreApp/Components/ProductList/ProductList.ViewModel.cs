@@ -6,4 +6,5 @@ public class ProductListViewModel
 	public int Page { get; set; }
 	public int PerPage { get; set; }
 	public int AllCount { get; set; }
+	public bool Layout { get; set; }
 }

@@ -17,7 +17,8 @@ public class ProductList : BaseViewComponent
 	}
 
 	public async Task<IViewComponentResult> InvokeAsync(
-		ProductQueryParamsDTO query
+		ProductQueryParamsDTO query,
+		bool layout = true
 	)
 	{
 		int productsCount = await this._productService.Count(query);
@@ -31,7 +32,8 @@ public class ProductList : BaseViewComponent
 			Items = productViewModels,
 			AllCount = productsCount,
 			Page = query.Page,
-			PerPage = query.PerPage
+			PerPage = query.PerPage,
+			Layout = layout
 		});
 	}
 }

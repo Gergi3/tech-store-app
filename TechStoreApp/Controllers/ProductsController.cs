@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using TechStoreApp.Components.CategoryList;
+using TechStoreApp.Components.ProductList;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models;
 using TechStoreApp.ViewModels;
@@ -35,5 +38,18 @@ public class ProductsController : BaseController
 		};
 
 		return this.View(viewModel);
+	}
+
+	[HttpGet]
+	[EnableCors("AllowSpecificOrigins")]
+	public ViewComponentResult ProductList(int perPage, int page)
+	{
+		var query = new ProductQueryParamsDTO()
+		{
+			Page = page,
+			PerPage = perPage
+		};
+
+		return this.ViewComponent(typeof(ProductList), new { query, layout = false });
 	}
 }

@@ -5,7 +5,7 @@ public static class QueryConstants
 	public static class Product
 	{
 		public const int DefaultFirstPage = 1;
-		public const int DefaultPerPage = 3;
+		public const int DefaultPerPage = 9;
 	}
 
 	public static class Category
