@@ -7,6 +7,7 @@ public class ProductDetailsTop : BaseViewComponent
 {
 	public async Task<IViewComponentResult> InvokeAsync(ProductDetailsTopViewModel model)
 	{
+
 		return this.View(model);
 	}
 }

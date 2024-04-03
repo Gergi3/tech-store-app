@@ -1,10 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Core.Models.Components;
 
 namespace TechStoreApp.Controllers;
 
+[Authorize]
 public class HomeController : BaseController
 {
+	[AllowAnonymous]
 	public IActionResult Index()
 	{
 		this.ViewBag.BannerSliderItems = new List<BannerSliderItemViewModel>

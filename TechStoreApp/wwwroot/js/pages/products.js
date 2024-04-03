@@ -1,4 +1,6 @@
 import { endpoints } from '../constants/endpoints.js';
+import { attachWishlistHandler } from '../components/wishlist.js';
+attachWishlistHandler('.add-to-wishlist-form', '.add-to-wishlist-btn-text', 'data-product-id', '.tp-shop-main-wrapper');
 $(window).on('popstate', function () {
     const query = window.location.search;
     fetchAndDisplayItems(query, null);

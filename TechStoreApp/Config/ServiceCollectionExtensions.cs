@@ -21,6 +21,7 @@ public static class ServiceCollectionExtensions
 		services.AddScoped<IRepository, Repository>();
 		services.AddScoped<ICategoryService, CategoryService>();
 		services.AddScoped<IProductService, ProductService>();
+		services.AddScoped<IWishlistService, WishlistService>();
 		services.AddScoped<IUIService, UIService>();
 
 		return services;
@@ -33,6 +34,7 @@ public static class ServiceCollectionExtensions
 			{
 				cfg.AddProfile<CategoryProfile>();
 				cfg.AddProfile<ProductProfile>();
+				cfg.AddProfile<WishlistProfile>();
 				cfg.AddProfile<ViewComponentsProfile>();
 			},
 			assemblies: typeof(Program).Assembly);

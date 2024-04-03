@@ -1,4 +1,4 @@
-namespace TechStoreApp.Core.Models;
+namespace TechStoreApp.Core.Models.DTOs;
 
 public class CategoryQueryParamsDTO
 {

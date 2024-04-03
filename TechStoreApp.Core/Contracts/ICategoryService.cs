@@ -1,4 +1,4 @@
-using TechStoreApp.Core.Models;
+using TechStoreApp.Core.Models.DTOs;
 
 namespace TechStoreApp.Core.Contracts;
 public interface ICategoryService

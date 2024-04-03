@@ -6,6 +6,10 @@ export const endpoints = {
     },
     product: {
         list: buildUrl('products/product-list')
+    },
+    wishlist: {
+        change: buildUrl('wishlist/change-status'),
+        updateQuantity: buildUrl('wishlist/change-quantity')
     }
 };
 //# sourceMappingURL=endpoints.js.map

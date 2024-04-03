@@ -1,14 +1,16 @@
 using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Core.Contracts;
-using TechStoreApp.Core.Models;
 using TechStoreApp.Core.Models.Components;
+using TechStoreApp.Core.Models.DTOs;
 
 namespace TechStoreApp.Core.Services;
 public class UIService : IUIService
 {
 	private readonly ICategoryService _categoryService;
 	private readonly IProductService _productService;
-	public UIService(ICategoryService categoryService, IProductService productService)
+	public UIService(
+		ICategoryService categoryService,
+		IProductService productService)
 	{
 		this._categoryService = categoryService;
 		this._productService = productService;
@@ -34,6 +36,11 @@ public class UIService : IUIService
 
 	public async Task<List<BreadcrumbItemViewModel>> ConstructProductDetailsPageBreadcrumb(string slug)
 	{
+		if (slug == null)
+		{
+			throw new SlugNullException();
+		}
+
 		List<BreadcrumbItemViewModel> breadcrumb = [
 			new()
 			{
@@ -47,16 +54,11 @@ public class UIService : IUIService
 			},
 		];
 
-		if (slug == null)
-		{
-			throw new SlugNullException();
-		}
-
 		var name = await this._productService.GetNameBySlug(slug);
 
 		if (name == null)
 		{
-			throw new ProductNotFoundException();
+			throw new UnexpectedNullProduct();
 		}
 
 		breadcrumb.Add(new()
@@ -89,7 +91,7 @@ public class UIService : IUIService
 			string? dbName = await this._categoryService.GetNameBySlug(categorySlug);
 			if (dbName == null)
 			{
-				throw new CategoryNotFoundException();
+				throw new UnexpectedNullCategory();
 			}
 
 			breadcrumb[^1].Path = ("Products", "Index");

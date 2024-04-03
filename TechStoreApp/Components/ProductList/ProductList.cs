@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Core.Contracts;
-using TechStoreApp.Core.Models;
+using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.ViewModels.Components;
 
 namespace TechStoreApp.Components.ProductList;
@@ -25,10 +25,11 @@ public class ProductList : BaseViewComponent
 		var productsCount = await this._productService.Count(query);
 
 		var productDTOs = await this._productService.All(query);
+
 		var productViewModels = this._mapper
 			.Map<List<ProductItemViewModel>>(productDTOs);
 
-		return View(new ProductListViewModel()
+		return this.View(new ProductListViewModel()
 		{
 			Items = productViewModels,
 			AllCount = productsCount,

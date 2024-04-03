@@ -8,8 +8,8 @@ public static class AppExtension
 	{
 		if (app.Environment.IsDevelopment())
 		{
-			app.UseDeveloperExceptionPage();
-			app.UseMigrationsEndPoint();
+			app.UseExceptionHandler(options => { options.UseDeveloperExceptionPage(); });
+			//app.UseMigrationsEndPoint();
 		}
 		else
 		{

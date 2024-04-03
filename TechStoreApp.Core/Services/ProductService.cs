@@ -1,8 +1,9 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Core.Contracts;
-using TechStoreApp.Core.Models;
+using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.Infrastructure.Data.Common;
 using TechStoreApp.Infrastructure.Data.Entities;
 using static TechStoreApp.Common.QueryConstants.Product;
@@ -25,14 +26,6 @@ public class ProductService : IProductService
 		this._categoryService = categoryService;
 	}
 
-	public async Task<ProductDTO?> GetBySlug(string slug)
-	{
-		return await this._repo
-			.AllReadonly<Product>()
-			.ProjectTo<ProductDTO>(this._mapper.ConfigurationProvider)
-			.FirstOrDefaultAsync(x => x.Slug == slug);
-	}
-
 	public async Task<List<ProductDTO>> All(ProductQueryParamsDTO query)
 	{
 		if (query.Page <= 0)
@@ -50,8 +43,27 @@ public class ProductService : IProductService
 			.Take(query.PerPage);
 
 		return await productsQueryable
-			.ProjectTo<ProductDTO>(this._mapper.ConfigurationProvider)
+			.ProjectTo<ProductDTO>(
+				configuration: this._mapper.ConfigurationProvider,
+				parameters: new { userId = query.CurrentUserId })
 			.ToListAsync();
+	}
+
+	public async Task<ProductDTO?> GetBySlug(string slug)
+	{
+		return await this._repo
+			.AllReadonly<Product>()
+			.ProjectTo<ProductDTO>(this._mapper.ConfigurationProvider)
+			.FirstOrDefaultAsync(x => x.Slug == slug);
+	}
+
+	public async Task<string?> GetNameBySlug(string productSlug)
+	{
+		return await this._repo
+			.AllReadonly<Product>()
+			.Where(x => x.Slug == productSlug)
+			.Select(x => x.Name)
+			.FirstOrDefaultAsync();
 	}
 
 	public async Task<int> Count(ProductQueryParamsDTO query)
@@ -60,6 +72,7 @@ public class ProductService : IProductService
 			this.AllAsQueryable(query)
 			.CountAsync();
 	}
+
 
 	private IQueryable<Product> AllAsQueryable(ProductQueryParamsDTO query)
 	{
@@ -76,14 +89,5 @@ public class ProductService : IProductService
 		}
 
 		return productsQueryable;
-	}
-
-	public async Task<string?> GetNameBySlug(string productSlug)
-	{
-		return await this._repo
-			.AllReadonly<Product>()
-			.Where(x => x.Slug == productSlug)
-			.Select(x => x.Name)
-			.FirstOrDefaultAsync();
 	}
 }

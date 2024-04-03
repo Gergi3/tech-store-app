@@ -1,4 +1,4 @@
-using TechStoreApp.Core.Models;
+using TechStoreApp.Core.Models.DTOs;
 
 namespace TechStoreApp.Core.Contracts;
 
@@ -8,4 +8,5 @@ public interface IProductService
 	Task<int> Count(ProductQueryParamsDTO query);
 	Task<string?> GetNameBySlug(string productSlug);
 	Task<ProductDTO?> GetBySlug(string slug);
+
 }

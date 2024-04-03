@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using static TechStoreApp.Common.DataConstants.Category;
+using static TechStoreApp.Common.DataConstants.Product;
 
-namespace TechStoreApp.Core.Models;
-public class CategoryDTO
+namespace TechStoreApp.Core.Models.DTOs;
+public class ProductDTO
 {
 	public Guid Id { get; set; }
 
@@ -14,5 +14,10 @@ public class CategoryDTO
 	[StringLength(MaxNameLength, MinimumLength = MinNameLength)]
 	public string Slug { get; set; } = null!;
 
-	public int Count { get; set; }
+	[Required]
+	public decimal Price { get; set; }
+
+	public bool IsWishlisted { get; set; }
+
+	public List<CategoryDTO> Categories { get; set; } = [];
 }

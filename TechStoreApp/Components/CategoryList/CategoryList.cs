@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Core.Contracts;
-using TechStoreApp.Core.Models;
+using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.ViewModels.Components;
 
 namespace TechStoreApp.Components.CategoryList;
@@ -24,8 +24,7 @@ public class CategoryList : BaseViewComponent
 	{
 		int categoriesCount = await this._categoryService.Count();
 
-		var categoryDTOs = await this._categoryService
-			.All(query);
+		var categoryDTOs = await this._categoryService.All(query);
 
 		var categoryViewModels = this._mapper
 			.Map<List<CategoryItemViewModel>>(categoryDTOs);

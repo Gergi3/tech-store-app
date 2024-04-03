@@ -2,7 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Core.Contracts;
-using TechStoreApp.Core.Models;
+using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.ViewModels.Components;
 
 namespace TechStoreApp.Components.ProductDetails;
@@ -10,17 +10,22 @@ namespace TechStoreApp.Components.ProductDetails;
 public class ProductDetails : BaseViewComponent
 {
 	private readonly IProductService _productService;
+	private readonly IWishlistService _wishlistService;
 	private readonly IMapper _mapper;
 
-	public ProductDetails(IProductService productService, IMapper mapper)
+	public ProductDetails(
+		IProductService productService,
+		IWishlistService wishlistService,
+		IMapper mapper)
 	{
 		this._productService = productService;
+		this._wishlistService = wishlistService;
 		this._mapper = mapper;
 	}
 
 	public async Task<IViewComponentResult> InvokeAsync(
-		string slug
-	)
+		Guid userId,
+		string slug)
 	{
 		ProductDTO? product = await this._productService.GetBySlug(slug);
 
@@ -30,12 +35,17 @@ public class ProductDetails : BaseViewComponent
 		}
 
 		var topViewModel = this._mapper.Map<ProductDetailsTopViewModel>(product);
-		var bottomViewModel = new ProductDetailsBottomViewModel();
+
+		if (userId != default)
+		{
+			topViewModel.IsWishlisted = await this._wishlistService
+				.ExistsByProductAndUserIds(product.Id, userId);
+		}
 
 		return this.View(new ProductDetailsViewModel()
 		{
 			TopViewModel = topViewModel,
-			BottomViewModel = bottomViewModel
+			BottomViewModel = new ProductDetailsBottomViewModel()
 		});
 	}
 }

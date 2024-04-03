@@ -23,6 +23,6 @@ public class TechStoreDbContext
 
 	public DbSet<Category> Categories { get; set; }
 	public DbSet<Product> Products { get; set; }
-
 	public DbSet<ProductCategory> ProductCategory { get; set; }
+	public DbSet<Wishlist> Wishlist { get; set; }
 }

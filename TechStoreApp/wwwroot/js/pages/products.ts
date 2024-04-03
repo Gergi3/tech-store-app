@@ -1,5 +1,11 @@
 import { endpoints } from '../constants/endpoints.js';
-import { loader } from './loader.js';
+import { attachWishlistHandler } from '../components/wishlist.js';
+
+attachWishlistHandler(
+	'.add-to-wishlist-form',
+	'.add-to-wishlist-btn-text',
+	'data-product-id',
+	'.tp-shop-main-wrapper');
 
 $(window).on('popstate', function () {
 	const query: string = window.location.search;
@@ -26,7 +32,7 @@ function fetchAndDisplayItems(
 		.css('pointer-events', 'none')
 		.css('user-select', 'none')
 		.fadeTo(500, 0.4)
-		.on('click', function (e) {
+		.on('click', function (e) {	
 			e.preventDefault();
 			e.stopPropagation();
 			e.stopImmediatePropagation();

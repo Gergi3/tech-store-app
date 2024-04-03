@@ -1,5 +1,5 @@
-using TechStoreApp.Core.Models;
 using TechStoreApp.Core.Models.Components;
+using TechStoreApp.Core.Models.DTOs;
 
 namespace TechStoreApp.ViewModels.Pages;
 

@@ -10,4 +10,9 @@ public static class UIConstants
 	public static readonly string FacebookLink = "https://www.facebook.com/";
 	public static readonly string LinkedInLink = "https://www.linkedin.com/";
 	public static readonly string YoutubeLink = "https://www.youtube.com/";
+
+	public static class ViewData
+	{
+		public static readonly string WishlistCountIdentifier = "TechStoreAppWishlistCount";
+	}
 }

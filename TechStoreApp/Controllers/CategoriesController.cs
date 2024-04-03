@@ -1,25 +1,26 @@
-using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Components.CategoryList;
 using TechStoreApp.Core.Contracts;
-using TechStoreApp.Core.Models;
+using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.ViewModels.Pages;
 using static TechStoreApp.Common.QueryConstants.Category;
 
 namespace TechStoreApp.Controllers;
-public class CategoriesController : Controller
+
+[Authorize]
+public class CategoriesController : BaseController
 {
 	private readonly IUIService _uiService;
-	private readonly IMapper _mapper;
 
-	public CategoriesController(IUIService uiService, IMapper mapper)
+	public CategoriesController(IUIService uiService)
 	{
 		this._uiService = uiService;
-		this._mapper = mapper;
 	}
 
 	[HttpGet]
+	[AllowAnonymous]
 	public IActionResult Index()
 	{
 		var breadcrumb = this._uiService.ConstructCategoriesPageBreadcrumb();
@@ -41,7 +42,9 @@ public class CategoriesController : Controller
 
 	[HttpPost]
 	[EnableCors("AllowSpecificOrigins")]
-	public ViewComponentResult CategoryList(int skip, int take)
+	public ViewComponentResult CategoryList(
+		int skip = DefaultSkip,
+		int take = DefaultTake)
 	{
 		var query = new CategoryQueryParamsDTO()
 		{
@@ -49,6 +52,8 @@ public class CategoriesController : Controller
 			Take = take
 		};
 
-		return this.ViewComponent(typeof(CategoryList), new { query, layout = false });
+		object parameters = new { query, layout = false };
+
+		return this.ViewComponent(typeof(CategoryList), parameters);
 	}
 }
