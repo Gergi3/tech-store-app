@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Components.CategoryList;
-using TechStoreApp.Core.Contracts;
+using TechStoreApp.Contracts;
 using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.ViewModels.Pages;
 using static TechStoreApp.Common.QueryConstants.Category;

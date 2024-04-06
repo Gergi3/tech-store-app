@@ -6,6 +6,8 @@ public static class QueryConstants
 	{
 		public const int DefaultFirstPage = 1;
 		public const int DefaultPerPage = 9;
+		public const int DefaultFromPrice = 20;
+		public const int DefaultToPrice = 1000;
 	}
 
 	public static class Category

@@ -1,9 +1,12 @@
 using TechStoreApp.Common.Exceptions;
+using TechStoreApp.Contracts;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models.Components;
 using TechStoreApp.Core.Models.DTOs;
+using TechStoreApp.ViewModels.Components;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace TechStoreApp.Core.Services;
+namespace TechStoreApp.Services;
 public class UIService : IUIService
 {
 	private readonly ICategoryService _categoryService;
@@ -103,5 +106,38 @@ public class UIService : IUIService
 		}
 
 		return breadcrumb;
+	}
+
+	public async Task<ProductPaginationViewModel> ConstructProductPagination(
+		int page,
+		int perPage,
+		int totalCount)
+	{
+		int previousPage = page - 1;
+		int nextPage = page + 1;
+		int firstPage = 1;
+		int lastPage = (totalCount + perPage - 1) / perPage;
+		int showingFrom = page * perPage - perPage + 1;
+		int showingTo = page * perPage;
+
+		if (page == lastPage)
+		{
+			showingTo -= (page * perPage) - totalCount;
+		}
+
+		var pagination = new ProductPaginationViewModel()
+		{
+			Page = page,
+			PerPage = perPage,
+			TotalCount = totalCount,
+			FirstPage = firstPage,
+			LastPage = lastPage,
+			NextPage = nextPage,
+			PreviousPage = previousPage,
+			ShowingFrom = showingFrom,
+			ShowingTo = showingTo,
+		};
+
+		return pagination;
 	}
 }

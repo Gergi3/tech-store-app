@@ -1,31 +1,20 @@
 import { endpoints } from '../constants/endpoints.js';
-import { attachWishlistHandler } from '../components/wishlist.js';
-
-attachWishlistHandler(
-	'.add-to-wishlist-form',
-	'.add-to-wishlist-btn-text',
-	'data-product-id',
-	'.tp-shop-main-wrapper');
 
 $(window).on('popstate', function () {
-	const query: string = window.location.search;
-
-	fetchAndDisplayItems(query, null);
+	fetchAndDisplayProducts();
 });
 
-$('body').on('submit', 'form.pagination-form', function (e) {
-	e.preventDefault();
+export function fetchAndDisplayProducts() {
+	let query = window.location.search;
 
-	const queryArr = $(this).serializeArray();
-	const query: string = '?' + $(this).serialize();
+	const pathname = window.location.pathname
+		.split('/')
+		.filter(n => n);
 
-	fetchAndDisplayItems(query, queryArr);
-});
+	if (pathname[0] == 'categories' && pathname[2] == 'products') {
+		query = query.concat(`&categorySlug=${pathname[1]}`); 
+	}
 
-function fetchAndDisplayItems(
-	query: string,
-	queryArr: JQuery.NameValuePair[] | null
-) {
 	const url: string = `${endpoints.product.list}${query}`;
 
 	$('#product-list-content-container')
@@ -44,21 +33,7 @@ function fetchAndDisplayItems(
 
 	function fetchListSuccessHandler(res: string) {
 		$('#product-list-content-container').replaceWith(res);
-
-		
-		const page = Number(queryArr.find(x => x.name == 'page').value);
-		const perPage = Number(queryArr.find(x => x.name == 'perPage').value);
-
-		$('#showingFrom').text((page * perPage) - perPage + 1);
-		$('#showingTo').text(page * perPage);
-
-		if (queryArr != null) {
-			const url = new URL(window.location.href);
-			queryArr.forEach(({ name, value }) => {
-				url.searchParams.set(name, value);
-			});
-			history.pushState({}, '', url);
-		}
+		$('.tp-shop-area select').niceSelect();
 	}
 
 	function fetchListFailHandler(err: any) {

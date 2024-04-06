@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Components.ProductList;
-using TechStoreApp.Core.Contracts;
+using TechStoreApp.Contracts;
 using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.ViewModels.Pages;
 using static TechStoreApp.Common.QueryConstants.Product;
@@ -41,6 +41,8 @@ public class ProductsController : BaseController
 	[AllowAnonymous]
 	public async Task<IActionResult> Index(
 		string? categorySlug,
+		int? fromPrice,
+		int? toPrice,
 		int page = DefaultFirstPage,
 		int perPage = DefaultPerPage)
 	{
@@ -49,6 +51,8 @@ public class ProductsController : BaseController
 			CategorySlug = categorySlug,
 			Page = page,
 			PerPage = perPage,
+			FromPrice = fromPrice,
+			ToPrice = toPrice,
 			CurrentUserId = this.CurrentUserId
 		};
 
@@ -65,7 +69,10 @@ public class ProductsController : BaseController
 
 	[HttpGet]
 	[EnableCors("AllowSpecificOrigins")]
-	public ViewComponentResult ProductList(
+	public async Task<IActionResult> ProductList(
+		string? categorySlug,
+		decimal? fromPrice,
+		decimal? toPrice,
 		int perPage = DefaultPerPage,
 		int page = DefaultFirstPage)
 	{
@@ -73,7 +80,10 @@ public class ProductsController : BaseController
 		{
 			Page = page,
 			PerPage = perPage,
-			CurrentUserId = this.CurrentUserId
+			FromPrice = fromPrice,
+			ToPrice = toPrice,
+			CurrentUserId = this.CurrentUserId,
+			CategorySlug = categorySlug
 		};
 
 		// TODO: FUTURE IDEA

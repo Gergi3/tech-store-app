@@ -13,7 +13,6 @@ public class NotFoundExceptionHandler : IExceptionHandler
 		if (exception.GetType().IsSubclassOf(typeof(EntityNotFoundException)))
 		{
 			httpContext.Response.StatusCode = 404;
-			//await httpContext.Response.CompleteAsync();
 			return true;
 		}
 		return false;

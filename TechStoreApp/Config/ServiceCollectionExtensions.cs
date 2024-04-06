@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using TechStoreApp.Common.Exceptions;
+using TechStoreApp.Contracts;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Mappers;
 using TechStoreApp.Core.Services;
@@ -10,6 +11,7 @@ using TechStoreApp.Data;
 using TechStoreApp.Infrastructure.Data.Common;
 using TechStoreApp.Infrastructure.Data.Entities;
 using TechStoreApp.Mappers;
+using TechStoreApp.Services;
 using static TechStoreApp.Common.ConfigConstants;
 
 namespace TechStoreApp.Config;

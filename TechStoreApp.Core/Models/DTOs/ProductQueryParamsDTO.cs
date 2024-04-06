@@ -12,6 +12,10 @@ public class ProductQueryParamsDTO
 	[Required]
 	public int PerPage { get; set; }
 
+	public decimal? ToPrice { get; set; }
+
+	public decimal? FromPrice { get; set; }
+
 	[Required]
 	public Guid CurrentUserId { get; set; }
 }
