@@ -1,4 +1,4 @@
-import { endpoints } from "../constants/endpoints";
+import { endpoints } from "../constants/endpoints.js";
 export function attachQuantityCounterHandler(quantityInputSelector, priceInputSelector, priceDataSelector, productIdDataSelector) {
     $(quantityInputSelector).on('change', function () {
         const productId = $(this).attr(productIdDataSelector);

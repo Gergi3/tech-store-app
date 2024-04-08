@@ -1,4 +1,4 @@
-import { endpoints } from "../constants/endpoints";
+import { endpoints } from "../constants/endpoints.js";
 
 
 export type ChangeWishlistQuantityRes = {
