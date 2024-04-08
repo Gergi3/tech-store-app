@@ -18,7 +18,7 @@ public class CategoryService : ICategoryService
 		this._mapper = mapper;
 	}
 
-	public async Task<List<CategoryDTO>> All(CategoryQueryParamsDTO query)
+	public async Task<List<CategoryDTO>> All(CategoryQueryParamsDTO query = null!)
 	{
 		return await this._repo
 			.AllReadonly<Category>()

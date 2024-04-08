@@ -1,0 +1,16 @@
+﻿@model List<CategoryFilterViewModel>
+
+<div class="tp-shop-widget mb-50">
+    <h3 class="tp-shop-widget-title">Categories</h3>
+
+    <div class="tp-shop-widget-content">
+        <div class="tp-shop-widget-categories">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li><a href=@($"/categories/{item.Slug}/products")>@item.Name <span>@item.Count</span></a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

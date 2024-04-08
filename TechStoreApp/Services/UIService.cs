@@ -4,7 +4,6 @@ using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models.Components;
 using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.ViewModels.Components;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace TechStoreApp.Services;
 public class UIService : IUIService
@@ -119,6 +118,12 @@ public class UIService : IUIService
 		int lastPage = (totalCount + perPage - 1) / perPage;
 		int showingFrom = page * perPage - perPage + 1;
 		int showingTo = page * perPage;
+
+		if (totalCount == 0)
+		{
+			showingFrom = 0;
+			showingTo = 0;
+		}
 
 		if (page == lastPage)
 		{

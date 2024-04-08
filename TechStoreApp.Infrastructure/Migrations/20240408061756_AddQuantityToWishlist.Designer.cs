@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechStoreApp.Data;
 
@@ -11,9 +12,11 @@ using TechStoreApp.Data;
 namespace TechStoreApp.Infrastructure.Migrations
 {
     [DbContext(typeof(TechStoreDbContext))]
-    partial class TechStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240408061756_AddQuantityToWishlist")]
+    partial class AddQuantityToWishlist
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

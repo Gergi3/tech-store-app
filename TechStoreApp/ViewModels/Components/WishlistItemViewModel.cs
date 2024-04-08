@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace TechStoreApp.ViewModels.Components;
 
 public class WishlistItemViewModel

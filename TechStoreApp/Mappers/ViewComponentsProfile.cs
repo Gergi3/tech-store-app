@@ -9,6 +9,7 @@ public class ViewComponentsProfile : Profile
 {
 	public ViewComponentsProfile()
 	{
+		this.CreateMap<CategoryDTO, CategoryFilterViewModel>();
 		this.CreateMap<CategoryDTO, CategoryItemViewModel>();
 		this.CreateMap<CategoryDTO, ProductItemCategoriesViewModel>();
 		this.CreateMap<CategoryDTO, ProductDetailsCategoriesViewModel>();

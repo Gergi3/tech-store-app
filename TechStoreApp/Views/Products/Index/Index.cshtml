@@ -10,7 +10,15 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-3 col-lg-4">
-                <vc:product-filters query="Model.Query"></vc:product-filters>
+                <div class="tp-shop-sidebar mr-10">
+                    <vc:price-filter query="Model.Query"></vc:price-filter>
+
+                    <vc:category-filter></vc:category-filter>
+
+                    <vc:top-product-filter></vc:top-product-filter>
+
+                    <partial name="Index/_Brands" />
+                </div>
             </div>
             <div class="col-xl-9 col-lg-8">
                 <div class="tp-shop-main-wrapper">
@@ -20,5 +28,5 @@
         </div>
     </div>
 </section>
-<!-- shop area end -->
+
 <script type="module" src="~/js/pages/products.js"></script>

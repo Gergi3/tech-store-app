@@ -1,6 +1,6 @@
 namespace TechStoreApp.ViewModels.Components;
 
-public class ProductFiltersViewModel
+public class PriceFilterViewModel
 {
 	public string Min { get; set; } = null!;
 	public string Max { get; set; } = null!;

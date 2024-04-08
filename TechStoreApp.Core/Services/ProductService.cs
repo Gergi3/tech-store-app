@@ -1,12 +1,10 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.Infrastructure.Data.Common;
 using TechStoreApp.Infrastructure.Data.Entities;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using static TechStoreApp.Common.QueryConstants.Product;
 
 namespace TechStoreApp.Core.Services;
@@ -17,9 +15,7 @@ public class ProductService : IProductService
 	private readonly IRepository _repo;
 	private readonly IMapper _mapper;
 
-	public ProductService(
-		IRepository repo,
-		IMapper mapper,
+	public ProductService(IRepository repo, IMapper mapper,
 		ICategoryService categoryService)
 	{
 		this._repo = repo;

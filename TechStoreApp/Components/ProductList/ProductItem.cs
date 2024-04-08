@@ -9,6 +9,6 @@ public class ProductItem : BaseViewComponent
 		ProductItemViewModel item
 	)
 	{
-		return View(item);
+		return this.View(item);
 	}
 }

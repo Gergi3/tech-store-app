@@ -1,0 +1,27 @@
+﻿@using System.Globalization
+@model PriceFilterViewModel
+
+<div class="tp-shop-widget mb-35">
+    <h3 class="tp-shop-widget-title no-border">Price Filter</h3>
+
+    <div class="tp-shop-widget-content">
+        <div class="tp-shop-widget-filter">
+            <div id="slider-range" class="mb-10"></div>
+            <div class="tp-shop-widget-filter-info d-flex align-items-center justify-content-between">
+                <form method="get" id="priceFilterForm">
+                    <input type="hidden" name="fromPrice" value="@Model.MinSelected" />
+                    <input type="hidden" name="toPrice" value="@Model.MaxSelected" />
+                    <span class="input-range">
+                        <input type="text"
+                               id="amount"
+                               data-min="@Model.Min"
+                               data-max="@Model.Max"
+                               readonly>
+                    </span>
+                    <button class="tp-shop-widget-filter-btn" type="submit">Filter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module" src="~/js/pages/product-filters.js"></script>
