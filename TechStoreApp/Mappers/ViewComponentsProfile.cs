@@ -1,7 +1,7 @@
-using System.Globalization;
 using AutoMapper;
+using TechStoreApp.Common.Extensions;
 using TechStoreApp.Core.Models.DTOs;
-using TechStoreApp.ViewModels.Components;
+using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Mappers;
 
@@ -18,25 +18,30 @@ public class ViewComponentsProfile : Profile
 			.ForMember(
 				dest => dest.Price,
 				src => src.MapFrom(
-					x => string.Format(CultureInfo.InvariantCulture, "${0:F2}", x.Price))
+					x => x.ProductPrice.ToPriceString())
+			)
+			.ForMember(
+				dest => dest.PriceForAll,
+				src => src.MapFrom(
+					x => (x.ProductPrice * x.Quantity).ToPriceString())
 			);
 
 		this.CreateMap<ProductDTO, ProductDetailsTopViewModel>()
 			.ForMember(
 				dest => dest.Price,
 				src => src.MapFrom(
-					x => string.Format(CultureInfo.InvariantCulture, "${0:F2}", x.Price))
+					x => x.Price.ToPriceString())
 			)
 			.ForMember(
 				dest => dest.Description,
-				src => src.MapFrom(x => "asd")
+				src => src.MapFrom(x => "Mapper description example")
 			);
 
 		this.CreateMap<ProductDTO, ProductItemViewModel>()
 			.ForMember(
 				dest => dest.Price,
 				src => src.MapFrom(
-					x => string.Format(CultureInfo.InvariantCulture, "${0:F2}", x.Price))
+					x => x.Price.ToPriceString())
 			);
 	}
 }

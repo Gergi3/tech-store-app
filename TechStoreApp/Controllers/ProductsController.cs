@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Components.ProductList;
 using TechStoreApp.Contracts;
+using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models.DTOs;
-using TechStoreApp.ViewModels.Pages;
-using static TechStoreApp.Common.QueryConstants.Product;
+using TechStoreApp.Models.Pages;
 
 namespace TechStoreApp.Controllers;
 
@@ -14,18 +14,31 @@ namespace TechStoreApp.Controllers;
 public class ProductsController : BaseController
 {
 	private readonly IUIService _uiService;
+	private readonly IProductService _productService;
+	private readonly ICategoryService _categoryService;
 
 	public ProductsController(
-		IUIService uiService)
+		IUIService uiService,
+		IProductService productService,
+		ICategoryService categoryService)
 	{
 		this._uiService = uiService;
+		this._productService = productService;
+		this._categoryService = categoryService;
 	}
 
 	[HttpGet]
 	[AllowAnonymous]
-	public async Task<IActionResult> Details(string? slug)
+	public async Task<IActionResult> Details(
+		string slug)
 	{
-		var breadcrumb = await this._uiService.ConstructProductDetailsPageBreadcrumb(slug);
+		bool productExists = await this._productService.Exists(slug);
+		if (!productExists)
+		{
+			return this.NotFound();
+		}
+
+		var breadcrumb = await this._uiService.CreateProductDetailsPageBreadcrumb(slug);
 
 		var viewModel = new ProductDetailsPageViewModel()
 		{
@@ -40,23 +53,15 @@ public class ProductsController : BaseController
 	[HttpGet]
 	[AllowAnonymous]
 	public async Task<IActionResult> Index(
-		string? categorySlug,
-		int? fromPrice,
-		int? toPrice,
-		int page = DefaultFirstPage,
-		int perPage = DefaultPerPage)
+		ProductQueryParams query)
 	{
-		var query = new ProductQueryParamsDTO()
+		var validationResult = await this.ValidateQuery(query);
+		if (validationResult.StatusCode != StatusCodes.Status200OK)
 		{
-			CategorySlug = categorySlug,
-			Page = page,
-			PerPage = perPage,
-			FromPrice = fromPrice,
-			ToPrice = toPrice,
-			CurrentUserId = this.CurrentUserId
-		};
+			return validationResult;
+		}
 
-		var breadcrumb = await this._uiService.ConstructProductsPageBreadcrumb(query);
+		var breadcrumb = await this._uiService.CreateShopPageBreadcrumb(query.CategorySlug);
 
 		var viewModel = new ProductIndexPageViewModel()
 		{
@@ -69,29 +74,40 @@ public class ProductsController : BaseController
 
 	[HttpGet]
 	[EnableCors("AllowSpecificOrigins")]
+	[AllowAnonymous]
 	public async Task<IActionResult> ProductList(
-		string? categorySlug,
-		decimal? fromPrice,
-		decimal? toPrice,
-		int perPage = DefaultPerPage,
-		int page = DefaultFirstPage)
+		ProductQueryParams query)
 	{
-		var query = new ProductQueryParamsDTO()
+		var validationResult = await this.ValidateQuery(query);
+		if (validationResult.StatusCode != StatusCodes.Status200OK)
 		{
-			Page = page,
-			PerPage = perPage,
-			FromPrice = fromPrice,
-			ToPrice = toPrice,
-			CurrentUserId = this.CurrentUserId,
-			CategorySlug = categorySlug
+			return validationResult;
+		}
+
+		Type vcType = typeof(ProductList);
+		object vcParams = new
+		{
+			query,
+			layout = false
 		};
 
-		// TODO: FUTURE IDEA
-		// Validate params and create guid validator 
-		// Validator.ValidateObject(query, new ValidationContext(query));
+		return this.ViewComponent(vcType, vcParams);
+	}
 
-		object parameters = new { query, layout = false };
+	[NonAction]
+	public async Task<StatusCodeResult> ValidateQuery(ProductQueryParams query)
+	{
+		if (!this.ModelState.IsValid)
+		{
+			return this.BadRequest();
+		}
 
-		return this.ViewComponent(typeof(ProductList), parameters);
+		var categoryExists = await this._categoryService.TryExists(query.CategorySlug);
+		if (!categoryExists)
+		{
+			return this.NotFound();
+		}
+
+		return this.Ok();
 	}
 }

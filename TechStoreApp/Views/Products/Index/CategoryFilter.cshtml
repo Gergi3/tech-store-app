@@ -8,7 +8,9 @@
             <ul>
                 @foreach (var item in Model)
                 {
-                    <li><a href=@($"/categories/{item.Slug}/products")>@item.Name <span>@item.Count</span></a></li>
+                    <li>
+                        <a href=@($"/categories/{item.Slug}/products")>@item.Name <span>@item.Count</span></a>
+                    </li>
                 }
             </ul>
         </div>

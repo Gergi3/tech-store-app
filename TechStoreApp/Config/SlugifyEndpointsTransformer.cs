@@ -6,7 +6,8 @@ namespace TechStoreApp.Config;
 
 public class SlugifyEndpointsTransformer : IOutboundParameterTransformer
 {
-	public string? TransformOutbound(object? str)
+	public string? TransformOutbound(
+		object? str)
 	{
 		if (str == null)
 		{

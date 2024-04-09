@@ -1,12 +1,21 @@
-using TechStoreApp.Core.Models.Components;
-using TechStoreApp.Core.Models.DTOs;
-using TechStoreApp.ViewModels.Components;
+using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Contracts;
+
 public interface IUIService
 {
-	Task<List<BreadcrumbItemViewModel>> ConstructProductsPageBreadcrumb(ProductQueryParamsDTO query);
-	Task<List<BreadcrumbItemViewModel>> ConstructProductDetailsPageBreadcrumb(string slug);
-	List<BreadcrumbItemViewModel> ConstructCategoriesPageBreadcrumb();
-	Task<ProductPaginationViewModel> ConstructProductPagination(int page, int perPage, int totalCount);
+	Task<List<BreadcrumbItemViewModel>> CreateShopPageBreadcrumb(
+		string? categorySlug);
+
+	Task<List<BreadcrumbItemViewModel>> CreateProductDetailsPageBreadcrumb(
+		string slug);
+
+	List<BreadcrumbItemViewModel> CreateCategoriesPageBreadcrumb();
+
+	ProductPaginationViewModel CreateProductPagination(
+		int page,
+		int perPage,
+		int totalCount);
+
+	List<BreadcrumbItemViewModel> CreateWishlistBreadcrumb();
 }

@@ -12,13 +12,23 @@ public class WishlistService : IWishlistService
 {
 	private readonly IRepository _repo;
 	private readonly IMapper _mapper;
-	public WishlistService(IRepository repo, IMapper mapper)
+
+	public WishlistService(
+		IRepository repo,
+		IMapper mapper)
 	{
 		this._repo = repo;
 		this._mapper = mapper;
 	}
-	public async Task<List<WishlistDTO>> GetByUserId(Guid userId)
+
+	public async Task<List<WishlistDTO>> GetByUserId(
+		Guid userId)
 	{
+		if (userId == default)
+		{
+			throw new UnexpectedUnauthenticatedUser();
+		}
+
 		var wishlist = await this._repo
 			.AllReadonly<Wishlist>()
 			.Include(w => w.Product)
@@ -62,10 +72,13 @@ public class WishlistService : IWishlistService
 
 		await this._repo.AddAsync(wishlist);
 		await this._repo.SaveChangesAsync();
+
 		return false;
 	}
 
-	public async Task<bool> ExistsByProductAndUserIds(Guid productId, Guid userId)
+	public async Task<bool> Exists(
+		Guid productId,
+		Guid userId)
 	{
 		if (userId == default)
 		{
@@ -82,7 +95,8 @@ public class WishlistService : IWishlistService
 			.AnyAsync(w => w.ProductId == productId && w.UserId == userId);
 	}
 
-	public async Task<int> Count(Guid userId)
+	public async Task<int> Count(
+		Guid userId)
 	{
 		if (userId == default)
 		{
@@ -94,8 +108,21 @@ public class WishlistService : IWishlistService
 			.CountAsync(w => w.UserId == userId);
 	}
 
-	public async Task<bool> EditQuantity(Guid productId, Guid currentUserId, int newQuantity)
+	public async Task<bool> EditQuantity(
+		Guid productId,
+		Guid currentUserId,
+		int newQuantity)
 	{
+		if (productId == default)
+		{
+			throw new UnexpectedNullProduct();
+		}
+
+		if (currentUserId == default)
+		{
+			throw new UnexpectedUnauthenticatedUser();
+		}
+
 		int updatedRows = await this._repo.AllReadonly<Wishlist>()
 			.Where(w => w.ProductId == productId && w.UserId == currentUserId)
 			.ExecuteUpdateAsync(updater => updater.SetProperty(w => w.Quantity, newQuantity));

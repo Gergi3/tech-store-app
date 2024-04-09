@@ -7,7 +7,8 @@ namespace TechStoreApp.Infrastructure.Data.Configuration;
 internal class ProductCategoryConfiguration
 	: IEntityTypeConfiguration<ProductCategory>
 {
-	public void Configure(EntityTypeBuilder<ProductCategory> builder)
+	public void Configure(
+		EntityTypeBuilder<ProductCategory> builder)
 	{
 		builder
 			.HasKey(pc => new { pc.ProductsId, pc.CategoriesId });

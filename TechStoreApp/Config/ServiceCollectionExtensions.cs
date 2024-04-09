@@ -18,7 +18,8 @@ namespace TechStoreApp.Config;
 
 public static class ServiceCollectionExtensions
 {
-	public static IServiceCollection AddAppServices(this IServiceCollection services)
+	public static IServiceCollection AddAppServices(
+		this IServiceCollection services)
 	{
 		services.AddScoped<IRepository, Repository>();
 		services.AddScoped<ICategoryService, CategoryService>();
@@ -29,7 +30,8 @@ public static class ServiceCollectionExtensions
 		return services;
 	}
 
-	public static IServiceCollection AddAppAutoMapper(this IServiceCollection services)
+	public static IServiceCollection AddAppAutoMapper(
+		this IServiceCollection services)
 	{
 		services.AddAutoMapper(
 			configAction: (cfg) =>
@@ -45,6 +47,7 @@ public static class ServiceCollectionExtensions
 	}
 
 	public static IServiceCollection AddAppDatabase(
+
 		this IServiceCollection services,
 		ConfigurationManager configuration)
 	{
@@ -59,7 +62,8 @@ public static class ServiceCollectionExtensions
 		return services;
 	}
 
-	public static IServiceCollection AddAppIdentity(this IServiceCollection services)
+	public static IServiceCollection AddAppIdentity(
+		this IServiceCollection services)
 	{
 		services.AddDefaultIdentity<AppUser>(
 			options => options.SignIn.RequireConfirmedAccount = true)
@@ -68,7 +72,8 @@ public static class ServiceCollectionExtensions
 		return services;
 	}
 
-	public static IServiceCollection AddAppMVC(this IServiceCollection services)
+	public static IServiceCollection AddAppMVC(
+		this IServiceCollection services)
 	{
 		services
 			.AddControllersWithViews()
@@ -83,7 +88,8 @@ public static class ServiceCollectionExtensions
 		return services;
 	}
 
-	public static IServiceCollection AddAppMVCRouting(this IServiceCollection services)
+	public static IServiceCollection AddAppMVCRouting(
+		this IServiceCollection services)
 	{
 		services.AddRouting(
 			options =>
@@ -95,7 +101,8 @@ public static class ServiceCollectionExtensions
 		return services;
 	}
 
-	public static IServiceCollection AddAppCoreAdmin(this IServiceCollection services)
+	public static IServiceCollection AddAppCoreAdmin(
+		this IServiceCollection services)
 	{
 		services.AddCoreAdmin(new CoreAdminOptions()
 		{

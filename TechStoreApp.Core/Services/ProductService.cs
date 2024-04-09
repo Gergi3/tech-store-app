@@ -1,11 +1,11 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.Infrastructure.Data.Common;
 using TechStoreApp.Infrastructure.Data.Entities;
-using static TechStoreApp.Common.QueryConstants.Product;
 
 namespace TechStoreApp.Core.Services;
 
@@ -15,7 +15,9 @@ public class ProductService : IProductService
 	private readonly IRepository _repo;
 	private readonly IMapper _mapper;
 
-	public ProductService(IRepository repo, IMapper mapper,
+	public ProductService(
+		IRepository repo,
+		IMapper mapper,
 		ICategoryService categoryService)
 	{
 		this._repo = repo;
@@ -23,7 +25,9 @@ public class ProductService : IProductService
 		this._categoryService = categoryService;
 	}
 
-	public async Task<List<ProductDTO>> All(ProductQueryParamsDTO query)
+	public async Task<List<ProductDTO>> All(
+		ProductQueryParams query,
+		Guid userId)
 	{
 		var products = this._repo.AllReadonly<Product>();
 
@@ -34,17 +38,16 @@ public class ProductService : IProductService
 		return await products
 			.ProjectTo<ProductDTO>(
 				configuration: this._mapper.ConfigurationProvider,
-				parameters: new { userId = query.CurrentUserId })
+				parameters: new { userId })
 			.ToListAsync();
 	}
 
-	public async Task<Tuple<decimal, decimal>> GetMinAndMax(ProductQueryParamsDTO query)
+	public async Task<Tuple<decimal, decimal>> GetMinAndMax(
+		string? categorySlug)
 	{
 		var products = this._repo.AllReadonly<Product>();
 
-		products = this.AllCategoryFiltered(products, query.CategorySlug);
-
-		var productPrices = products
+		var productPrices = this.AllCategoryFiltered(products, categorySlug)
 			.Select(x => x.Price)
 			.DefaultIfEmpty();
 
@@ -54,24 +57,40 @@ public class ProductService : IProductService
 		return new Tuple<decimal, decimal>(min, max);
 	}
 
-	public async Task<ProductDTO?> GetBySlug(string slug)
+	public async Task<ProductDTO?> GetBySlug(
+		string slug,
+		Guid userId = default)
 	{
+		if (slug == null)
+		{
+			throw new UnexpectedNullSlug();
+		}
+
 		return await this._repo
 			.AllReadonly<Product>()
-			.ProjectTo<ProductDTO>(this._mapper.ConfigurationProvider)
+			.ProjectTo<ProductDTO>(
+				configuration: this._mapper.ConfigurationProvider,
+				parameters: new { userId })
 			.FirstOrDefaultAsync(x => x.Slug == slug);
 	}
 
-	public async Task<string?> GetNameBySlug(string productSlug)
+	public async Task<string?> GetNameBySlug(
+		string slug)
 	{
+		if (slug == null)
+		{
+			throw new UnexpectedNullSlug();
+		}
+
 		return await this._repo
 			.AllReadonly<Product>()
-			.Where(x => x.Slug == productSlug)
+			.Where(x => x.Slug == slug)
 			.Select(x => x.Name)
 			.FirstOrDefaultAsync();
 	}
 
-	public async Task<int> Count(ProductQueryParamsDTO query)
+	public async Task<int> Count(
+		ProductQueryParams query)
 	{
 		var products = this._repo.AllReadonly<Product>();
 
@@ -81,13 +100,24 @@ public class ProductService : IProductService
 		return await products.CountAsync();
 	}
 
+	public async Task<bool> Exists(
+		string slug)
+	{
+		if (slug == null)
+		{
+			throw new UnexpectedNullSlug();
+		}
+
+		return await this._repo
+			.AllReadonly<Product>()
+			.AnyAsync(x => x.Slug == slug);
+	}
+
 	private IQueryable<Product> AllPriceFiltered(
 		IQueryable<Product> queryable,
 		decimal? fromPrice,
 		decimal? toPrice)
 	{
-		queryable = queryable ?? this._repo.AllReadonly<Product>();
-
 		if (fromPrice != null)
 		{
 			queryable = queryable.Where(x => x.Price >= fromPrice);
@@ -105,8 +135,6 @@ public class ProductService : IProductService
 		IQueryable<Product> queryable,
 		string? categorySlug)
 	{
-		queryable = queryable ?? this._repo.AllReadonly<Product>();
-
 		if (categorySlug != null)
 		{
 			return queryable
@@ -122,18 +150,6 @@ public class ProductService : IProductService
 		int page,
 		int perPage)
 	{
-		if (page <= 0)
-		{
-			page = DefaultFirstPage;
-		}
-
-		if (perPage <= 0)
-		{
-			perPage = DefaultPerPage;
-		}
-
-		queryable = queryable ?? this._repo.AllReadonly<Product>();
-
 		return queryable
 			.Skip((page - 1) * perPage)
 			.Take(perPage);

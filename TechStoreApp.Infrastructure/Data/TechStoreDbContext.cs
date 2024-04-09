@@ -16,10 +16,10 @@ public class TechStoreDbContext
 		IdentityRoleClaim<Guid>,
 		IdentityUserToken<Guid>>
 {
-	public TechStoreDbContext(DbContextOptions<TechStoreDbContext> options)
+	public TechStoreDbContext(
+		DbContextOptions<TechStoreDbContext> options)
 		: base(options)
-	{
-	}
+	{ }
 
 	public DbSet<Category> Categories { get; set; }
 	public DbSet<Product> Products { get; set; }

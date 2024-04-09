@@ -8,7 +8,8 @@ namespace TechStoreApp.Infrastructure.Data.Configuration;
 internal class ProductConfiguration
 	: IEntityTypeConfiguration<Product>
 {
-	public void Configure(EntityTypeBuilder<Product> builder)
+	public void Configure(
+		EntityTypeBuilder<Product> builder)
 	{
 		builder.Property(c => c.Slug)
 			.HasConversion(typeof(SlugValueConverter));

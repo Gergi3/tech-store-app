@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using AutoMapper;
 using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.Infrastructure.Data.Entities;
@@ -12,9 +13,14 @@ public class ProductProfile : Profile
 			.ForMember(
 				m => m.IsWishlisted,
 				opt => opt.MapFrom(
-					src => userId == default
-						? false
-						: src.Wishlists.Any(x => x.UserId == userId))
+					IsWishlistedMapper(userId))
 			);
+	}
+
+	private static Expression<Func<Product, bool>> IsWishlistedMapper(Guid userId)
+	{
+		return src => userId == default
+			? false
+			: src.Wishlists.Any(x => x.UserId == userId);
 	}
 }

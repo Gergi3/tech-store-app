@@ -10,18 +10,18 @@ function attachEventHandlers() {
     categoriesContainerElement.on('animationstart', '.tp-category-item-container', function () {
         this.classList.remove('opacity-0');
     });
-    loadMoreBtn.on('click', buttonClickHandler);
+    loadMoreBtn.on('click', loadMoreClickHandler);
 }
-function buttonClickHandler() {
+function loadMoreClickHandler() {
     const currentSkipEl = loadMoreBtn.attr('data-skip');
     nextSkip = parseInt(currentSkipEl) + take;
     const endpoint = endpoints.category.list;
     const options = { skip: nextSkip, take };
     $.post(endpoint, options, 'json')
-        .done(fetchListSuccessHandler)
-        .fail(fetchListFailHandler);
+        .done(fetchCategoriesSuccessHandler)
+        .fail(fetchCategoriesFailHandler);
 }
-function fetchListSuccessHandler(res) {
+function fetchCategoriesSuccessHandler(res) {
     loadMoreBtn.attr('data-skip', nextSkip);
     categoriesContainerElement.append(res);
     let showedElementsCount = nextSkip + take;
@@ -34,7 +34,7 @@ function fetchListSuccessHandler(res) {
     $('#categoryProgressBar').trigger('data-width-changed');
     $('#categoriesShowing').text(showedElementsCount);
 }
-function fetchListFailHandler(err) {
+function fetchCategoriesFailHandler(err) {
     console.log(err);
 }
 //# sourceMappingURL=categories.js.map

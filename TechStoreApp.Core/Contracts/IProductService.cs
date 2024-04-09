@@ -4,9 +4,23 @@ namespace TechStoreApp.Core.Contracts;
 
 public interface IProductService
 {
-	Task<List<ProductDTO>> All(ProductQueryParamsDTO query);
-	Task<int> Count(ProductQueryParamsDTO query);
-	Task<string?> GetNameBySlug(string productSlug);
-	Task<ProductDTO?> GetBySlug(string slug);
-	Task<Tuple<decimal, decimal>> GetMinAndMax(ProductQueryParamsDTO query);
+	Task<List<ProductDTO>> All(
+		ProductQueryParams query,
+		Guid userId);
+
+	Task<int> Count(
+		ProductQueryParams query);
+
+	Task<string?> GetNameBySlug(
+		string productSlug);
+
+	Task<ProductDTO?> GetBySlug(
+		string slug,
+		Guid userId);
+
+	Task<Tuple<decimal, decimal>> GetMinAndMax(
+		string? categorySlug);
+
+	Task<bool> Exists(
+		string slug);
 }

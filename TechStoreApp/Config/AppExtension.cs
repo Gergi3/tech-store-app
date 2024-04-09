@@ -4,12 +4,13 @@ namespace TechStoreApp.Config;
 
 public static class AppExtension
 {
-	public static WebApplication ConfigurePipeline(this WebApplication app)
+	public static WebApplication ConfigurePipeline(
+		this WebApplication app)
 	{
 		if (app.Environment.IsDevelopment())
 		{
 			app.UseExceptionHandler(options => { options.UseDeveloperExceptionPage(); });
-			//app.UseMigrationsEndPoint();
+			app.UseMigrationsEndPoint();
 		}
 		else
 		{

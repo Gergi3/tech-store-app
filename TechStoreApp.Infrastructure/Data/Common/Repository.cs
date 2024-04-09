@@ -1,4 +1,3 @@
-
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -15,17 +14,22 @@ public class Repository : IRepository
 		return this.Context.Set<T>();
 	}
 
-	public Repository(TechStoreDbContext context)
+	public Repository(
+		TechStoreDbContext context)
 	{
 		this.Context = context;
 	}
 
-	public async Task AddAsync<T>(T entity) where T : class
+	public async Task AddAsync<T>(
+		T entity)
+		where T : class
 	{
 		await this.DbSet<T>().AddAsync(entity);
 	}
 
-	public async Task AddRangeAsync<T>(IEnumerable<T> entities) where T : class
+	public async Task AddRangeAsync<T>(
+		IEnumerable<T> entities)
+		where T : class
 	{
 		await this.DbSet<T>().AddRangeAsync(entities);
 	}
@@ -35,31 +39,40 @@ public class Repository : IRepository
 		return this.DbSet<T>().AsQueryable();
 	}
 
-	public IQueryable<T> All<T>(Expression<Func<T, bool>> search) where T : class
+	public IQueryable<T> All<T>(
+		Expression<Func<T, bool>> search)
+		where T : class
 	{
 		return this.DbSet<T>().Where(search);
 	}
 
-	public IQueryable<T> AllReadonly<T>() where T : class
+	public IQueryable<T> AllReadonly<T>()
+		where T : class
 	{
 		return this.DbSet<T>()
 			.AsNoTracking();
 	}
-	public IQueryable<T> AllReadonly<T>(Expression<Func<T, bool>> search) where T : class
+	public IQueryable<T> AllReadonly<T>(
+		Expression<Func<T, bool>> search)
+		where T : class
 	{
 		return this.DbSet<T>()
 			.Where(search)
 			.AsNoTracking();
 	}
 
-	public async Task DeleteAsync<T>(Guid id) where T : class
+	public async Task DeleteAsync<T>(
+		Guid id)
+		where T : class
 	{
 		T? entity = await this.GetByIdAsync<T>(id);
 
 		this.Delete(entity);
 	}
 
-	public void Delete<T>(T? entity) where T : class
+	public void Delete<T>(
+		T? entity)
+		where T : class
 	{
 		ArgumentNullException.ThrowIfNull(entity);
 
@@ -73,7 +86,9 @@ public class Repository : IRepository
 		entry.State = EntityState.Deleted;
 	}
 
-	public void Detach<T>(T entity) where T : class
+	public void Detach<T>(
+		T entity)
+		where T : class
 	{
 		EntityEntry entry = this.Context.Entry(entity);
 
@@ -85,12 +100,16 @@ public class Repository : IRepository
 		this.Context.Dispose();
 	}
 
-	public async Task<T?> GetByIdAsync<T>(Guid id) where T : class
+	public async Task<T?> GetByIdAsync<T>(
+		Guid id)
+		where T : class
 	{
 		return await this.DbSet<T>().FindAsync(id);
 	}
 
-	public async Task<T?> GetByIdsAsync<T>(Guid[] id) where T : class
+	public async Task<T?> GetByIdsAsync<T>(
+		Guid[] id)
+		where T : class
 	{
 		return await this.DbSet<T>().FindAsync(id);
 	}
@@ -100,22 +119,30 @@ public class Repository : IRepository
 		return await this.Context.SaveChangesAsync();
 	}
 
-	public void Update<T>(T entity) where T : class
+	public void Update<T>(
+		T entity)
+		where T : class
 	{
 		this.DbSet<T>().Update(entity);
 	}
 
-	public void UpdateRange<T>(IEnumerable<T> entities) where T : class
+	public void UpdateRange<T>(
+		IEnumerable<T> entities)
+		where T : class
 	{
 		this.DbSet<T>().UpdateRange(entities);
 	}
 
-	public void DeleteRange<T>(IEnumerable<T> entities) where T : class
+	public void DeleteRange<T>(
+		IEnumerable<T> entities)
+		where T : class
 	{
 		this.DbSet<T>().RemoveRange(entities);
 	}
 
-	public void DeleteRange<T>(Expression<Func<T, bool>> deleteWhereClause) where T : class
+	public void DeleteRange<T>(
+		Expression<Func<T, bool>> deleteWhereClause)
+		where T : class
 	{
 		var entities = this.All(deleteWhereClause);
 		this.DeleteRange(entities);

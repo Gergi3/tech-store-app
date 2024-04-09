@@ -14,5 +14,7 @@ public static class QueryConstants
 	{
 		public const int DefaultSkip = 0;
 		public const int DefaultTake = 1;
+		public const int DefaultSkipProductsPage = 0;
+		public const int DefaultTakeProductsPage = 20;
 	}
 }

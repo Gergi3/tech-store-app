@@ -6,14 +6,16 @@ namespace TechStoreApp.Common.Extensions;
 
 public static class StringSlugExtension
 {
-	public static bool IsSlug(this string str)
+	public static bool IsSlug(
+		this string str)
 	{
 		bool isMatch = Regex.IsMatch(str, @"^[a-z\d](?:[a-z\d_-]*[a-z\d])?$");
 
 		return isMatch;
 	}
 
-	public static string ToSlug(this string str)
+	public static string ToSlug(
+		this string str)
 	{
 		if (str == null)
 		{

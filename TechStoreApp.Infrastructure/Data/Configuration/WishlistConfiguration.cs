@@ -7,7 +7,8 @@ namespace TechStoreApp.Infrastructure.Data.Configuration;
 public class WishlistConfiguration
 	: IEntityTypeConfiguration<Wishlist>
 {
-	public void Configure(EntityTypeBuilder<Wishlist> builder)
+	public void Configure(
+		EntityTypeBuilder<Wishlist> builder)
 	{
 		builder
 			.HasKey(w => new { w.ProductId, w.UserId });

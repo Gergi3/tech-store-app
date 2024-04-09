@@ -5,7 +5,8 @@
             <div class="col-xl-6 align-self-end">
                 <div class="tp-shop-top-left d-flex">
                     <div class="tp-shop-top-result">
-                        <p>Showing <span id="showingFrom">@Model.Pagination.ShowingFrom</span>
+                        <p>
+                            Showing <span id="showingFrom">@Model.Pagination.ShowingFrom</span>
                             – <span id="showingTo">@Model.Pagination.ShowingTo</span>
                             of <span id="totalCount">@Model.Pagination.TotalCount</span> results
                         </p>
@@ -30,7 +31,7 @@
 
     @if (Model.Items.Count > 0)
     {
-        <partial name="Index/_Pagination" model="@Model.Pagination"/>
+        <partial name="Index/_Pagination" model="@Model.Pagination" />
     }
 
     <div class="tp-shop-items-wrapper tp-shop-item-primary">

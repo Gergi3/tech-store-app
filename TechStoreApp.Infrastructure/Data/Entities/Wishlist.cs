@@ -8,15 +8,16 @@ namespace TechStoreApp.Infrastructure.Data.Entities;
 [EntityTypeConfiguration(typeof(WishlistConfiguration))]
 public class Wishlist
 {
+	[Required]
 	[ForeignKey(nameof(User))]
 	public Guid UserId { get; set; }
 	public AppUser User { get; set; } = null!;
 
+	[Required]
 	[ForeignKey(nameof(Product))]
 	public Guid ProductId { get; set; }
 	public Product Product { get; set; } = null!;
 
 	[Required]
-	[Range(1, int.MaxValue)] // validation purposes
 	public int Quantity { get; set; }
 }

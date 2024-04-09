@@ -1,0 +1,40 @@
+﻿@model List<WishlistItemViewModel>
+
+<section class="tp-cart-area pb-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="tp-cart-list mb-45 mr-30">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th colspan="2" class="tp-cart-header-product">Product</th>
+                                <th class="tp-cart-header-price">Price</th>
+                                <th class="tp-cart-header-quantity">Quantity</th>
+                                <th>Action</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <partial name="Index/_WishlistItem" model="item" />
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tp-cart-bottom">
+                    <div class="row align-items-end">
+                        <div class="col-xl-6 col-md-4">
+                            <div class="tp-cart-update">
+                                <a href="cart.html" class="tp-cart-update-btn">Go To Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="~/js/pages/wishlist.js"></script>

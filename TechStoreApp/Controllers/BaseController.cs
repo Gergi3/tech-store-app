@@ -9,9 +9,38 @@ namespace TechStoreApp.Controllers;
 
 public class BaseController : Controller
 {
+	[NonAction]
+	internal static Guid GetUserId(
+		ClaimsPrincipal userPrincipal)
+	{
+		string? userId = userPrincipal
+			?.Claims
+			?.FirstOrDefault(
+				x => x.Type == ClaimTypes.NameIdentifier)
+			?.Value;
+
+		if (userId == null)
+		{
+			return default;
+		}
+
+		return new Guid(userId);
+	}
+
+	[NonAction]
+	internal static bool GetIsAuthenticated(
+		ClaimsPrincipal userPrincipal)
+	{
+		return userPrincipal?.Identity?.IsAuthenticated ?? false;
+	}
+
 	public Guid CurrentUserId => GetUserId(this.User);
 
-	public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+	public bool IsAuthenticated => GetIsAuthenticated(this.User);
+
+	public override async Task OnActionExecutionAsync(
+		ActionExecutingContext context,
+		ActionExecutionDelegate next)
 	{
 		var userPrincipal = context.HttpContext.User;
 
@@ -36,22 +65,5 @@ public class BaseController : Controller
 		}
 
 		await next();
-	}
-
-	[NonAction]
-	private static Guid GetUserId(ClaimsPrincipal userPrincipal)
-	{
-		string? userId = userPrincipal
-			?.Claims
-			?.FirstOrDefault(
-				x => x.Type == ClaimTypes.NameIdentifier)
-			?.Value;
-
-		if (userId == null)
-		{
-			return default;
-		}
-
-		return new Guid(userId);
 	}
 }

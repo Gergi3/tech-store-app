@@ -15,10 +15,10 @@ function attachEventHandlers() {
 		this.classList.remove('opacity-0')
 	});
 
-	loadMoreBtn.on('click', buttonClickHandler);
+	loadMoreBtn.on('click', loadMoreClickHandler);
 }
 
-function buttonClickHandler() {
+function loadMoreClickHandler() {
 	const currentSkipEl = loadMoreBtn.attr('data-skip');
 	nextSkip = parseInt(currentSkipEl) + take;
 
@@ -26,11 +26,11 @@ function buttonClickHandler() {
 	const options = { skip: nextSkip, take };
 
 	$.post(endpoint, options, 'json')
-		.done(fetchListSuccessHandler)
-		.fail(fetchListFailHandler);
+		.done(fetchCategoriesSuccessHandler)
+		.fail(fetchCategoriesFailHandler);
 }
 
-function fetchListSuccessHandler(res: string) {
+function fetchCategoriesSuccessHandler(res: string) {
 	loadMoreBtn.attr('data-skip', nextSkip);
 	categoriesContainerElement.append(res);
 
@@ -47,6 +47,6 @@ function fetchListSuccessHandler(res: string) {
 
 }
 
-function fetchListFailHandler(err: any) {
+function fetchCategoriesFailHandler(err: any) {
 	console.log(err);
 }

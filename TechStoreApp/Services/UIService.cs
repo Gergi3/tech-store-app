@@ -1,15 +1,15 @@
 using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Contracts;
 using TechStoreApp.Core.Contracts;
-using TechStoreApp.Core.Models.Components;
-using TechStoreApp.Core.Models.DTOs;
-using TechStoreApp.ViewModels.Components;
+using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Services;
+
 public class UIService : IUIService
 {
 	private readonly ICategoryService _categoryService;
 	private readonly IProductService _productService;
+
 	public UIService(
 		ICategoryService categoryService,
 		IProductService productService)
@@ -18,7 +18,7 @@ public class UIService : IUIService
 		this._productService = productService;
 	}
 
-	public List<BreadcrumbItemViewModel> ConstructCategoriesPageBreadcrumb()
+	public List<BreadcrumbItemViewModel> CreateCategoriesPageBreadcrumb()
 	{
 		var breadcrumb = new List<BreadcrumbItemViewModel>()
 		{
@@ -36,11 +36,19 @@ public class UIService : IUIService
 		return breadcrumb;
 	}
 
-	public async Task<List<BreadcrumbItemViewModel>> ConstructProductDetailsPageBreadcrumb(string slug)
+	public async Task<List<BreadcrumbItemViewModel>> CreateProductDetailsPageBreadcrumb(
+		string slug)
 	{
 		if (slug == null)
 		{
-			throw new SlugNullException();
+			throw new UnexpectedNullSlug();
+		}
+
+		var name = await this._productService.GetNameBySlug(slug);
+
+		if (name == null)
+		{
+			throw new UnexpectedNullProduct();
 		}
 
 		List<BreadcrumbItemViewModel> breadcrumb = [
@@ -54,25 +62,17 @@ public class UIService : IUIService
 				Name = "Products",
 				Path = ("Products", "Index")
 			},
+			new()
+			{
+				Name = name
+			}
 		];
-
-		var name = await this._productService.GetNameBySlug(slug);
-
-		if (name == null)
-		{
-			throw new UnexpectedNullProduct();
-		}
-
-		breadcrumb.Add(new()
-		{
-			Name = name
-		});
 
 		return breadcrumb;
 	}
 
-	public async Task<List<BreadcrumbItemViewModel>> ConstructProductsPageBreadcrumb(
-		ProductQueryParamsDTO query)
+	public async Task<List<BreadcrumbItemViewModel>> CreateShopPageBreadcrumb(
+		string? categorySlug)
 	{
 		List<BreadcrumbItemViewModel> breadcrumb = [
 			new()
@@ -86,28 +86,29 @@ public class UIService : IUIService
 			},
 		];
 
-		string? categorySlug = query.CategorySlug;
-
-		if (categorySlug != null)
+		if (categorySlug == null)
 		{
-			string? dbName = await this._categoryService.GetNameBySlug(categorySlug);
-			if (dbName == null)
-			{
-				throw new UnexpectedNullCategory();
-			}
-
-			breadcrumb[^1].Path = ("Products", "Index");
-
-			breadcrumb.Add(new()
-			{
-				Name = dbName
-			});
+			return breadcrumb;
 		}
+
+		string? name = await this._categoryService.GetNameBySlug(categorySlug);
+
+		if (name == null)
+		{
+			throw new UnexpectedNullCategory();
+		}
+
+		breadcrumb[^1].Path = ("Products", "Index");
+
+		breadcrumb.Add(new()
+		{
+			Name = name
+		});
 
 		return breadcrumb;
 	}
 
-	public async Task<ProductPaginationViewModel> ConstructProductPagination(
+	public ProductPaginationViewModel CreateProductPagination(
 		int page,
 		int perPage,
 		int totalCount)
@@ -144,5 +145,23 @@ public class UIService : IUIService
 		};
 
 		return pagination;
+	}
+
+	public List<BreadcrumbItemViewModel> CreateWishlistBreadcrumb()
+	{
+		var breadcrumb = new List<BreadcrumbItemViewModel>()
+		{
+			new()
+			{
+				Name= "Home",
+				Path = ("Home", "Index")
+			},
+			new()
+			{
+				Name = "My Wishlist"
+			}
+		};
+
+		return breadcrumb;
 	}
 }

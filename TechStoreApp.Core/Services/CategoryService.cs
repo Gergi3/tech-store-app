@@ -1,6 +1,7 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.Infrastructure.Data.Common;
@@ -12,18 +13,23 @@ public class CategoryService : ICategoryService
 {
 	private readonly IRepository _repo;
 	private readonly IMapper _mapper;
-	public CategoryService(IRepository repo, IMapper mapper)
+
+	public CategoryService(
+		IRepository repo,
+		IMapper mapper)
 	{
 		this._repo = repo;
 		this._mapper = mapper;
 	}
 
-	public async Task<List<CategoryDTO>> All(CategoryQueryParamsDTO query = null!)
+	public async Task<List<CategoryDTO>> All(
+		int skip,
+		int take)
 	{
 		return await this._repo
 			.AllReadonly<Category>()
-			.Skip(query.Skip)
-			.Take(query.Take)
+			.Skip(skip)
+			.Take(take)
 			.ProjectTo<CategoryDTO>(this._mapper.ConfigurationProvider)
 			.ToListAsync();
 	}
@@ -35,12 +41,31 @@ public class CategoryService : ICategoryService
 			.CountAsync();
 	}
 
-	public async Task<string?> GetNameBySlug(string categorySlug)
+	public async Task<string?> GetNameBySlug(
+		string slug)
 	{
+		if (slug == null)
+		{
+			throw new UnexpectedNullSlug();
+		}
+
 		return await this._repo
 			.AllReadonly<Category>()
-			.Where(x => x.Slug == categorySlug.ToLower())
+			.Where(x => x.Slug == slug)
 			.Select(x => x.Name)
 			.FirstOrDefaultAsync();
+	}
+
+	public async Task<bool> TryExists(
+		string? slug)
+	{
+		if (slug == null)
+		{
+			return true;
+		}
+
+		return await this._repo
+			.AllReadonly<Category>()
+			.AnyAsync(x => x.Slug == slug);
 	}
 }

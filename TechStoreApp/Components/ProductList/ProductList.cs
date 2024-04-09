@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Contracts;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models.DTOs;
-using TechStoreApp.ViewModels.Components;
+using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Components.ProductList;
 
@@ -24,17 +24,21 @@ public class ProductList : BaseViewComponent
 	}
 
 	public async Task<IViewComponentResult> InvokeAsync(
-		ProductQueryParamsDTO query,
+		ProductQueryParams query,
 		bool layout = true
 	)
 	{
-		var productsCount = await this._productService.Count(query);
+		var productDTOs = await this._productService
+			.All(query, this.CurrentUserId);
 
-		var productDTOs = await this._productService.All(query);
 		var productViewModels = this._mapper
 			.Map<List<ProductItemViewModel>>(productDTOs);
 
-		var pagination = await this._uiService.ConstructProductPagination(query.Page, query.PerPage, productsCount);
+		var productsCount = await this._productService
+			.Count(query);
+
+		var pagination = this._uiService
+			.CreateProductPagination(query.Page, query.PerPage, productsCount);
 
 		return this.View(new ProductListViewModel()
 		{

@@ -12,7 +12,6 @@ public class CategoryProfile : Profile
 			.ForMember(
 				dest => dest.Count,
 				src => src.MapFrom(x => x.Products.Count())
-			); ;
-
+			);
 	}
 }

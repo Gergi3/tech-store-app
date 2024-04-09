@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
+using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models.DTOs;
-using TechStoreApp.ViewModels.Components;
+using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Components.ProductFilters;
 
@@ -16,10 +16,9 @@ public class PriceFilter : BaseViewComponent
 	}
 
 	public async Task<IViewComponentResult> InvokeAsync(
-		ProductQueryParamsDTO query
-	)
+		ProductQueryParams query)
 	{
-		(decimal min, decimal max) = await this._productService.GetMinAndMax(query);
+		(decimal min, decimal max) = await this._productService.GetMinAndMax(query.CategorySlug);
 
 		string minStr = this.NormalizePriceFilter(Math.Floor, min);
 		string maxStr = this.NormalizePriceFilter(Math.Ceiling, max);

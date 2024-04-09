@@ -1,7 +1,7 @@
-﻿@using TechStoreApp.ViewModels.Pages
+﻿@using TechStoreApp.Models.Pages
 @model ProductDetailsPageViewModel
 
-<vc:breadcrumb items="Model.Breadcrumb"></vc:breadcrumb>
+<partial name="_Breadcrumb" model="Model.Breadcrumb" />
 
 <vc:product-details slug="@Model.Slug" user-id="@Model.CurrentUserId"></vc:product-details>
 

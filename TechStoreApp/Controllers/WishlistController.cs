@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using TechStoreApp.Contracts;
 using TechStoreApp.Core.Contracts;
-using TechStoreApp.Core.Models.Components;
-using TechStoreApp.ViewModels.Pages;
+using TechStoreApp.Core.Models.Params;
+using TechStoreApp.Core.Models.Params.Wishlist;
+using TechStoreApp.Models.Pages;
 
 namespace TechStoreApp.Controllers;
 
@@ -11,31 +13,23 @@ namespace TechStoreApp.Controllers;
 public class WishlistController : BaseController
 {
 	private readonly IWishlistService _wishlistService;
+	private readonly IUIService _uiService;
 
-	public WishlistController(IWishlistService wishListService)
+	public WishlistController(
+		IWishlistService wishListService,
+		IUIService uiService)
 	{
 		this._wishlistService = wishListService;
+		this._uiService = uiService;
 	}
 
 	[HttpGet]
-	public IActionResult Index()
+	public async Task<IActionResult> Index()
 	{
-		var breadcrumb = new List<BreadcrumbItemViewModel>()
-		{
-			new()
-			{
-				Name= "Home",
-				Path = ("Home", "Index")
-			},
-			new()
-			{
-				Name = "My Wishlist"
-			}
-		};
+		var breadcrumb = this._uiService.CreateWishlistBreadcrumb();
 
 		var viewModel = new WishlistIndexPageViewModel()
 		{
-			CurrentUserId = this.CurrentUserId,
 			Breadcrumb = breadcrumb
 		};
 
@@ -44,30 +38,45 @@ public class WishlistController : BaseController
 
 	[HttpPost]
 	[EnableCors("AllowSpecificOrigins")]
-	public async Task<IActionResult> ChangeStatus(Guid productId)
+	public async Task<IActionResult> ChangeStatus(
+		WishlistChangeStatusParams reqParams)
 	{
-		var isDeleted = await this._wishlistService.ChangeStatus(
-			userId: this.CurrentUserId,
-			productId: productId);
+		if (!this.ModelState.IsValid)
+		{
+			return this.BadRequest();
+		}
 
-		return this.Json(new
+		var isDeleted = await this._wishlistService
+			.ChangeStatus(this.CurrentUserId, reqParams.ProductId);
+
+		object jsonData = new
 		{
 			status = StatusCodes.Status200OK,
 			isDeleted
-		});
+		};
+
+		return this.Json(jsonData);
 	}
 
 	[HttpPost]
 	[EnableCors("AllowSpecificOrigins")]
-	public async Task<IActionResult> ChangeQuantity(Guid productId, int newQuantity)
+	public async Task<IActionResult> ChangeQuantity(
+		WishlistChangeQuantityParams reqParams)
 	{
-		bool isUpdated = await this._wishlistService
-			.EditQuantity(productId, this.CurrentUserId, newQuantity);
+		if (!this.ModelState.IsValid)
+		{
+			return this.BadRequest();
+		}
 
-		return this.Json(new
+		bool isUpdated = await this._wishlistService
+			.EditQuantity(reqParams.ProductId, this.CurrentUserId, reqParams.NewQuantity);
+
+		object jsonData = new
 		{
 			status = StatusCodes.Status200OK,
 			isUpdated
-		});
+		};
+
+		return this.Json(jsonData);
 	}
 }

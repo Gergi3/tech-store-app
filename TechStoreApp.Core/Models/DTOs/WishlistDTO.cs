@@ -1,15 +1,14 @@
-
 namespace TechStoreApp.Core.Models.DTOs;
 
 public class WishlistDTO
 {
 	public Guid ProductId { get; set; }
 
-	public string Name { get; set; } = null!;
+	public string ProductName { get; set; } = null!;
 
-	public decimal Price { get; set; }
+	public decimal ProductPrice { get; set; }
 
-	public string Slug { get; set; } = null!;
+	public string ProductSlug { get; set; } = null!;
 
 	public int Quantity { get; set; }
 }

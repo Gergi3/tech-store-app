@@ -1,5 +1,6 @@
-﻿@using TechStoreApp.ViewModels.Pages
+﻿@using TechStoreApp.Models.Pages
 @model CategoryIndexPageViewModel
 
-<vc:breadcrumb items="Model.Breadcrumb"></vc:breadcrumb>
+<partial name="_Breadcrumb" model="Model.Breadcrumb" />
+
 <vc:category-list query="Model.Query"></vc:category-list>

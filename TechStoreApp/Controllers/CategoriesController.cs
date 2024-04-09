@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Components.CategoryList;
 using TechStoreApp.Contracts;
-using TechStoreApp.Core.Models.DTOs;
-using TechStoreApp.ViewModels.Pages;
-using static TechStoreApp.Common.QueryConstants.Category;
+using TechStoreApp.Core.Models.Params;
+using TechStoreApp.Models.Pages;
 
 namespace TechStoreApp.Controllers;
 
@@ -14,7 +13,8 @@ public class CategoriesController : BaseController
 {
 	private readonly IUIService _uiService;
 
-	public CategoriesController(IUIService uiService)
+	public CategoriesController(
+		IUIService uiService)
 	{
 		this._uiService = uiService;
 	}
@@ -23,13 +23,8 @@ public class CategoriesController : BaseController
 	[AllowAnonymous]
 	public IActionResult Index()
 	{
-		var breadcrumb = this._uiService.ConstructCategoriesPageBreadcrumb();
-
-		var query = new CategoryQueryParamsDTO()
-		{
-			Skip = DefaultSkip,
-			Take = DefaultTake
-		};
+		var breadcrumb = this._uiService.CreateCategoriesPageBreadcrumb();
+		var query = new CategoryQueryParams();
 
 		var viewModel = new CategoryIndexPageViewModel()
 		{
@@ -42,18 +37,22 @@ public class CategoriesController : BaseController
 
 	[HttpPost]
 	[EnableCors("AllowSpecificOrigins")]
-	public ViewComponentResult CategoryList(
-		int skip = DefaultSkip,
-		int take = DefaultTake)
+	[AllowAnonymous]
+	public IActionResult CategoryList(
+		CategoryQueryParams query)
 	{
-		var query = new CategoryQueryParamsDTO()
+		if (!this.ModelState.IsValid)
 		{
-			Skip = skip,
-			Take = take
+			return this.BadRequest(this.ModelState);
+		}
+
+		Type vcType = typeof(CategoryList);
+		object vcParameters = new
+		{
+			query,
+			layout = false
 		};
 
-		object parameters = new { query, layout = false };
-
-		return this.ViewComponent(typeof(CategoryList), parameters);
+		return this.ViewComponent(vcType, vcParameters);
 	}
 }

@@ -14,8 +14,7 @@
 	"include": [
 		"wwwroot/js/pages/*",
 		"wwwroot/js/constants/*",
-		"wwwroot/js/components/*",
-		"wwwroot/js/*"
+		"wwwroot/js/components/*"
 	],
 	"exclude": []
 }

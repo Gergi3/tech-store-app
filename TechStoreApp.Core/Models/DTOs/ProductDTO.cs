@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using static TechStoreApp.Common.DataConstants.Product;
 
 namespace TechStoreApp.Core.Models.DTOs;
+
 public class ProductDTO
 {
 	public Guid Id { get; set; }

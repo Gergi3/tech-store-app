@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TechStoreApp.Core.Models.Components;
+using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Controllers;
 

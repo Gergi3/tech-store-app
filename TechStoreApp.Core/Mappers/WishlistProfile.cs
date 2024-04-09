@@ -10,15 +10,15 @@ public class WishlistProfile : Profile
 	{
 		this.CreateMap<Wishlist, WishlistDTO>()
 			.ForMember(
-				dest => dest.Name,
+				dest => dest.ProductName,
 				opt => opt.MapFrom(w => w.Product.Name)
 			)
 			.ForMember(
-				dest => dest.Price,
+				dest => dest.ProductPrice,
 				opt => opt.MapFrom(w => w.Product.Price)
 			)
 			.ForMember(
-				dest => dest.Slug,
+				dest => dest.ProductSlug,
 				opt => opt.MapFrom(w => w.Product.Slug)
 			);
 	}

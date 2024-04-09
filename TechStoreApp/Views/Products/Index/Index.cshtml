@@ -1,11 +1,8 @@
-﻿@using TechStoreApp.ViewModels.Pages
+﻿@using TechStoreApp.Models.Pages
 @model ProductIndexPageViewModel
 
-<!-- breadcrumb area start -->
-<vc:breadcrumb items="Model.Breadcrumb"></vc:breadcrumb>
-<!-- breadcrumb area end -->
+<partial name="_Breadcrumb" model="Model.Breadcrumb" />
 
-<!-- shop area start -->
 <section class="tp-shop-area pb-120">
     <div class="container">
         <div class="row">
