@@ -2,7 +2,7 @@ using static TechStoreApp.Common.ConfigConstants;
 
 namespace TechStoreApp.Config;
 
-public static class AppExtension
+public static class Pipeline
 {
 	public static WebApplication ConfigurePipeline(
 		this WebApplication app)
