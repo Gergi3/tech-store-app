@@ -1,9 +1,6 @@
 using System.Web;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using TechStoreApp.Common;
-using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Core.Contracts;
 
 namespace TechStoreApp.Controllers;
@@ -24,15 +21,6 @@ public class BaseController : Controller
 	public bool IsAuthenticated
 		=> this._accountService.GetIsAuthenticated(this.User);
 
-	public override async Task OnActionExecutionAsync(
-		ActionExecutingContext context,
-		ActionExecutionDelegate next)
-	{
-		
-
-		await next();
-	}
-
 	[NonAction]
 	public void DropQueryParam(string key)
 	{
@@ -41,7 +29,5 @@ public class BaseController : Controller
 		var queryStr = HttpUtility.ParseQueryString(url.Query);
 
 		queryStr.Remove(key);
-
-
 	}
 }
