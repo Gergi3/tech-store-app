@@ -38,7 +38,8 @@ public class ProductService : IProductService
 		return await products
 			.ProjectTo<ProductDTO>(
 				configuration: this._mapper.ConfigurationProvider,
-				parameters: new { userId })
+				parameters: new { userId },
+				membersToExpand: [x => x.Categories])
 			.ToListAsync();
 	}
 
@@ -70,7 +71,9 @@ public class ProductService : IProductService
 			.AllReadonly<Product>()
 			.ProjectTo<ProductDTO>(
 				configuration: this._mapper.ConfigurationProvider,
-				parameters: new { userId })
+				parameters: new { userId },
+				membersToExpand: [x => x.Categories, x => x.ExtraInfos, x => x.Reviews]
+			)
 			.FirstOrDefaultAsync(x => x.Slug == slug);
 	}
 

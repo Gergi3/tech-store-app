@@ -18,7 +18,11 @@ public class ProductDTO
 	[Required]
 	public decimal Price { get; set; }
 
+	public double AverageRating { get; set; }
+
 	public bool IsWishlisted { get; set; }
 
 	public List<CategoryDTO> Categories { get; set; } = [];
+	public List<ExtraInfoDTO> ExtraInfos { get; set; } = [];
+	public List<ReviewDTO> Reviews { get; set; } = [];
 }

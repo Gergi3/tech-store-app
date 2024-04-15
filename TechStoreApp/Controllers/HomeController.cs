@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TechStoreApp.Core.Contracts;
 using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Controllers;
@@ -7,6 +8,13 @@ namespace TechStoreApp.Controllers;
 [Authorize]
 public class HomeController : BaseController
 {
+
+	public HomeController(
+		IAccountService accountService)
+		: base(accountService)
+	{
+		
+	}
 	[AllowAnonymous]
 	public IActionResult Index()
 	{

@@ -12,9 +12,11 @@ public static class AppServices
 		this IServiceCollection services)
 	{
 		services.AddScoped<IRepository, Repository>();
+		services.AddScoped<IAccountService, AccountService>();
 		services.AddScoped<ICategoryService, CategoryService>();
 		services.AddScoped<IProductService, ProductService>();
 		services.AddScoped<IWishlistService, WishlistService>();
+		services.AddScoped<IReviewService, ReviewService>();
 		services.AddScoped<IUIService, UIService>();
 
 		return services;

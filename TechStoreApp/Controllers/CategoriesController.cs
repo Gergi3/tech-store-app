@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Components.CategoryList;
 using TechStoreApp.Contracts;
+using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models.Params;
 using TechStoreApp.Models.Pages;
 
@@ -14,7 +15,9 @@ public class CategoriesController : BaseController
 	private readonly IUIService _uiService;
 
 	public CategoriesController(
-		IUIService uiService)
+		IUIService uiService,
+		IAccountService accountService)
+		: base(accountService)
 	{
 		this._uiService = uiService;
 	}

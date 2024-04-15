@@ -9,8 +9,8 @@
                         <div class="tp-footer-widget footer-col-1 mb-50">
                             <div class="tp-footer-widget-content">
                                 <div class="tp-footer-logo">
-                                    <a href="index-2.html">
-                                        <img src="~/img/logo/logo.svg" alt="logo">
+                                    <a asp-action="Index" asp-controller="Home">
+                                        <partial name="_Logo" />
                                     </a>
                                 </div>
                                 <p class="tp-footer-desc">We are a team of designers and developers that create high quality WordPress</p>
@@ -103,7 +103,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="tp-footer-copyright">
-                                <p>© 2023 All Rights Reserved  |  HTML Template by <a href="index-2.html">Themepure</a>.</p>
+                                <p>&copy; @DateTime.Now.Year All Rights Reserved | Georgi Petrov</p>
                             </div>
                         </div>
                         <div class="col-md-6">

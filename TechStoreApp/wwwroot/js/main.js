@@ -1993,21 +1993,43 @@
 
 		btn.addEventListener('click', function (e) {
 
-			var inputType = document.getElementById('tp_password');
+			var inputs = [document.getElementById('tp_password'), document.getElementById('tp_repeat_password')];
 			var openEye = document.getElementById('open-eye');
 			var closeEye = document.getElementById('close-eye');
 
-			if (inputType.type === 'password') {
-				inputType.type = 'text';
-				openEye.style.display = 'block';
-				closeEye.style.display = 'none';
-			} else {
-				inputType.type = 'password';
-				openEye.style.display = 'none';
-				closeEye.style.display = 'block';
-			}
+			inputs.forEach(inputType => {
+				if (inputType.type === 'password') {
+					inputType.type = 'text';
+					openEye.style.display = 'block';
+					closeEye.style.display = 'none';
+				} else {
+					inputType.type = 'password';
+					openEye.style.display = 'none';
+					closeEye.style.display = 'block';
+				}
+			})
 		});
 	}
+
+	$('#accept-terms').on('change', function () {
+		const isChecked = $(this).is(':checked');
+		if (isChecked) {
+			$('#accept-terms-error').addClass('visually-hidden');
+		}
+		else {
+			$('#accept-terms-error').removeClass('visually-hidden');
+		}
+	})
+
+	$('#tp-sign-up-form').on('submit', function (e) {
+		let isChecked = $('#accept-terms').is(':checked');
+
+		if (!isChecked) {
+			e.preventDefault();
+			e.stopPropagation();
+			$('#accept-terms-error').removeClass('visually-hidden');
+		}
+	});
 
 
 	// if ($('.infinite-container').length > 0) {
@@ -2029,7 +2051,3 @@
 	}
 
 })(jQuery);
-
-//$('.tp-category-item-container').on('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function () {
-//	this.classList.remove('opacity-0');
-//});

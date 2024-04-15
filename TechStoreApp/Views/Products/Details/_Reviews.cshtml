@@ -1,0 +1,11 @@
+﻿@model List<ReviewViewModel>
+
+<div class="tp-product-details-review-list pr-110">
+    <h3 class="tp-product-details-review-title">Rating & Review</h3>
+    <div id="reviewsContainer">
+        @foreach (var review in Model)
+        {
+            <partial name="_Review" model="review" />
+        }
+    </div>
+</div>

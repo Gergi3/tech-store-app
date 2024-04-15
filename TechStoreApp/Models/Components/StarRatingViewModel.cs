@@ -7,6 +7,5 @@ public class StarRatingViewModel
 	[Required]
 	public int Stars { get; set; }
 
-	[Required]
-	public int Reviews { get; set; }
+	public int? Reviews { get; set; }
 }

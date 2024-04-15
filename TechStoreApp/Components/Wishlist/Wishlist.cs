@@ -5,14 +5,16 @@ using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Components.Wishlist;
 
-public class Wishlist : BaseViewComponent
+public class Wishlist : AuthViewComponent
 {
 	private readonly IWishlistService _wishlistService;
 	private readonly IMapper _mapper;
 
 	public Wishlist(
 		IWishlistService wishlistService,
-		IMapper mapper)
+		IMapper mapper,
+		IAccountService accountService)
+		: base(accountService)
 	{
 		this._wishlistService = wishlistService;
 		this._mapper = mapper;

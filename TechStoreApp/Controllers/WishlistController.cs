@@ -17,7 +17,9 @@ public class WishlistController : BaseController
 
 	public WishlistController(
 		IWishlistService wishListService,
-		IUIService uiService)
+		IUIService uiService,
+		IAccountService accountService)
+		: base(accountService)
 	{
 		this._wishlistService = wishListService;
 		this._uiService = uiService;

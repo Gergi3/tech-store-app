@@ -1,4 +1,5 @@
-using System.Security.Claims;
+using System.Web;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using TechStoreApp.Common;
@@ -9,42 +10,25 @@ namespace TechStoreApp.Controllers;
 
 public class BaseController : Controller
 {
-	[NonAction]
-	internal static Guid GetUserId(
-		ClaimsPrincipal userPrincipal)
+	private readonly IAccountService _accountService;
+
+	public BaseController(
+		IAccountService _accountService)
 	{
-		string? userId = userPrincipal
-			?.Claims
-			?.FirstOrDefault(
-				x => x.Type == ClaimTypes.NameIdentifier)
-			?.Value;
-
-		if (userId == null)
-		{
-			return default;
-		}
-
-		return new Guid(userId);
+		this._accountService = _accountService;
 	}
 
-	[NonAction]
-	internal static bool GetIsAuthenticated(
-		ClaimsPrincipal userPrincipal)
-	{
-		return userPrincipal?.Identity?.IsAuthenticated ?? false;
-	}
+	public Guid CurrentUserId
+		=> this._accountService.GetUserId(this.User);
 
-	public Guid CurrentUserId => GetUserId(this.User);
-
-	public bool IsAuthenticated => GetIsAuthenticated(this.User);
+	public bool IsAuthenticated
+		=> this._accountService.GetIsAuthenticated(this.User);
 
 	public override async Task OnActionExecutionAsync(
 		ActionExecutingContext context,
 		ActionExecutionDelegate next)
 	{
-		var userPrincipal = context.HttpContext.User;
-
-		if (userPrincipal?.Identity?.IsAuthenticated ?? false)
+		if (this.IsAuthenticated)
 		{
 			var controller = context.Controller as Controller;
 			if (controller == null)
@@ -58,12 +42,23 @@ public class BaseController : Controller
 				throw new UnexpectedNullService();
 			}
 
-			Guid userId = GetUserId(userPrincipal);
-			var wishlistCount = await wishlistService.Count(userId);
+			var wishlistCount = await wishlistService.Count(this.CurrentUserId);
 
 			controller.ViewData[UIConstants.ViewData.WishlistCountIdentifier] = wishlistCount;
 		}
 
 		await next();
+	}
+
+	[NonAction]
+	public void DropQueryParam(string key)
+	{
+		var url = new Uri(this.Request.GetEncodedUrl());
+
+		var queryStr = HttpUtility.ParseQueryString(url.Query);
+
+		queryStr.Remove(key);
+
+
 	}
 }

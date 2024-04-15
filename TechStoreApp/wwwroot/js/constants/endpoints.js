@@ -10,6 +10,9 @@ export const endpoints = {
     wishlist: {
         change: buildUrl('wishlist/change-status'),
         updateQuantity: buildUrl('wishlist/change-quantity')
+    },
+    review: {
+        create: buildUrl('reviews/create')
     }
 };
 //# sourceMappingURL=endpoints.js.map

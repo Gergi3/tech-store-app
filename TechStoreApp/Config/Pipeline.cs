@@ -39,6 +39,12 @@ public static class Pipeline
 			defaults: new { controller = "Products", action = "Index" }
 		);
 
+		app.MapControllerRoute(
+			name: "staticPages",
+			pattern: "{action:slugify}",
+			defaults: new { controller = "StaticPages" }
+		);
+
 		app.UseCoreAdminCustomUrl(CoreAdminUrl);
 		app.MapRazorPages();
 

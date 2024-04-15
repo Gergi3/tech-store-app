@@ -10,6 +10,8 @@ public class ProductItemViewModel
 
 	public bool IsWishlisted { get; set; }
 
+	public double AverageRating { get; set; }
+
 	public string Slug { get; set; } = null!;
 
 	public List<ProductItemCategoriesViewModel> Categories { get; set; } = [];

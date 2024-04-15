@@ -2,18 +2,14 @@ using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
-using TechStoreApp.Controllers;
 
 namespace TechStoreApp.Components;
 
 public abstract class BaseViewComponent : ViewComponent
 {
 	// private static readonly Dictionary<string, string> components = GetComponents(); // PROD PURPOSES
-	private static Dictionary<string, string> components => GetComponents(); // DEV PURPOSES
-
-	public Guid CurrentUserId => BaseController.GetUserId(this.UserClaimsPrincipal);
-
-	public bool IsAuthenticated => BaseController.GetIsAuthenticated(this.UserClaimsPrincipal);
+	private static Dictionary<string, string> components
+		=> GetComponents(); // DEV PURPOSES
 
 	public static string? GetViewName(
 		string shortName)
@@ -56,7 +52,8 @@ public abstract class BaseViewComponent : ViewComponent
 			model: model);
 	}
 
-	private string? CurrentViewName => GetViewName(this.ViewComponentContext.ViewComponentDescriptor.ShortName);
+	private string? CurrentViewName
+		=> GetViewName(this.ViewComponentContext.ViewComponentDescriptor.ShortName);
 
 	private static Dictionary<string, string> GetComponents()
 	{

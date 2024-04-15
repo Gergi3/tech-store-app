@@ -7,7 +7,7 @@ using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Components.ProductList;
 
-public class ProductList : BaseViewComponent
+public class ProductList : AuthViewComponent
 {
 	private readonly IProductService _productService;
 	private readonly IMapper _mapper;
@@ -16,7 +16,9 @@ public class ProductList : BaseViewComponent
 	public ProductList(
 		IProductService productService,
 		IMapper mapper,
-		IUIService uiService)
+		IUIService uiService,
+		IAccountService accountService)
+		: base(accountService)
 	{
 		this._mapper = mapper;
 		this._productService = productService;

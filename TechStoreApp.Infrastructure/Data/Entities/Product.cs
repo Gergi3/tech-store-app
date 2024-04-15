@@ -32,6 +32,10 @@ public class Product
 
 	public List<Wishlist> Wishlists { get; } = [];
 
+	public List<ExtraInfo> ExtraInfos { get; set; } = [];
+
+	public List<Review> Reviews { get; set; } = [];
+
 	public override string ToString()
 	{
 		return this.Name.ToString();

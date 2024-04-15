@@ -1,0 +1,57 @@
+﻿@using TechStoreApp.Core.Models.Params
+@model ReviewCreateParams
+
+@if (this.User?.Identity?.IsAuthenticated ?? false)
+{
+    <div class="col-lg-6">
+        <div class="tp-product-details-review-form">
+            <div class="mb-20">
+                <h3 class="tp-product-details-review-form-title ">
+                    @if (!Model.IsReviewed)
+                    {
+                        @:Review this product!
+                    }
+                    else
+                    {
+                        @:Thank you for reviewing this product!
+                    }
+                </h3>
+            </div>
+            @if (!Model.IsReviewed)
+            {
+                <form id="createReviewForm" method="post" asp-action="Create" asp-controller="Reviews">
+                    <input type="hidden" asp-for="ProductsId" />
+                    <div class="tp-product-details-review-input-wrapper">
+                        <div class="tp-product-details-review-input-box">
+                            <div class="tp-product-details-review-input">
+                                <select class="nice-select" asp-for="Stars" style="float:none">
+                                    <option value="1">Awful (1 Star)</option>
+                                    <option value="2">Bad (2 Stars)</option>
+                                    <option value="3">Good (3 Stars)</option>
+                                    <option value="4">Very good (4 Stars)</option>
+                                    <option value="5" selected>Excellent (5 Stars)</option>
+                                </select>
+                                <div class="tp-product-details-review-input-title">
+                                    <label asp-for="Stars">Rating</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tp-product-details-review-input-box">
+                            <div class="tp-product-details-review-input">
+                                <textarea asp-for="Text" placeholder="Write your review here..."></textarea>
+                            </div>
+                            <div class="tp-product-details-review-input-title">
+                                <label asp-for="Text"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tp-product-details-review-btn-wrapper align-self-end">
+                        <button class="tp-product-details-review-btn">Submit</button>
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+}
+
+<script src="~/js/pages/create-review.js" type="module"></script>

@@ -17,7 +17,7 @@ namespace TechStoreApp.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("ProductVersion", "8.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -250,6 +250,30 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.ExtraInfo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Data")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ExtraInfos");
+                });
+
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
@@ -293,6 +317,35 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.HasIndex("CategoriesId");
 
                     b.ToTable("ProductCategory");
+                });
+
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Review", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Stars")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductsId");
+
+                    b.HasIndex("UserId", "ProductsId")
+                        .IsUnique();
+
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Wishlist", b =>
@@ -366,6 +419,17 @@ namespace TechStoreApp.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.ExtraInfo", b =>
+                {
+                    b.HasOne("TechStoreApp.Infrastructure.Data.Entities.Product", "Product")
+                        .WithMany("ExtraInfos")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.ProductCategory", b =>
                 {
                     b.HasOne("TechStoreApp.Infrastructure.Data.Entities.Category", "Category")
@@ -383,6 +447,25 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Review", b =>
+                {
+                    b.HasOne("TechStoreApp.Infrastructure.Data.Entities.Product", "Product")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechStoreApp.Infrastructure.Data.Entities.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Wishlist", b =>
@@ -406,6 +489,10 @@ namespace TechStoreApp.Infrastructure.Migrations
 
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Product", b =>
                 {
+                    b.Navigation("ExtraInfos");
+
+                    b.Navigation("Reviews");
+
                     b.Navigation("Wishlists");
                 });
 #pragma warning restore 612, 618

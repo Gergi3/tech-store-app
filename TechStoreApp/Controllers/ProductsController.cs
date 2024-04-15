@@ -20,7 +20,9 @@ public class ProductsController : BaseController
 	public ProductsController(
 		IUIService uiService,
 		IProductService productService,
-		ICategoryService categoryService)
+		ICategoryService categoryService,
+		IAccountService accountService)
+		: base(accountService)
 	{
 		this._uiService = uiService;
 		this._productService = productService;

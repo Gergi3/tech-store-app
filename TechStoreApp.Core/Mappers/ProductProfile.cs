@@ -10,11 +10,23 @@ public class ProductProfile : Profile
 	{
 		Guid userId = default;
 		this.CreateMap<Product, ProductDTO>()
+			.ForMember(dest => dest.Categories, opt => opt.ExplicitExpansion())
+			.ForMember(dest => dest.ExtraInfos, opt => opt.ExplicitExpansion())
+			.ForMember(dest => dest.Reviews, opt => opt.ExplicitExpansion())
 			.ForMember(
-				m => m.IsWishlisted,
+				p => p.IsWishlisted,
 				opt => opt.MapFrom(
 					IsWishlistedMapper(userId))
-			);
+			)
+			.ForMember(
+				dest => dest.AverageRating,
+				opt => opt.MapFrom(
+					p => p.Reviews.Count > 0
+						? p.Reviews
+							.Select(x => x.Stars)
+							.Average()
+						: default)
+				);
 	}
 
 	private static Expression<Func<Product, bool>> IsWishlistedMapper(Guid userId)

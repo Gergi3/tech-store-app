@@ -11,7 +11,10 @@
             <span><i class="fa-regular fa-star"></i></span>
         }
     </div>
-    <div class="tp-product-rating-text">
-        <span>(@Model.Reviews Reviews)</span>
-    </div>
+    @if (Model.Reviews != null)
+    {
+        <div class="tp-product-rating-text">
+            <span>(@Model.Reviews Reviews)</span>
+        </div>
+    }
 </div>

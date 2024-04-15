@@ -6,8 +6,8 @@ namespace TechStoreApp.Components.Shared;
 public class StarRating : BaseViewComponent
 {
 	public async Task<IViewComponentResult> InvokeAsync(
-		int stars,
-		int reviews)
+		int? reviews,
+		int stars)
 	{
 		return this.View(new StarRatingViewModel()
 		{

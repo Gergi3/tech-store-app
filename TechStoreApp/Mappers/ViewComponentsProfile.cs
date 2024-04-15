@@ -13,6 +13,8 @@ public class ViewComponentsProfile : Profile
 		this.CreateMap<CategoryDTO, CategoryItemViewModel>();
 		this.CreateMap<CategoryDTO, ProductItemCategoriesViewModel>();
 		this.CreateMap<CategoryDTO, ProductDetailsCategoriesViewModel>();
+		this.CreateMap<ExtraInfoDTO, ExtraInfoViewModel>();
+		this.CreateMap<ReviewDTO, ReviewViewModel>();
 
 		this.CreateMap<WishlistDTO, WishlistItemViewModel>()
 			.ForMember(
