@@ -7,9 +7,8 @@ namespace TechStoreApp.Config;
 public static class AppDatabase
 {
 	public static IServiceCollection AddAppDatabase(
-
-	this IServiceCollection services,
-	ConfigurationManager configuration)
+		this IServiceCollection services,
+		ConfigurationManager configuration)
 	{
 		var connectionString = configuration.GetConnectionString(ConnectionStringName)
 			?? throw new InvalidOperationException($"Connection string {ConnectionStringName} not found.");

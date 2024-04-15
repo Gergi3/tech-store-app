@@ -13,10 +13,15 @@ public class ProductProfile : Profile
 			.ForMember(dest => dest.Categories, opt => opt.ExplicitExpansion())
 			.ForMember(dest => dest.ExtraInfos, opt => opt.ExplicitExpansion())
 			.ForMember(dest => dest.Reviews, opt => opt.ExplicitExpansion())
+			.ForMember(dest => dest.ReviewsCount, opt => opt.ExplicitExpansion())
 			.ForMember(
 				p => p.IsWishlisted,
 				opt => opt.MapFrom(
 					IsWishlistedMapper(userId))
+			)
+			.ForMember(
+				dest => dest.ReviewsCount,
+				opt => opt.MapFrom(p => p.Reviews.Count)
 			)
 			.ForMember(
 				dest => dest.AverageRating,

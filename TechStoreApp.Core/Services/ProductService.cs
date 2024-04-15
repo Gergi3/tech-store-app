@@ -25,6 +25,18 @@ public class ProductService : IProductService
 		this._categoryService = categoryService;
 	}
 
+	public async Task<List<ProductDTO>> TopRated(
+		int count)
+	{
+		return await this._repo.AllReadonly<Product>()
+			.OrderByDescending(x => x.Reviews.Average(x => (decimal)x.Stars))
+			.Take(count)
+			.ProjectTo<ProductDTO>(
+				configuration: this._mapper.ConfigurationProvider,
+				membersToExpand: [x => x.ReviewsCount, x => x.Reviews.Count])
+			.ToListAsync();
+	}
+
 	public async Task<List<ProductDTO>> All(
 		ProductQueryParams query,
 		Guid userId)
@@ -39,7 +51,7 @@ public class ProductService : IProductService
 			.ProjectTo<ProductDTO>(
 				configuration: this._mapper.ConfigurationProvider,
 				parameters: new { userId },
-				membersToExpand: [x => x.Categories])
+				membersToExpand: [x => x.Categories, x => x.ReviewsCount, x => x.Reviews.Count])
 			.ToListAsync();
 	}
 
@@ -72,7 +84,7 @@ public class ProductService : IProductService
 			.ProjectTo<ProductDTO>(
 				configuration: this._mapper.ConfigurationProvider,
 				parameters: new { userId },
-				membersToExpand: [x => x.Categories, x => x.ExtraInfos, x => x.Reviews]
+				membersToExpand: [x => x.Categories, x => x.ExtraInfos, x => x.Reviews, x => x.ReviewsCount]
 			)
 			.FirstOrDefaultAsync(x => x.Slug == slug);
 	}

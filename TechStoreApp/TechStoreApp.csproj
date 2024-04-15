@@ -37,8 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\NewFolder\" />
-    <Folder Include="Components\ProductDetails\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 

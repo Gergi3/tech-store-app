@@ -33,10 +33,6 @@ public class ViewComponentsProfile : Profile
 				dest => dest.Price,
 				src => src.MapFrom(
 					x => x.Price.ToPriceString())
-			)
-			.ForMember(
-				dest => dest.Description,
-				src => src.MapFrom(x => "Mapper description example")
 			);
 
 		this.CreateMap<ProductDTO, ProductItemViewModel>()

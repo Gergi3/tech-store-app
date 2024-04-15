@@ -1,11 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models.Auth;
 using TechStoreApp.Infrastructure.Data.Entities;
-using TechStoreApp.Models.Pages;
 
 namespace TechStoreApp.Controllers;
 

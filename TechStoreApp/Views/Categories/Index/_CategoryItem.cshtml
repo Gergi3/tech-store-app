@@ -2,11 +2,17 @@
 @model CategoryItemViewModel
 
 <div class="tp-category-main-box mb-25 p-relative fix">
-    <div class="tp-category-main-thumb include-bg transition-3"
-         style="background-image:url(/img/category/main/category-main-1.jpg)"></div>
+    <a href="@($"/categories/{Model.Slug}/products")">
+
+        <div class="tp-category-main-thumb include-bg transition-3"
+             style="background-image:url(/img/category/main/category-main-1.jpg)">
+        </div>
+    </a>
     <div class="tp-category-main-content">
         <h3 class="tp-category-main-title">
-            <a href="@($"/categories/{Model.Slug}/products")">@Model.Name</a>
+            <a href="@($"/categories/{Model.Slug}/products")">
+                @Model.Name
+            </a>
         </h3>
         <span class="tp-category-main-item">@Model.Count Products</span>
     </div>

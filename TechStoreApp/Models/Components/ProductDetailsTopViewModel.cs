@@ -12,5 +12,9 @@ public class ProductDetailsTopViewModel
 
 	public bool IsWishlisted { get; set; }
 
+	public int ReviewsCount { get; set; }
+
+	public double AverageRating { get; set; }
+
 	public List<ProductDetailsCategoriesViewModel> Categories { get; set; } = [];
 }

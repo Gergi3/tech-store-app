@@ -28,24 +28,7 @@ public class BaseController : Controller
 		ActionExecutingContext context,
 		ActionExecutionDelegate next)
 	{
-		if (this.IsAuthenticated)
-		{
-			var controller = context.Controller as Controller;
-			if (controller == null)
-			{
-				throw new UnexpectedNullController();
-			}
-
-			var wishlistService = context.HttpContext.RequestServices.GetService<IWishlistService>();
-			if (wishlistService == null)
-			{
-				throw new UnexpectedNullService();
-			}
-
-			var wishlistCount = await wishlistService.Count(this.CurrentUserId);
-
-			controller.ViewData[UIConstants.ViewData.WishlistCountIdentifier] = wishlistCount;
-		}
+		
 
 		await next();
 	}

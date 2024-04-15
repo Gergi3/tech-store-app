@@ -13,42 +13,49 @@
                                         <partial name="_Logo" />
                                     </a>
                                 </div>
-                                <p class="tp-footer-desc">We are a team of designers and developers that create high quality WordPress</p>
+                                <p class="tp-footer-desc">We are your ultimate destination for the latest in tech innovations,
+                                    offering a curated selection of gadgets and gear for every digital enthusiast.</p>
                                 <div class="tp-footer-social">
-                                    <a href="@FacebookLink"><i class="fa-brands fa-facebook-f"></i></a>
-                                    <a href="@InstagramLink"><i class="fa-brands fa-instagram"></i></a>
-                                    <a href="@LinkedInLink"><i class="fa-brands fa-linkedin-in"></i></a>
-                                    <a href="@YoutubeLink"><i class="fa-brands fa-youtube"></i></a>
+                                    <a href="@FacebookLink" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                                    <a href="@InstagramLink" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                                    <a href="@LinkedInLink" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                                    <a href="@YoutubeLink" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                        <div class="tp-footer-widget footer-col-2 mb-50">
-                            <h4 class="tp-footer-widget-title">My Account</h4>
-                            <div class="tp-footer-widget-content">
-                                <ul>
-                                    <li><a href="#">Track Orders</a></li>
-                                    <li><a href="#">Shipping</a></li>
-                                    <li><a href="#">Wishlist</a></li>
-                                    <li><a href="#">My Account</a></li>
-                                    <li><a href="#">Order History</a></li>
-                                    <li><a href="#">Returns</a></li>
-                                </ul>
+                    @if (User?.Identity?.IsAuthenticated ?? false)
+                    {
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                            <div class="tp-footer-widget footer-col-2 mb-50">
+                                <h4 class="tp-footer-widget-title">My Account</h4>
+                                <div class="tp-footer-widget-content">
+                                    <ul>
+                                        <li><a href="/wishlist">Wishlist</a></li>
+                                        <li><a href="/orders">Orders</a></li>
+                                        <li><a href="/account/my-profile">My Profile</a></li>
+                                        <li><a href="#">Order History</a></li>
+                                        <li><a href="#">Returns</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <div class="tp-footer-widget footer-col-3 mb-50">
                             <h4 class="tp-footer-widget-title">Infomation</h4>
                             <div class="tp-footer-widget-content">
                                 <ul>
-                                    <li><a href="#">Our Story</a></li>
-                                    <li><a href="#">Careers</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
-                                    <li><a href="#">Latest News</a></li>
-                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                                    <li><a href="/terms-of-service">Terms of Service</a></li>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/products">Shop</a></li>
+                                    <li><a href="/categories">Categories</a></li>
+                                    @if (!(User?.Identity?.IsAuthenticated ?? false))
+                                    {
+                                        <li><a href="/account/login">Login</a></li>
+                                        <li><a href="/account/register">Register</a></li>
+                                    }
                                 </ul>
                             </div>
                         </div>

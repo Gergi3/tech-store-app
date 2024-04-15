@@ -1,196 +1,31 @@
-﻿<div class="tp-shop-widget mb-50">
+﻿@model List<ProductItemViewModel>
+
+<div class="tp-shop-widget mb-50">
     <h3 class="tp-shop-widget-title">Top Rated Products</h3>
 
     <div class="tp-shop-widget-content">
         <div class="tp-shop-widget-product">
-            <div class="tp-shop-widget-product-item d-flex align-items-center">
-                <div class="tp-shop-widget-product-thumb">
-                    <a href="product-details.html">
-                        <img src="/img/product/shop/sm/shop-sm-1.jpg" alt="">
-                    </a>
-                </div>
-                <div class="tp-shop-widget-product-content">
-                    <div class="tp-shop-widget-product-rating-wrapper d-flex align-items-center">
-                        <div class="tp-shop-widget-product-rating">
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
+            @foreach (var item in Model)
+            {
+                <div class="tp-shop-widget-product-item d-flex align-items-center">
+                    <div class="tp-shop-widget-product-thumb">
+                        <a href="product-details.html">
+                            <img src="/img/product/shop/sm/shop-sm-1.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="tp-shop-widget-product-content">
+                        <div class="tp-shop-widget-product-rating-wrapper d-flex align-items-center">
+                            <vc:star-rating stars="@((int)Math.Round(item.AverageRating))" reviews="@item.ReviewsCount"></vc:star-rating>
                         </div>
-                        <div class="tp-shop-widget-product-rating-number">
-                            <span>(4.2)</span>
+                        <h4 class="tp-shop-widget-product-title">
+                            <a href="product-details.html">@item.Name</a>
+                        </h4>
+                        <div class="tp-shop-widget-product-price-wrapper">
+                            <span class="tp-shop-widget-product-price">@item.Price</span>
                         </div>
                     </div>
-                    <h4 class="tp-shop-widget-product-title">
-                        <a href="product-details.html">Smart watches wood...</a>
-                    </h4>
-                    <div class="tp-shop-widget-product-price-wrapper">
-                        <span class="tp-shop-widget-product-price">$150.00</span>
-                    </div>
                 </div>
-            </div>
-            <div class="tp-shop-widget-product-item d-flex align-items-center">
-                <div class="tp-shop-widget-product-thumb">
-                    <a href="product-details.html">
-                        <img src="/img/product/shop/sm/shop-sm-2.jpg" alt="">
-                    </a>
-                </div>
-                <div class="tp-shop-widget-product-content">
-                    <div class="tp-shop-widget-product-rating-wrapper d-flex align-items-center">
-                        <div class="tp-shop-widget-product-rating">
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="tp-shop-widget-product-rating-number">
-                            <span>(4.5)</span>
-                        </div>
-                    </div>
-                    <h4 class="tp-shop-widget-product-title">
-                        <a href="product-details.html">Decoration for panda.</a>
-                    </h4>
-                    <div class="tp-shop-widget-product-price-wrapper">
-                        <span class="tp-shop-widget-product-price">$120.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="tp-shop-widget-product-item d-flex align-items-center">
-                <div class="tp-shop-widget-product-thumb">
-                    <a href="product-details.html">
-                        <img src="/img/product/shop/sm/shop-sm-3.jpg" alt="">
-                    </a>
-                </div>
-                <div class="tp-shop-widget-product-content">
-                    <div class="tp-shop-widget-product-rating-wrapper d-flex align-items-center">
-                        <div class="tp-shop-widget-product-rating">
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="tp-shop-widget-product-rating-number">
-                            <span>(3.5)</span>
-                        </div>
-                    </div>
-                    <h4 class="tp-shop-widget-product-title">
-                        <a href="product-details.html">Trending Watch for Man</a>
-                    </h4>
-                    <div class="tp-shop-widget-product-price-wrapper">
-                        <span class="tp-shop-widget-product-price">$99.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="tp-shop-widget-product-item d-flex align-items-center">
-                <div class="tp-shop-widget-product-thumb">
-                    <a href="product-details.html">
-                        <img src="/img/product/shop/sm/shop-sm-4.jpg" alt="">
-                    </a>
-                </div>
-                <div class="tp-shop-widget-product-content">
-                    <div class="tp-shop-widget-product-rating-wrapper d-flex align-items-center">
-                        <div class="tp-shop-widget-product-rating">
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 0L7.854 3.756L12 4.362L9 7.284L9.708 11.412L6 9.462L2.292 11.412L3 7.284L0 4.362L4.146 3.756L6 0Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="tp-shop-widget-product-rating-number">
-                            <span>(4.8)</span>
-                        </div>
-                    </div>
-                    <h4 class="tp-shop-widget-product-title">
-                        <a href="product-details.html">Minimal Backpack.</a>
-                    </h4>
-                    <div class="tp-shop-widget-product-price-wrapper">
-                        <span class="tp-shop-widget-product-price">$165.00</span>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>

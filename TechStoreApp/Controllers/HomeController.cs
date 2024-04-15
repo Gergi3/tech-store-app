@@ -13,7 +13,7 @@ public class HomeController : BaseController
 		IAccountService accountService)
 		: base(accountService)
 	{
-		
+
 	}
 	[AllowAnonymous]
 	public IActionResult Index()

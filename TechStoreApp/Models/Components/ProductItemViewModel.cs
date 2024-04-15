@@ -12,6 +12,8 @@ public class ProductItemViewModel
 
 	public double AverageRating { get; set; }
 
+	public int ReviewsCount { get; set; }
+
 	public string Slug { get; set; } = null!;
 
 	public List<ProductItemCategoriesViewModel> Categories { get; set; } = [];

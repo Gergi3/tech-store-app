@@ -32,21 +32,33 @@
                                                         <span>@Model.AverageRating.ToString("F2")</span>
                                                     </div>
                                                     <div class="tp-product-details-review-summery-rating d-flex align-items-center">
-                                                        <vc:star-rating stars="(int)Math.Round(Model.AverageRating)" reviews="null"></vc:star-rating>
-                                                        <p>(@Model.ReviewItems.Count Reviews)</p>
+                                                        <vc:star-rating stars="(int)Math.Round(Model.AverageRating)" reviews="Model.ReviewItems.Count"></vc:star-rating>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <partial name="Details/_Reviews" model="Model.ReviewItems"/>
+                                            <partial name="Details/_Reviews" model="Model.ReviewItems" />
                                         </div>
                                     </div> <!-- end col -->
-                                       <partial name="Details/_CreateReview"
-                                                model="new ReviewCreateParams() {
+                                    @if (this.User?.Identity?.IsAuthenticated ?? false)
+                                    {
+                                        <partial name="Details/_CreateReview"
+                                                 model="new ReviewCreateParams() {
                                                     ProductsId = Model.ProductId,
                                                     IsReviewed = Model.IsReviewed
                                                 }" />
-
+                                    }
+                                    else
+                                    {
+                                        <div class="col-lg-6">
+                                            <div class="tp-product-details-review-form fs-5">
+                                                <div class="mb-20 tp-product-tag-2">
+                                                    If you'd like to write a review you need to
+                                                    <a asp-action="Login" asp-controller="Account" asp-route-returnUrl="@Url.Action()">Sign in</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>

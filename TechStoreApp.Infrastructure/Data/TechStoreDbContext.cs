@@ -27,4 +27,5 @@ public class TechStoreDbContext
 	public DbSet<Wishlist> Wishlist { get; set; }
 	public DbSet<ExtraInfo> ExtraInfos { get; set; }
 	public DbSet<Review> Reviews { get; set; }
+	public DbSet<CartItem> CartItems { get; set; }
 }

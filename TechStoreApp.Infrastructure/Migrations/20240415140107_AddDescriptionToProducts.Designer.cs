@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechStoreApp.Data;
 
@@ -11,9 +12,11 @@ using TechStoreApp.Data;
 namespace TechStoreApp.Infrastructure.Migrations
 {
     [DbContext(typeof(TechStoreDbContext))]
-    partial class TechStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240415140107_AddDescriptionToProducts")]
+    partial class AddDescriptionToProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -247,7 +250,7 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.HasIndex("Slug")
                         .IsUnique();
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.ExtraInfo", b =>
@@ -271,7 +274,7 @@ namespace TechStoreApp.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ExtraInfos", (string)null);
+                    b.ToTable("ExtraInfos");
                 });
 
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Product", b =>
@@ -304,7 +307,7 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.HasIndex("Slug")
                         .IsUnique();
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.ProductCategory", b =>
@@ -319,7 +322,7 @@ namespace TechStoreApp.Infrastructure.Migrations
 
                     b.HasIndex("CategoriesId");
 
-                    b.ToTable("ProductCategory", (string)null);
+                    b.ToTable("ProductCategory");
                 });
 
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Review", b =>
@@ -348,7 +351,7 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.HasIndex("UserId", "ProductsId")
                         .IsUnique();
 
-                    b.ToTable("Reviews", (string)null);
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Wishlist", b =>
@@ -368,7 +371,7 @@ namespace TechStoreApp.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Wishlist", (string)null);
+                    b.ToTable("Wishlist");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

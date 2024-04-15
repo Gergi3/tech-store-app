@@ -23,4 +23,7 @@ public interface IProductService
 
 	Task<bool> Exists(
 		string slug);
+
+	Task<List<ProductDTO>> TopRated(
+		int count);
 }

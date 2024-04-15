@@ -24,6 +24,8 @@ public class Product
 	[StringLength(MaxNameLength)]
 	public string Slug { get; set; } = null!;
 
+	public string? Description { get; set; }
+
 	[Required]
 	[Column(TypeName = DataConstants.SqlServerTypes.MoneyType)]
 	public decimal Price { get; set; }

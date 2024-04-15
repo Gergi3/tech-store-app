@@ -1,7 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Common;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models.Params;
 using TechStoreApp.Models.Components;

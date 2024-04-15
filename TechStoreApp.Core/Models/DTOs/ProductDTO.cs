@@ -15,10 +15,15 @@ public class ProductDTO
 	[StringLength(MaxNameLength, MinimumLength = MinNameLength)]
 	public string Slug { get; set; } = null!;
 
+	public string? Description { get; set; }
+
 	[Required]
 	public decimal Price { get; set; }
 
 	public double AverageRating { get; set; }
+
+	public int ReviewsCount { get; set; }
+
 
 	public bool IsWishlisted { get; set; }
 

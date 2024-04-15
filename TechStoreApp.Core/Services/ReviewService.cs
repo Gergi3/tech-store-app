@@ -6,7 +6,6 @@ using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.Core.Models.Params;
 using TechStoreApp.Infrastructure.Data.Common;
 using TechStoreApp.Infrastructure.Data.Entities;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace TechStoreApp.Core.Services;
 

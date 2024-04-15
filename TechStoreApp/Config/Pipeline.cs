@@ -14,6 +14,7 @@ public static class Pipeline
 		}
 		else
 		{
+			app.UseStatusCodePagesWithReExecute("/error/index", "?statusCode={0}");
 			app.UseExceptionHandler(ErrorHandlerPageRoute);
 			app.UseHsts();
 		}
