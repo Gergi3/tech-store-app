@@ -32,7 +32,7 @@ public class Product
 
 	public List<Category> Categories { get; } = [];
 
-	public List<Wishlist> Wishlists { get; } = [];
+	public List<Session> Sessions { get; } = [];
 
 	public List<ExtraInfo> ExtraInfos { get; set; } = [];
 

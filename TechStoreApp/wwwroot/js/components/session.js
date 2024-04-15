@@ -1,5 +1,5 @@
 import { endpoints } from '../constants/endpoints.js';
-export function attachWishlistHandler(formSelector, buttonTextSelector, productIdAttrName, listenFrom = null) {
+export function attachSessionHandler(formSelector, buttonTextSelector, productIdAttrName, statusAttrName, statusText, headerCountSelector, listenFrom = null) {
     if (listenFrom) {
         $(listenFrom).on('submit', formSelector, buttonClickHandler);
     }
@@ -11,9 +11,10 @@ export function attachWishlistHandler(formSelector, buttonTextSelector, productI
         e.preventDefault();
         currentId = $(this).attr(productIdAttrName);
         const payload = {
-            productId: currentId
+            productId: currentId,
+            status: $(this).attr(statusAttrName)
         };
-        $.post(endpoints.wishlist.change, payload)
+        $.post(endpoints.session.change, payload)
             .done(statusChangeSuccessHandler)
             .fail(statusChangeFailHandler);
     }
@@ -23,19 +24,19 @@ export function attachWishlistHandler(formSelector, buttonTextSelector, productI
         }
         const textSelector = `${formSelector}[${productIdAttrName}=${currentId}] ${buttonTextSelector}`;
         if (res.isDeleted) {
-            $(textSelector).text('Add To Wishlist');
+            $(textSelector).text(`Add To ${statusText}`);
         }
         else {
-            $(textSelector).text('Remove From Wishlist');
+            $(textSelector).text(`Remove From ${statusText}`);
         }
-        changeHeaderWishlistCount(res.isDeleted);
+        changeHeaderCount(res.isDeleted, headerCountSelector);
     }
     function statusChangeFailHandler(err) {
         console.log(err);
     }
 }
-export function changeHeaderWishlistCount(isDeleted) {
-    const headerEl = $('#headerWishlistCount, #headerWishlistCount:hidden');
+export function changeHeaderCount(isDeleted, selector) {
+    const headerEl = $(`${selector}, ${selector}:hidden`);
     let headerCounter = Number(headerEl.text());
     if (isDeleted) {
         headerCounter--;
@@ -51,4 +52,4 @@ export function changeHeaderWishlistCount(isDeleted) {
         headerEl.show();
     }
 }
-//# sourceMappingURL=wishlist.js.map
+//# sourceMappingURL=session.js.map

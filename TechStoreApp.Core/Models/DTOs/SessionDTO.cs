@@ -1,16 +1,14 @@
 using TechStoreApp.Infrastructure.Data.EnumTypes;
 
-namespace TechStoreApp.Models.Components;
+namespace TechStoreApp.Core.Models.DTOs;
 
-public class WishlistItemViewModel
+public class SessionDTO
 {
 	public Guid ProductId { get; set; }
 
 	public string Name { get; set; } = null!;
 
-	public string Price { get; set; } = null!;
-
-	public string PriceForAll { get; set; } = null!;
+	public decimal Price { get; set; }
 
 	public string Slug { get; set; } = null!;
 

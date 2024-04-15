@@ -1,5 +1,5 @@
 import { endpoints } from '../constants/endpoints.js';
-export function attachQuantityCounterHandler(quantityInputSelector, priceInputSelector, priceDataSelector, productIdDataSelector) {
+export function attachQuantityCounterHandler(quantityInputSelector, priceInputSelector, priceDataSelector, productIdDataSelector, statusSelector) {
     let lastValidQuantity = $(quantityInputSelector).val();
     $(quantityInputSelector).on('change', function () {
         const newQuantity = Number($(this).val());
@@ -10,8 +10,9 @@ export function attachQuantityCounterHandler(quantityInputSelector, priceInputSe
         lastValidQuantity = newQuantity;
         const productId = $(this).attr(productIdDataSelector);
         const showedPrice = $(this).attr(priceDataSelector);
-        const payload = { productId, newQuantity };
-        $.post(endpoints.wishlist.updateQuantity, payload)
+        const status = $(this).attr(statusSelector);
+        const payload = { productId, newQuantity, status };
+        $.post(endpoints.session.updateQuantity, payload)
             .done(function (res) {
             if (res.status != 200 || !res.isUpdated) {
                 return;

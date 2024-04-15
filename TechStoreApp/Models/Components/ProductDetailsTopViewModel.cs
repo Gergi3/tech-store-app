@@ -12,6 +12,8 @@ public class ProductDetailsTopViewModel
 
 	public bool IsWishlisted { get; set; }
 
+	public bool IsInCart { get; set; }
+
 	public int ReviewsCount { get; set; }
 
 	public double AverageRating { get; set; }

@@ -15,7 +15,7 @@ public static class AppServices
 		services.AddScoped<IAccountService, AccountService>();
 		services.AddScoped<ICategoryService, CategoryService>();
 		services.AddScoped<IProductService, ProductService>();
-		services.AddScoped<IWishlistService, WishlistService>();
+		services.AddScoped<ISessionService, SessionService>();
 		services.AddScoped<IReviewService, ReviewService>();
 		services.AddScoped<IUIService, UIService>();
 

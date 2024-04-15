@@ -1,7 +1,7 @@
 ﻿@model HeaderCartBtnViewModel
 
 <div class="tp-header-action-item">
-    <a asp-controller="Cart" asp-action="Index" class="tp-header-action-btn">
+    <a asp-controller="Session" asp-action="Cart" class="tp-header-action-btn">
 
         <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -16,8 +16,8 @@
         </svg>
         @{
             string displayValue = Model.Count != 0
-            ? ("block")
-            : "none";
+                ? ("block")
+                : "none";
         }
         <span style=@($"display:{displayValue}") class="tp-header-action-badge" id="headerCartCount">@Model.Count</span>
     </a>

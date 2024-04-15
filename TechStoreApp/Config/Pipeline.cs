@@ -46,6 +46,7 @@ public static class Pipeline
 			defaults: new { controller = "StaticPages" }
 		);
 
+
 		app.UseCoreAdminCustomUrl(CoreAdminUrl);
 		app.MapRazorPages();
 

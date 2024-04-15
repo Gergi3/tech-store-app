@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using TechStoreApp.Core.Validation;
+using TechStoreApp.Infrastructure.Data.EnumTypes;
 
 namespace TechStoreApp.Core.Models.Params.Wishlist;
 
-public class WishlistChangeQuantityParams
+public class SessionChangeQuantityParams
 {
 	[NotDefault]
 	public Guid ProductId { get; set; }
@@ -11,4 +12,7 @@ public class WishlistChangeQuantityParams
 	[Required]
 	[Range(1, int.MaxValue)]
 	public int NewQuantity { get; set; }
+
+	[Required]
+	public SessionStatus Status { get; set; }
 }

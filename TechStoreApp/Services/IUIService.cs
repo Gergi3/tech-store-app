@@ -1,3 +1,4 @@
+using TechStoreApp.Infrastructure.Data.EnumTypes;
 using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Contracts;
@@ -17,5 +18,5 @@ public interface IUIService
 		int perPage,
 		int totalCount);
 
-	List<BreadcrumbItemViewModel> CreateWishlistBreadcrumb();
+	List<BreadcrumbItemViewModel> CreateSessionBreadcrumb(SessionStatus status);
 }

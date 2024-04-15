@@ -13,7 +13,7 @@ public static class AppAutoMapper
 			{
 				cfg.AddProfile<CategoryProfile>();
 				cfg.AddProfile<ProductProfile>();
-				cfg.AddProfile<WishlistProfile>();
+				cfg.AddProfile<SessionProfile>();
 				cfg.AddProfile<ExtraInfoProfile>();
 				cfg.AddProfile<ReviewProfile>();
 				cfg.AddProfile<ViewComponentsProfile>();

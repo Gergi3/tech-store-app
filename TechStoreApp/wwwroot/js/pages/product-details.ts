@@ -1,4 +1,20 @@
-import { attachWishlistHandler } from '../components/wishlist.js';
+import { attachSessionHandler } from '../components/session.js';
 
 
-attachWishlistHandler('#wishlistForm', '#wishlistButtonText', 'data-product-id');
+attachSessionHandler(
+	'#wishlistForm',
+	'#wishlistButtonText',
+	'data-product-id',
+	'data-status',
+	'Wishlist',
+	'#headerWishlistCount',
+);
+
+attachSessionHandler(
+	'#cartForm',
+	'#cartButtonText',
+	'data-product-id',
+	'data-status',
+	'Cart',
+	'#headerCartCount',
+);

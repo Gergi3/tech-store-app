@@ -26,6 +26,7 @@ public class ProductDTO
 
 
 	public bool IsWishlisted { get; set; }
+	public bool IsInCart { get; set; }
 
 	public List<CategoryDTO> Categories { get; set; } = [];
 	public List<ExtraInfoDTO> ExtraInfos { get; set; } = [];

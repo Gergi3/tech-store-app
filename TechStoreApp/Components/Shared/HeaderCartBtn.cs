@@ -1,24 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
 using TechStoreApp.Core.Contracts;
+using TechStoreApp.Infrastructure.Data.EnumTypes;
 using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Components.Shared;
 
 public class HeaderCartBtn : AuthViewComponent
 {
-	private readonly IWishlistService _wishlistService;
+	private readonly ISessionService _sessionService;
 
 	public HeaderCartBtn(
 		IAccountService accountService,
-		IWishlistService wishlistService)
+		ISessionService sessionService)
 		: base(accountService)
 	{
-		this._wishlistService = wishlistService;
+		this._sessionService = sessionService;
 	}
 
 	public async Task<IViewComponentResult> InvokeAsync()
 	{
-		var cartCount = 0;
+		var cartCount = await this._sessionService.Count(this.CurrentUserId, SessionStatus.InCart);
 
 		return this.View(new HeaderCartBtnViewModel()
 		{

@@ -5,15 +5,16 @@ using TechStoreApp.Core.Contracts;
 using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.Infrastructure.Data.Common;
 using TechStoreApp.Infrastructure.Data.Entities;
+using TechStoreApp.Infrastructure.Data.EnumTypes;
 
 namespace TechStoreApp.Core.Services;
 
-public class WishlistService : IWishlistService
+public class SessionService : ISessionService
 {
 	private readonly IRepository _repo;
 	private readonly IMapper _mapper;
 
-	public WishlistService(
+	public SessionService(
 		IRepository repo,
 		IMapper mapper)
 	{
@@ -21,28 +22,30 @@ public class WishlistService : IWishlistService
 		this._mapper = mapper;
 	}
 
-	public async Task<List<WishlistDTO>> GetByUserId(
-		Guid userId)
+	public async Task<List<SessionDTO>> GetByUserId(
+		Guid userId,
+		SessionStatus status)
 	{
 		if (userId == default)
 		{
 			throw new UnexpectedUnauthenticatedUser();
 		}
 
-		var wishlist = await this._repo
-			.AllReadonly<Wishlist>()
-			.Include(w => w.Product)
-			.Where(w => w.UserId == userId)
+		var session = await this._repo
+			.AllReadonly<Session>()
+			.Include(s => s.Product)
+			.Where(s => s.Status == status && s.UserId == userId)
 			.ToListAsync();
 
-		var wishlistDTOs = this._mapper.Map<List<WishlistDTO>>(wishlist);
+		var sessionDTOs = this._mapper.Map<List<SessionDTO>>(session);
 
-		return wishlistDTOs;
+		return sessionDTOs;
 	}
 
 	public async Task<bool> ChangeStatus(
 		Guid userId,
-		Guid productId)
+		Guid productId,
+		SessionStatus status)
 	{
 		if (userId == default)
 		{
@@ -55,8 +58,11 @@ public class WishlistService : IWishlistService
 		}
 
 		int deleted = await this._repo
-			.AllReadonly<Wishlist>()
-			.Where(w => w.UserId == userId && w.ProductId == productId)
+			.AllReadonly<Session>()
+			.Where(s =>
+				s.UserId == userId
+				&& s.ProductId == productId
+				&& s.Status == status)
 			.ExecuteDeleteAsync();
 
 		if (deleted != 0)
@@ -64,39 +70,22 @@ public class WishlistService : IWishlistService
 			return true;
 		}
 
-		var wishlist = new Wishlist()
+		var session = new Session()
 		{
 			ProductId = productId,
-			UserId = userId
+			UserId = userId,
+			Status = status
 		};
 
-		await this._repo.AddAsync(wishlist);
+		await this._repo.AddAsync(session);
 		await this._repo.SaveChangesAsync();
 
 		return false;
 	}
 
-	public async Task<bool> Exists(
-		Guid productId,
-		Guid userId)
-	{
-		if (userId == default)
-		{
-			throw new UnexpectedUnauthenticatedUser();
-		}
-
-		if (productId == default)
-		{
-			throw new UnexpectedNullProduct();
-		}
-
-		return await this._repo
-			.AllReadonly<Wishlist>()
-			.AnyAsync(w => w.ProductId == productId && w.UserId == userId);
-	}
-
 	public async Task<int> Count(
-		Guid userId)
+		Guid userId,
+		SessionStatus status)
 	{
 		if (userId == default)
 		{
@@ -104,13 +93,14 @@ public class WishlistService : IWishlistService
 		}
 
 		return await this._repo
-			.AllReadonly<Wishlist>()
-			.CountAsync(w => w.UserId == userId);
+			.AllReadonly<Session>()
+			.CountAsync(s => s.UserId == userId && s.Status == status);
 	}
 
 	public async Task<bool> EditQuantity(
 		Guid productId,
 		Guid currentUserId,
+		SessionStatus status,
 		int newQuantity)
 	{
 		if (productId == default)
@@ -123,8 +113,12 @@ public class WishlistService : IWishlistService
 			throw new UnexpectedUnauthenticatedUser();
 		}
 
-		int updatedRows = await this._repo.AllReadonly<Wishlist>()
-			.Where(w => w.ProductId == productId && w.UserId == currentUserId)
+		int updatedRows = await this._repo
+			.AllReadonly<Session>()
+			.Where(s =>
+				s.ProductId == productId
+				&& s.UserId == currentUserId
+				&& s.Status == status)
 			.ExecuteUpdateAsync(updater => updater.SetProperty(w => w.Quantity, newQuantity));
 
 		return updatedRows != 0;

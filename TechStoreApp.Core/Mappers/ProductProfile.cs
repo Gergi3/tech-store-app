@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using AutoMapper;
 using TechStoreApp.Core.Models.DTOs;
 using TechStoreApp.Infrastructure.Data.Entities;
+using TechStoreApp.Infrastructure.Data.EnumTypes;
 
 namespace TechStoreApp.Core.Mappers;
 public class ProductProfile : Profile
@@ -17,7 +18,12 @@ public class ProductProfile : Profile
 			.ForMember(
 				p => p.IsWishlisted,
 				opt => opt.MapFrom(
-					IsWishlistedMapper(userId))
+					SessionMapper(userId, SessionStatus.Wishlisted))
+			)
+			.ForMember(
+				p => p.IsInCart,
+				opt => opt.MapFrom(
+					SessionMapper(userId, SessionStatus.InCart))
 			)
 			.ForMember(
 				dest => dest.ReviewsCount,
@@ -34,10 +40,10 @@ public class ProductProfile : Profile
 				);
 	}
 
-	private static Expression<Func<Product, bool>> IsWishlistedMapper(Guid userId)
+	private static Expression<Func<Product, bool>> SessionMapper(Guid userId, SessionStatus status)
 	{
 		return src => userId == default
 			? false
-			: src.Wishlists.Any(x => x.UserId == userId);
+			: src.Sessions.Any(s => s.UserId == userId && s.Status == status);
 	}
 }

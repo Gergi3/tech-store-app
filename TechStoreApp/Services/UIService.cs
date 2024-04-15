@@ -1,6 +1,7 @@
 using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Contracts;
 using TechStoreApp.Core.Contracts;
+using TechStoreApp.Infrastructure.Data.EnumTypes;
 using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Services;
@@ -147,7 +148,7 @@ public class UIService : IUIService
 		return pagination;
 	}
 
-	public List<BreadcrumbItemViewModel> CreateWishlistBreadcrumb()
+	public List<BreadcrumbItemViewModel> CreateSessionBreadcrumb(SessionStatus status)
 	{
 		var breadcrumb = new List<BreadcrumbItemViewModel>()
 		{
@@ -158,7 +159,7 @@ public class UIService : IUIService
 			},
 			new()
 			{
-				Name = "My Wishlist"
+				Name = status == SessionStatus.Wishlisted ? "My Wishlist" : "My Cart"
 			}
 		};
 

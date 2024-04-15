@@ -16,17 +16,18 @@ public class ViewComponentsProfile : Profile
 		this.CreateMap<ExtraInfoDTO, ExtraInfoViewModel>();
 		this.CreateMap<ReviewDTO, ReviewViewModel>();
 
-		this.CreateMap<WishlistDTO, WishlistItemViewModel>()
+		this.CreateMap<SessionDTO, WishlistItemViewModel>()
 			.ForMember(
 				dest => dest.Price,
 				src => src.MapFrom(
-					x => x.ProductPrice.ToPriceString())
+					x => x.Price.ToPriceString())
 			)
 			.ForMember(
 				dest => dest.PriceForAll,
 				src => src.MapFrom(
-					x => (x.ProductPrice * x.Quantity).ToPriceString())
+					x => (x.Price * x.Quantity).ToPriceString())
 			);
+
 
 		this.CreateMap<ProductDTO, ProductDetailsTopViewModel>()
 			.ForMember(

@@ -7,9 +7,9 @@ export const endpoints = {
     product: {
         list: buildUrl('products/product-list')
     },
-    wishlist: {
-        change: buildUrl('wishlist/change-status'),
-        updateQuantity: buildUrl('wishlist/change-quantity')
+    session: {
+        change: buildUrl('session/change-status'),
+        updateQuantity: buildUrl('session/change-quantity')
     },
     review: {
         create: buildUrl('reviews/create')

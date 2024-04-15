@@ -4,21 +4,21 @@ using TechStoreApp.Infrastructure.Data.Entities;
 
 namespace TechStoreApp.Core.Mappers;
 
-public class WishlistProfile : Profile
+public class SessionProfile : Profile
 {
-	public WishlistProfile()
+	public SessionProfile()
 	{
-		this.CreateMap<Wishlist, WishlistDTO>()
+		this.CreateMap<Session, SessionDTO>()
 			.ForMember(
-				dest => dest.ProductName,
+				dest => dest.Name,
 				opt => opt.MapFrom(w => w.Product.Name)
 			)
 			.ForMember(
-				dest => dest.ProductPrice,
+				dest => dest.Price,
 				opt => opt.MapFrom(w => w.Product.Price)
 			)
 			.ForMember(
-				dest => dest.ProductSlug,
+				dest => dest.Slug,
 				opt => opt.MapFrom(w => w.Product.Slug)
 			);
 	}

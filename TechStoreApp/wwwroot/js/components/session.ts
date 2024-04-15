@@ -5,11 +5,14 @@ export type ProductDetailsRes = {
 	isDeleted: boolean
 }
 
-export function attachWishlistHandler(
+export function attachSessionHandler(
 	formSelector: string,
 	buttonTextSelector: string,
 	productIdAttrName: string,
-	listenFrom: string = null
+	statusAttrName: string,
+	statusText: string,
+	headerCountSelector: string,
+	listenFrom: string = null,
 ) {
 	if (listenFrom) {
 		$(listenFrom).on('submit', formSelector, buttonClickHandler);
@@ -26,10 +29,11 @@ export function attachWishlistHandler(
 		currentId = $(this).attr(productIdAttrName);
 
 		const payload = {
-			productId: currentId
+			productId: currentId,
+			status: $(this).attr(statusAttrName)
 		}
 
-		$.post(endpoints.wishlist.change, payload)
+		$.post(endpoints.session.change, payload)
 			.done(statusChangeSuccessHandler)
 			.fail(statusChangeFailHandler)
 	}
@@ -42,12 +46,12 @@ export function attachWishlistHandler(
 		const textSelector: string = `${formSelector}[${productIdAttrName}=${currentId}] ${buttonTextSelector}`;
 
 		if (res.isDeleted) {
-			$(textSelector).text('Add To Wishlist');
+			$(textSelector).text(`Add To ${statusText}`);
 		} else {
-			$(textSelector).text('Remove From Wishlist');
+			$(textSelector).text(`Remove From ${statusText}`);
 		}
 
-		changeHeaderWishlistCount(res.isDeleted)
+		changeHeaderCount(res.isDeleted, headerCountSelector)
 	}
 
 	function statusChangeFailHandler(err: any) {
@@ -55,9 +59,9 @@ export function attachWishlistHandler(
 	}
 }
 
-export function changeHeaderWishlistCount(isDeleted: boolean) {
+export function changeHeaderCount(isDeleted: boolean, selector: string) {
 
-	const headerEl = $('#headerWishlistCount, #headerWishlistCount:hidden');
+	const headerEl = $(`${selector}, ${selector}:hidden`);
 	let headerCounter = Number(headerEl.text());
 
 	if (isDeleted) {

@@ -9,7 +9,8 @@ export function attachQuantityCounterHandler(
 	quantityInputSelector: string,
 	priceInputSelector: string,
 	priceDataSelector: string,
-	productIdDataSelector: string
+	productIdDataSelector: string,
+	statusSelector: string,
 ) {
 	let lastValidQuantity = $(quantityInputSelector).val();
 	$(quantityInputSelector).on('change', function () {
@@ -23,9 +24,10 @@ export function attachQuantityCounterHandler(
 
 		const productId = $(this).attr(productIdDataSelector);
 		const showedPrice = $(this).attr(priceDataSelector);
-		const payload = { productId, newQuantity }
+		const status = $(this).attr(statusSelector);
+		const payload = { productId, newQuantity, status }
 
-		$.post(endpoints.wishlist.updateQuantity, payload)
+		$.post(endpoints.session.updateQuantity, payload)
 			.done(function (res: ChangeWishlistQuantityRes) {
 				if (res.status != 200 || !res.isUpdated) {
 					return;

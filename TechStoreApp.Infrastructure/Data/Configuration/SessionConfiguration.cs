@@ -3,17 +3,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TechStoreApp.Infrastructure.Data.Entities;
 
 namespace TechStoreApp.Infrastructure.Data.Configuration;
-internal class CartItemConfiguration
-	: IEntityTypeConfiguration<CartItem>
+
+public class SessionConfiguration
+	: IEntityTypeConfiguration<Session>
 {
 	public void Configure(
-		EntityTypeBuilder<CartItem> builder)
+		EntityTypeBuilder<Session> builder)
 	{
 		builder
-			.HasKey(c => new { c.ProductId, c.UserId });
+			.HasKey(s => new { s.ProductId, s.UserId, s.Status });
 
 		builder
-			.Property(c => c.Quantity)
+			.Property(s => s.Quantity)
 			.HasDefaultValue(1);
 	}
 }

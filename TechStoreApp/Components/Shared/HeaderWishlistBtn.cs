@@ -3,24 +3,25 @@ using TechStoreApp.Common.Exceptions;
 using TechStoreApp.Common;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Models.Components;
+using TechStoreApp.Infrastructure.Data.EnumTypes;
 
 namespace TechStoreApp.Components.Shared;
 
 public class HeaderWishlistBtn : AuthViewComponent
 {
-	private readonly IWishlistService _wishlistService;
+	private readonly ISessionService _sessionService;
 
 	public HeaderWishlistBtn(
 		IAccountService accountService,
-		IWishlistService wishlistService)
+		ISessionService sessionService)
 		: base(accountService)
 	{
-		this._wishlistService = wishlistService;
+		this._sessionService = sessionService;
 	}
 
 	public async Task<IViewComponentResult> InvokeAsync()
 	{
-		var wishlistCount = await this._wishlistService.Count(this.CurrentUserId);
+		var wishlistCount = await this._sessionService.Count(this.CurrentUserId, SessionStatus.Wishlisted);
 
 		return this.View(new HeaderWishlistBtnViewModel()
 		{
