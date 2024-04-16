@@ -16,36 +16,42 @@
                                         <div class="tp-checkout-input">
                                             <label>First Name <span>*</span></label>
                                             <input asp-for="FirstName" type="text" placeholder="First Name">
+                                            <span asp-validation-for="FirstName" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="tp-checkout-input">
                                             <label>Last Name <span>*</span></label>
                                             <input asp-for="LastName" type="text" placeholder="Last Name">
+                                            <span asp-validation-for="LastName" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="tp-checkout-input">
                                             <label>Company name (optional)</label>
                                             <input asp-for="CompanyName" type="text" placeholder="Example LTD.">
+                                            <span asp-validation-for="CompanyName" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="tp-checkout-input">
                                             <label>Country</label>
                                             <input asp-for="Country" type="text" placeholder="United States (US)">
+                                            <span asp-validation-for="Country" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="tp-checkout-input">
                                             <label>City</label>
                                             <input asp-for="City" type="text" placeholder="Kansas City">
+                                            <span asp-validation-for="City" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="tp-checkout-input">
                                             <label>Address</label>
                                             <input asp-for="Address" type="text" placeholder="House number and street name">
+                                            <span asp-validation-for="Address" class="text-danger"></span>
                                         </div>
                                     </div>
 
@@ -53,12 +59,14 @@
                                         <div class="tp-checkout-input">
                                             <label>Phone <span>*</span></label>
                                             <input asp-for="Phone" type="text" placeholder="Phone number">
+                                            <span asp-validation-for="Phone" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="tp-checkout-input">
                                             <label>Order notes (optional)</label>
                                             <textarea asp-for="OrderNotes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                            <span asp-validation-for="OrderNotes" class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -80,3 +88,6 @@
         </form>
     </div>
 </section>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
