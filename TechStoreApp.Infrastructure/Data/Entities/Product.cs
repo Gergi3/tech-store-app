@@ -38,6 +38,8 @@ public class Product
 
 	public List<Review> Reviews { get; set; } = [];
 
+	public List<Order> Orders { get; set; } = [];
+
 	public override string ToString()
 	{
 		return this.Name.ToString();

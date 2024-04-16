@@ -1,17 +1,18 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using TechStoreApp.Common.Extensions;
 using TechStoreApp.Core.Contracts;
 using TechStoreApp.Infrastructure.Data.EnumTypes;
 using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Components.Wishlist;
 
-public class SessionItems : AuthViewComponent
+public class Session : AuthViewComponent
 {
 	private readonly ISessionService _sessionService;
 	private readonly IMapper _mapper;
 
-	public SessionItems(
+	public Session(
 		ISessionService sessionService,
 		IMapper mapper,
 		IAccountService accountService)
@@ -26,9 +27,19 @@ public class SessionItems : AuthViewComponent
 		var sessionDTOs = await this._sessionService
 			.GetByUserId(this.CurrentUserId, status);
 
-		var wishlistViewModels = this._mapper
-			.Map<List<WishlistItemViewModel>>(sessionDTOs);
+		var total = await this._sessionService
+			.GetTotal(this.CurrentUserId, status);
 
-		return this.View(wishlistViewModels);
+		var wishlistViewModels = this._mapper
+			.Map<List<SessionItemViewModel>>(sessionDTOs);
+
+		var viewModel = new SessionViewModel()
+		{
+			Items = wishlistViewModels,
+			Status = status,
+			TotalPrice = total.ToPriceString()
+		};
+
+		return this.View(viewModel);
 	}
 }

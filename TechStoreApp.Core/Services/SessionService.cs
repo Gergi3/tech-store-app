@@ -21,6 +21,23 @@ public class SessionService : ISessionService
 		this._repo = repo;
 		this._mapper = mapper;
 	}
+	public async Task<decimal> GetTotal(
+		Guid userId,
+		SessionStatus status)
+	{
+		if (userId == default)
+		{
+			throw new UnexpectedUnauthenticatedUser();
+		}
+
+		var total = await this._repo
+			.AllReadonly<Session>()
+			.Include(s => s.Product)
+			.Where(s => s.Status == status && s.UserId == userId)
+			.SumAsync(s => s.Product.Price * s.Quantity);
+
+		return total;
+	}
 
 	public async Task<List<SessionDTO>> GetByUserId(
 		Guid userId,
@@ -122,5 +139,20 @@ public class SessionService : ISessionService
 			.ExecuteUpdateAsync(updater => updater.SetProperty(w => w.Quantity, newQuantity));
 
 		return updatedRows != 0;
+	}
+
+	public async Task Clear(Guid userId, SessionStatus status)
+	{
+		if (userId == default)
+		{
+			throw new UnexpectedUnauthenticatedUser();
+		}
+
+		await this._repo
+			.AllReadonly<Session>()
+			.Where(s =>
+				s.UserId == userId
+				&& s.Status == status)
+			.ExecuteDeleteAsync();
 	}
 }

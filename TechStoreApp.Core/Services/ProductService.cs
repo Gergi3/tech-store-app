@@ -11,7 +11,7 @@ namespace TechStoreApp.Core.Services;
 
 public class ProductService : IProductService
 {
-	public readonly ICategoryService _categoryService;
+	private readonly ICategoryService _categoryService;
 	private readonly IRepository _repo;
 	private readonly IMapper _mapper;
 

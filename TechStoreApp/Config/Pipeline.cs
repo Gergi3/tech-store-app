@@ -40,12 +40,23 @@ public static class Pipeline
 			defaults: new { controller = "Products", action = "Index" }
 		);
 
+		//app.MapControllerRoute(
+		//	name: "cart",
+		//	pattern: "cart",
+		//	defaults: new { controller = "Session", action = "Cart" }
+		//);
+
+		//app.MapControllerRoute(
+		//	name: "wishlist",
+		//	pattern: "wishlist",
+		//	defaults: new { controller = "Session", action = "Wishlist" }
+		//);
+
 		app.MapControllerRoute(
 			name: "staticPages",
 			pattern: "{action:slugify}",
 			defaults: new { controller = "StaticPages" }
 		);
-
 
 		app.UseCoreAdminCustomUrl(CoreAdminUrl);
 		app.MapRazorPages();

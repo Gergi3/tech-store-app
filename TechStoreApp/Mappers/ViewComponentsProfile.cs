@@ -16,7 +16,7 @@ public class ViewComponentsProfile : Profile
 		this.CreateMap<ExtraInfoDTO, ExtraInfoViewModel>();
 		this.CreateMap<ReviewDTO, ReviewViewModel>();
 
-		this.CreateMap<SessionDTO, WishlistItemViewModel>()
+		this.CreateMap<SessionDTO, SessionItemViewModel>()
 			.ForMember(
 				dest => dest.Price,
 				src => src.MapFrom(
@@ -27,7 +27,6 @@ public class ViewComponentsProfile : Profile
 				src => src.MapFrom(
 					x => (x.Price * x.Quantity).ToPriceString())
 			);
-
 
 		this.CreateMap<ProductDTO, ProductDetailsTopViewModel>()
 			.ForMember(

@@ -7,4 +7,5 @@ public class SessionIndexPageViewModel
 {
 	public List<BreadcrumbItemViewModel> Breadcrumb { get; set; } = [];
 	public SessionStatus Status { get; set; }
+	public string Price { get; set; } = null!;
 }

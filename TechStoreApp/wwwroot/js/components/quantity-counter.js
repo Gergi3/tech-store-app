@@ -22,14 +22,30 @@ export function attachQuantityCounterHandler(quantityInputSelector, priceInputSe
                 style: 'currency',
                 currency: 'USD',
             });
-            $(`${priceInputSelector}[${productIdDataSelector}=${productId}]`)
-                .text(USDollar
+            const newPriceText = USDollar
                 .format(newQuantity * priceForOne)
-                .replace(',', ''));
+                .replace(',', '');
+            $(`${priceInputSelector}[${productIdDataSelector}=${productId}]`)
+                .text(newPriceText);
+            updateTotalCount();
         })
             .fail(function (err) {
             console.log(err);
         });
     });
+}
+export function updateTotalCount() {
+    const USDollar = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+    let totalPrice = 0;
+    $('.session-price').each(function () {
+        totalPrice += Number($(this).text().replace('$', ''));
+    });
+    const newTotalPriceText = USDollar
+        .format(totalPrice)
+        .replace(',', '');
+    $('.total-checkout-price').text(newTotalPriceText);
 }
 //# sourceMappingURL=quantity-counter.js.map

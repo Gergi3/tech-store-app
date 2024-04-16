@@ -2,7 +2,7 @@ using TechStoreApp.Infrastructure.Data.EnumTypes;
 
 namespace TechStoreApp.Models.Components;
 
-public class WishlistItemViewModel
+public class SessionItemViewModel
 {
 	public Guid ProductId { get; set; }
 

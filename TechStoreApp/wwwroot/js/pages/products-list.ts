@@ -1,5 +1,5 @@
 import { fetchAndDisplayProducts } from './products.js';
-import { attachSessionHandler } from '../components/session.js';
+import { attachSessionHandler } from '../components/session-handler.js';
 import { addToQuery } from '../components/query-updater.js';
 
 attachSessionHandler(

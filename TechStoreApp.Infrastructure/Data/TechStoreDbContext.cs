@@ -27,4 +27,6 @@ public class TechStoreDbContext
 	public DbSet<Session> Sessions { get; set; }
 	public DbSet<ExtraInfo> ExtraInfos { get; set; }
 	public DbSet<Review> Reviews { get; set; }
+	public DbSet<Order> Orders { get; set; }
+	public DbSet<OrderProduct> OrderProduct { get; set; }
 }

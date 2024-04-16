@@ -5,7 +5,15 @@ namespace TechStoreApp.Core.Contracts;
 
 public interface ISessionService
 {
+	Task<decimal> GetTotal(
+		Guid userId,
+		SessionStatus status);
+
 	Task<List<SessionDTO>> GetByUserId(
+		Guid userId,
+		SessionStatus status);
+
+	Task Clear(
 		Guid userId,
 		SessionStatus status);
 

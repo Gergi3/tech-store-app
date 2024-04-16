@@ -17,4 +17,9 @@ public class ExtraInfo
 	[ForeignKey(nameof(ProductId))]
 	public virtual Product Product { get; set; } = null!;
 	public Guid ProductId { get; set; }
+
+	public override string ToString()
+	{
+		return this.Name;
+	}
 }

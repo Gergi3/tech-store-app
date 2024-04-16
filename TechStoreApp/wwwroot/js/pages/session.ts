@@ -1,5 +1,5 @@
-import { attachQuantityCounterHandler } from '../components/quantity-counter.js';
-import { ProductDetailsRes, changeHeaderCount } from '../components/session.js';
+import { attachQuantityCounterHandler, updateTotalCount } from '../components/quantity-counter.js';
+import { ProductDetailsRes, changeHeaderCount } from '../components/session-handler.js';
 import { endpoints } from '../constants/endpoints.js'
 
 attachQuantityCounterHandler('.session-quantity', '.session-price' , 'data-showed-price', 'data-product-id', 'data-status');
@@ -21,7 +21,7 @@ $('.session-remove-form').on('submit', function (e) {
 				}
 				else {
 					changeHeaderCount(res.isDeleted, '#headerCartCount');
-
+					updateTotalCount()
 				}
 			}
 		})

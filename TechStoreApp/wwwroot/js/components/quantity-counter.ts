@@ -40,11 +40,14 @@ export function attachQuantityCounterHandler(
 					currency: 'USD',
 				});
 
+				const newPriceText = USDollar
+					.format(newQuantity * priceForOne)
+					.replace(',', '')
+
 				$(`${priceInputSelector}[${productIdDataSelector}=${productId}]`)
-					.text(USDollar
-						.format(newQuantity * priceForOne)
-						.replace(',', '')
-					);
+					.text(newPriceText);
+
+				updateTotalCount();
 			})
 			.fail(function (err: any) {
 				console.log(err);
@@ -52,3 +55,19 @@ export function attachQuantityCounterHandler(
 	});
 }
 
+export function updateTotalCount() {
+	const USDollar = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD',
+	});
+
+	let totalPrice = 0;
+	$('.session-price').each(function () {
+		totalPrice += Number($(this).text().replace('$', ''))
+	})
+	const newTotalPriceText = USDollar
+		.format(totalPrice)
+		.replace(',', '');
+
+	$('.total-checkout-price').text(newTotalPriceText);
+}

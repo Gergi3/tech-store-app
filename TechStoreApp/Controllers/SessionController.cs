@@ -14,16 +14,19 @@ namespace TechStoreApp.Controllers;
 public class SessionController : BaseController
 {
 	private readonly ISessionService _sessionService;
+	private readonly IOrderService _orderService;
 	private readonly IUIService _uiService;
 
 	public SessionController(
 		ISessionService sessionService,
 		IUIService uiService,
-		IAccountService accountService)
+		IAccountService accountService,
+		IOrderService orderService)
 		: base(accountService)
 	{
 		this._sessionService = sessionService;
 		this._uiService = uiService;
+		this._orderService = orderService;
 	}
 
 	[HttpGet]
@@ -35,24 +38,46 @@ public class SessionController : BaseController
 		var viewModel = new SessionIndexPageViewModel()
 		{
 			Breadcrumb = breadcrumb,
-			Status = status
+			Status = status,
 		};
 
-		return this.View(viewModel);
+		return this.View(nameof(Index), viewModel);
 	}
 
 	[HttpGet]
+	[Route("cart/checkout")]
+	public async Task<IActionResult> Checkout()
+	{
+		return this.View();
+	}
+
+	[HttpPost]
+	[Route("cart/checkout")]
+	public async Task<IActionResult> Checkout(
+		OrderParams orderParams)
+	{
+		if (!this.ModelState.IsValid)
+		{
+			return this.View();
+		}
+
+		await this._orderService.Create(orderParams, this.CurrentUserId);
+
+		return this.RedirectToAction("Index", "Products");
+	}
+
+	[HttpGet]
+	[Route("cart")]
 	public async Task<IActionResult> Cart()
 	{
-		var routeValues = new { status = SessionStatus.InCart };
-		return this.RedirectToActionPreserveMethod("Index", routeValues: routeValues);
+		return await this.Index(status: SessionStatus.InCart);
 	}
 
 	[HttpGet]
+	[Route("wishlist")]
 	public async Task<IActionResult> Wishlist()
 	{
-		var routeValues = new { status = SessionStatus.Wishlisted };
-		return this.RedirectToActionPreserveMethod("Index", routeValues: routeValues);
+		return await this.Index(status: SessionStatus.Wishlisted);
 	}
 
 	[HttpPost]

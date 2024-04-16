@@ -1,0 +1,79 @@
+﻿@using TechStoreApp.Infrastructure.Data.EnumTypes
+@model SessionViewModel
+
+<section class="tp-cart-area pb-120">
+    <div class="container">
+        <div class="row">
+            @{
+                var layoutClass = Model.Status == SessionStatus.InCart
+                ? "col-xl-9 col-lg-8"
+                : "col-xxl-12";
+            }
+            <div class=@layoutClass>
+                <div class="tp-cart-list mb-45 mr-30">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="min-width: 150px;" class="tp-cart-header-product">Product</th>
+                                <th class="tp-cart-header-product">Name</th>
+                                <th class="tp-cart-header-price">Price</th>
+                                <th class="tp-cart-header-quantity">Quantity</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Items)
+                            {
+                                <partial name="Index/_SessionItem" model="item" />
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tp-cart-bottom">
+                    <div class="row align-items-end">
+                        <div class="col-xl-6 col-md-4">
+                            <div class="tp-cart-update">
+                                @if (Model.Status == SessionStatus.Wishlisted)
+                                {
+                                    <a asp-action="Cart" asp-controller="Session" class="tp-cart-update-btn">Go To Cart</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="Index" asp-controller="Products" class="tp-cart-update-btn">Go To Shop</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (Model.Status == SessionStatus.InCart)
+            {
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="tp-cart-checkout-wrapper">
+                        <div class="tp-cart-checkout-top d-flex align-items-center justify-content-between">
+                            <span class="tp-cart-checkout-top-title">Subtotal</span>
+                            <span class="tp-cart-checkout-top-price total-checkout-price">@Model.TotalPrice</span>
+                        </div>
+                        <div class="tp-cart-checkout-shipping row">
+                            <div class="col-6">
+                                Free Shipping
+                            </div>
+                            <div class="col-6 text-end">
+                                $0.00
+                            </div>
+                        </div>
+                        <div class="tp-cart-checkout-total d-flex align-items-center justify-content-between">
+                            <span>Total</span>
+                            <span class="total-checkout-price">@Model.TotalPrice</span>
+                        </div>
+                        <div class="tp-cart-checkout-proceed">
+                            <a href="/cart/checkout" class="tp-cart-checkout-btn w-100">Proceed to Checkout</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<script type="module" src="~/js/pages/session.js"></script>

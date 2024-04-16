@@ -1,4 +1,4 @@
-import { attachSessionHandler } from '../components/session.js';
+import { attachSessionHandler } from '../components/session-handler.js';
 
 
 attachSessionHandler(
