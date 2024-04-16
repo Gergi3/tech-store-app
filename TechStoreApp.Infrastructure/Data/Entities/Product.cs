@@ -30,6 +30,9 @@ public class Product
 	[Column(TypeName = DataConstants.SqlServerTypes.MoneyType)]
 	public decimal Price { get; set; }
 
+	[Required]
+	public string ImageUrl { get; set; } = null!;
+
 	public List<Category> Categories { get; } = [];
 
 	public List<Session> Sessions { get; } = [];

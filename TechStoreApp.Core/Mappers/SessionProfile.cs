@@ -20,6 +20,10 @@ public class SessionProfile : Profile
 			.ForMember(
 				dest => dest.Slug,
 				opt => opt.MapFrom(w => w.Product.Slug)
+			)
+			.ForMember(
+				dest => dest.ImageUrl,
+				opt => opt.MapFrom(w => w.Product.ImageUrl)
 			);
 	}
 }

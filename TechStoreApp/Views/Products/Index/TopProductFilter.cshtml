@@ -10,7 +10,7 @@
                 <div class="tp-shop-widget-product-item d-flex align-items-center">
                     <div class="tp-shop-widget-product-thumb">
                         <a href="product-details.html">
-                            <img src="/img/product/shop/sm/shop-sm-1.jpg" alt="">
+                            <img src="@item.ImageUrl" alt="">
                         </a>
                     </div>
                     <div class="tp-shop-widget-product-content">
@@ -18,7 +18,7 @@
                             <vc:star-rating stars="@((int)Math.Round(item.AverageRating))" reviews="@item.ReviewsCount"></vc:star-rating>
                         </div>
                         <h4 class="tp-shop-widget-product-title">
-                            <a href="product-details.html">@item.Name</a>
+                            <a href="/products/details/@item.Slug">@item.Name</a>
                         </h4>
                         <div class="tp-shop-widget-product-price-wrapper">
                             <span class="tp-shop-widget-product-price">@item.Price</span>

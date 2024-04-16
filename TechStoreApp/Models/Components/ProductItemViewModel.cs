@@ -14,6 +14,8 @@ public class ProductItemViewModel
 
 	public double AverageRating { get; set; }
 
+	public string ImageUrl { get; set; } = null!;
+
 	public int ReviewsCount { get; set; }
 
 	public string Slug { get; set; } = null!;

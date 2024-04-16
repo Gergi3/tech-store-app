@@ -20,6 +20,8 @@ public class ProductDTO
 	[Required]
 	public decimal Price { get; set; }
 
+	public string ImageUrl { get; set; } = null!;
+
 	public double AverageRating { get; set; }
 
 	public int ReviewsCount { get; set; }

@@ -16,4 +16,6 @@ public class CategoryDTO
 	public string Slug { get; set; } = null!;
 
 	public int Count { get; set; }
+
+	public string ImageUrl { get; set; } = null!;
 }

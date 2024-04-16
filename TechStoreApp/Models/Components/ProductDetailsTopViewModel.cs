@@ -10,6 +10,8 @@ public class ProductDetailsTopViewModel
 
 	public string Price { get; set; } = null!;
 
+	public string ImageUrl { get; set; } = null!;
+
 	public bool IsWishlisted { get; set; }
 
 	public bool IsInCart { get; set; }

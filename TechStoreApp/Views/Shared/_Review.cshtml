@@ -1,11 +1,15 @@
 ﻿@model ReviewViewModel
 
 <div class="tp-product-details-review-avater d-flex align-items-start">
+    <div class="tp-product-details-review-avater-thumb">
+        <img src="~/img/profile-default.png" alt="" >
+    </div>
     <div class="tp-product-details-review-avater-content">
         <div class="tp-product-details-review-avater-rating d-flex align-items-center">
             <vc:star-rating stars="Model.Stars" reviews="null"></vc:star-rating>
         </div>
         <h3 class="tp-product-details-review-avater-title">@Model.Username</h3>
+        <span class="tp-product-details-review-avater-meta">User</span>
         <div class="tp-product-details-review-avater-comment">
             <p>@Model.Text</p>
         </div>

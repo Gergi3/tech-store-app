@@ -23,6 +23,9 @@ public class Category
 	[StringLength(MaxNameLength)]
 	public string Slug { get; set; } = null!;
 
+	[Required]
+	public string ImageUrl { get; set; } = null!;
+
 	public List<Product> Products { get; } = [];
 
 	public override string ToString()

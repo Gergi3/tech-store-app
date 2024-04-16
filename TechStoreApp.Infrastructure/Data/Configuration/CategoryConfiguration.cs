@@ -17,5 +17,8 @@ internal class CategoryConfiguration
 
 		builder.Property(c => c.Slug)
 			.HasConversion(typeof(SlugValueConverter));
+
+		builder.Property(c => c.ImageUrl)
+			.HasDefaultValue("/img/product-default.png");
 	}
 }

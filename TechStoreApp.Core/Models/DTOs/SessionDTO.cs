@@ -14,5 +14,7 @@ public class SessionDTO
 
 	public int Quantity { get; set; }
 
+	public string ImageUrl { get; set; } = null!;
+
 	public SessionStatus Status { get; set; }
 }
