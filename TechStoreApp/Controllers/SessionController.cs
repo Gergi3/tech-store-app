@@ -68,7 +68,8 @@ public class SessionController : BaseController
 		}
 
 		var count = await this._sessionService.Count(this.CurrentUserId, SessionStatus.InCart);
-		if (count <= 0) {
+		if (count <= 0)
+		{
 			return this.BadRequest();
 		};
 

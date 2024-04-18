@@ -1,5 +1,6 @@
 using DotNetEd.CoreAdmin;
 using Microsoft.AspNetCore.Identity;
+using static TechStoreApp.Common.DataConstants.User;
 
 namespace TechStoreApp.Config;
 
@@ -18,7 +19,7 @@ public static class AppCoreAdmin
 				typeof(IdentityRoleClaim<Guid>),
 				typeof(IdentityUserToken<Guid>)
 			},
-			//RestrictToRoles = ["Admin"]
+			RestrictToRoles = [AdminRole],
 		});
 
 		return services;

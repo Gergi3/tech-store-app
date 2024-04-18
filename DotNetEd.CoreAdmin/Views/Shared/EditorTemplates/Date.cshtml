@@ -1,0 +1,28 @@
+﻿@model object
+
+@switch (Model)
+{
+    case DateTime dateTimeValue:
+    {
+        @Html.TextBox("", dateTimeValue.ToString("yyyy-MM-dd"), new { type = "date", @class = "datePicker form-control" });
+        break;
+    }
+
+    case DateTimeOffset dateTimeOffsetValue:
+    {
+        @Html.TextBox("", dateTimeOffsetValue.ToString("yyyy-MM-dd"), new { type = "date", @class = "datePicker form-control" });
+        break;
+    }
+
+    case DateOnly dateOnlyValue:
+    {
+        @Html.TextBox("", dateOnlyValue.ToString("yyyy-MM-dd"), new { type = "date", @class = "datePicker form-control" });
+        break;
+    }
+
+    default:
+    {
+        @Html.TextBox("", null, new { type = "date", @class = "datePicker form-control" })
+        break;
+    }
+}

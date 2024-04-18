@@ -1,0 +1,35 @@
+﻿html[data-bs-theme="dark"] .EasyMDEContainer .editor-toolbar {
+    background-color: transparent;
+    border-color: #515151;
+}
+
+html[data-bs-theme="dark"] .EasyMDEContainer .editor-toolbar button {
+    color: #ffffff;
+}
+
+html[data-bs-theme="dark"] .editor-toolbar button.active, .editor-toolbar button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: #515151;
+}
+
+html[data-bs-theme="dark"] .EasyMDEContainer .editor-toolbar .separator {
+    border-color: #515151;
+}
+
+html[data-bs-theme="dark"] .EasyMDEContainer .CodeMirror {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: #515151;
+}
+
+html[data-bs-theme="dark"] .EasyMDEContainer .CodeMirror-cursor {
+    border-color: #ffffff;
+}
+
+html[data-bs-theme="dark"] .CodeMirror-selected {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+html[data-bs-theme="dark"] .EasyMDEContainer .editor-preview {
+    color: #000;
+}

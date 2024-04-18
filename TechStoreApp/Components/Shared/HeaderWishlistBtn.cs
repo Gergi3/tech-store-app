@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using TechStoreApp.Common.Exceptions;
-using TechStoreApp.Common;
 using TechStoreApp.Core.Contracts;
-using TechStoreApp.Models.Components;
 using TechStoreApp.Infrastructure.Data.EnumTypes;
+using TechStoreApp.Models.Components;
 
 namespace TechStoreApp.Components.Shared;
 

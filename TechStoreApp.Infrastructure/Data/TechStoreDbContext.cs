@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TechStoreApp.Infrastructure.Data.Configuration;
 using TechStoreApp.Infrastructure.Data.Entities;
 
 namespace TechStoreApp.Data;
@@ -19,7 +20,17 @@ public class TechStoreDbContext
 	public TechStoreDbContext(
 		DbContextOptions<TechStoreDbContext> options)
 		: base(options)
-	{ }
+	{
+	}
+
+	protected override void OnModelCreating(ModelBuilder builder)
+	{
+		builder.ApplyConfiguration(new AppUserConfiguration());
+		builder.ApplyConfiguration(new RoleConfiguration());
+		builder.ApplyConfiguration(new UserRoleConfiguration());
+
+		base.OnModelCreating(builder);
+	}
 
 	public DbSet<Category> Categories { get; set; }
 	public DbSet<Product> Products { get; set; }

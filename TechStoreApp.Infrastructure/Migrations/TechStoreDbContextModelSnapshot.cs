@@ -48,6 +48,13 @@ namespace TechStoreApp.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("2358dc72-4280-40da-8986-4cf0cb4988ea"),
+                            Name = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -134,6 +141,13 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("05cb6d59-1d3d-4759-bd33-2378d9d9e689"),
+                            RoleId = new Guid("2358dc72-4280-40da-8986-4cf0cb4988ea")
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -221,6 +235,25 @@ namespace TechStoreApp.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("05cb6d59-1d3d-4759-bd33-2378d9d9e689"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e34204cc-ab7a-42a5-aee1-9db33c0f7a85",
+                            Email = "admin@mail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "admin@mail.com",
+                            NormalizedUserName = "Administrator",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJlovegn7pEMr0v+aFhHbVRpL5gEMji1xLPiImLVu8MYEz7bfp1qmnOYr5MSmeG7Kw==",
+                            PhoneNumber = "0894357237",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "e649e1cf-6483-4aa0-8077-48b28d726885",
+                            TwoFactorEnabled = false,
+                            UserName = "Administrator"
+                        });
                 });
 
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Category", b =>
