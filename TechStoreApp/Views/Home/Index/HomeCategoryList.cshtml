@@ -2,10 +2,10 @@
 
 <section class="tp-product-category pt-60 pb-15">
     <div class="container">
-        <div class="row row-cols-xl-5 row-cols-lg-5 row-cols-md-4">
+        <div class="row row-cols-xl-5 row-cols-lg-5 row-cols-md-4 justify-content-center">
             @foreach (var categoryItem in Model)
             {
-                <vc:home-category-item item="categoryItem"></vc:home-category-item>
+                <partial name="Index/_HomeCategoryItem" model="categoryItem" />
             }
         </div>
     </div>

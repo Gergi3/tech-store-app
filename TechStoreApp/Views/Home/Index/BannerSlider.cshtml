@@ -5,8 +5,7 @@
         <div class="swiper-wrapper">
             @foreach (var sliderItem in Model)
             {
-                <vc:banner-slider-item item="sliderItem">
-                </vc:banner-slider-item>
+                <partial name="Index/_BannerSliderItem" model="sliderItem" />
             }
         </div>
         <div class="tp-slider-arrow tp-swiper-arrow d-none d-lg-block">

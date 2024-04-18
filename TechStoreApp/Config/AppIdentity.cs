@@ -32,6 +32,7 @@ public static class AppIdentity
 					RequireDigit = RequireDigit
 				};
 			})
+			.AddRoles<IdentityRole<Guid>>()
 			.AddEntityFrameworkStores<TechStoreDbContext>();
 
 		services.ConfigureApplicationCookie(options =>

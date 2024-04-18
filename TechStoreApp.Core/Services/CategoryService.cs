@@ -34,6 +34,18 @@ public class CategoryService : ICategoryService
 			.ToListAsync();
 	}
 
+	public async Task<List<CategoryDTO>> AllMostPopular(
+		int take)
+	{
+		return await this._repo
+			.AllReadonly<Category>()
+			.Include(c => c.Products)
+			.OrderByDescending(c => c.Products.Count)
+			.Take(take)
+			.ProjectTo<CategoryDTO>(this._mapper.ConfigurationProvider)
+			.ToListAsync();
+	}
+
 	public async Task<int> Count()
 	{
 		return await this._repo

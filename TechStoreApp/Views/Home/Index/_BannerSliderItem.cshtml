@@ -1,0 +1,47 @@
+﻿@model BannerSliderItemViewModel
+
+<div class="tp-slider-item tp-slider-height d-flex align-items-center swiper-slide green-dark-bg">
+    <div class="tp-slider-shape">
+        <img class="tp-slider-shape-1" src="~/img/slider/shape/slider-shape-1.png"
+             alt="slider-shape">            
+        <img class="tp-slider-shape-2" src="~/img/slider/shape/slider-shape-2.png"
+             alt="slider-shape">            
+        <img class="tp-slider-shape-3" src="~/img/slider/shape/slider-shape-3.png"
+             alt="slider-shape">            
+        <img class="tp-slider-shape-4" src="~/img/slider/shape/slider-shape-4.png"
+             alt="slider-shape">
+    </div>
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-xl-5 col-lg-6 col-md-6">
+                <div class="tp-slider-content p-relative z-index-1">
+                    <span>@Model.SecondaryText</span>
+                    <h3 class="tp-slider-title">@Model.Title</h3>
+                    <p>
+                        @Model.Text
+                    </p>
+
+                    <div class="tp-slider-btn">
+                        <a asp-action="Index" asp-controller="Products" class="tp-btn tp-btn-2 tp-btn-white">
+                            Shop Now
+                            <svg width="17" height="14" viewBox="0 0 17 14" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 6.99976L1 6.99976" stroke="currentColor"
+                                      stroke-width="1.5" stroke-linecap="round"
+                                      stroke-linejoin="round" />
+                                <path d="M9.9502 0.975414L16.0002 6.99941L9.9502 13.0244"
+                                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                      stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-6 col-md-6">
+                <div class="tp-slider-thumb text-end">
+                    <img style="height:450px" src="@Model.ImageUrl" alt="slider-img">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

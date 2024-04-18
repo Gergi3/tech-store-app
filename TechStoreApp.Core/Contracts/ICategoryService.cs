@@ -15,4 +15,7 @@ public interface ICategoryService
 
 	Task<bool> TryExists(
 		string? categorySlug);
+
+	Task<List<CategoryDTO>> AllMostPopular(
+		int take);
 }
