@@ -1,11 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
-using TechStoreApp.Infrastructure.Data.Configuration;
 
 namespace TechStoreApp.Infrastructure.Data.Entities;
 
-[EntityTypeConfiguration(typeof(ProductCategoryConfiguration))]
 public class ProductCategory
 {
 	[Required]

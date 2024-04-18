@@ -6,7 +6,6 @@ using static TechStoreApp.Common.DataConstants.Category;
 
 namespace TechStoreApp.Infrastructure.Data.Entities;
 
-[EntityTypeConfiguration(typeof(CategoryConfiguration))]
 [Index(nameof(Name), IsUnique = true)]
 [Index(nameof(Slug), IsUnique = true)]
 public class Category

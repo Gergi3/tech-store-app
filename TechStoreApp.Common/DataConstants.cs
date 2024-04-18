@@ -20,9 +20,6 @@ public static class DataConstants
 	{
 		public const string AdminRole = "Admin";
 
-		public const string AdminRoleId = "2358dc72-4280-40da-8986-4cf0cb4988ea";
-		public const string AdminId = "05cb6d59-1d3d-4759-bd33-2378d9d9e689";
-
 		public const bool RequireUniqueEmail = true;
 		public const bool RequireConfirmedAccount = false;
 		public const bool RequireConfirmedPhoneNumber = false;

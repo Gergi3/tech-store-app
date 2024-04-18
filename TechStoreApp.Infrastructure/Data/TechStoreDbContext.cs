@@ -28,6 +28,10 @@ public class TechStoreDbContext
 		builder.ApplyConfiguration(new AppUserConfiguration());
 		builder.ApplyConfiguration(new RoleConfiguration());
 		builder.ApplyConfiguration(new UserRoleConfiguration());
+		builder.ApplyConfiguration(new ProductConfiguration());
+		builder.ApplyConfiguration(new CategoryConfiguration());
+		builder.ApplyConfiguration(new ProductCategoryConfiguration());
+		builder.ApplyConfiguration(new ReviewConfiguration());
 
 		base.OnModelCreating(builder);
 	}

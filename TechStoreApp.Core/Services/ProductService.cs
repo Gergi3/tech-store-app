@@ -29,7 +29,9 @@ public class ProductService : IProductService
 		int count)
 	{
 		return await this._repo.AllReadonly<Product>()
+			.Include(x => x.Reviews)
 			.OrderByDescending(x => x.Reviews.Average(x => (decimal)x.Stars))
+			.ThenByDescending(x => x.Reviews.Count)
 			.Take(count)
 			.ProjectTo<ProductDTO>(
 				configuration: this._mapper.ConfigurationProvider,

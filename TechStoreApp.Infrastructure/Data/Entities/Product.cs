@@ -7,7 +7,6 @@ using static TechStoreApp.Common.DataConstants.Product;
 
 namespace TechStoreApp.Infrastructure.Data.Entities;
 
-[EntityTypeConfiguration(typeof(ProductConfiguration))]
 [Index(nameof(Name), IsUnique = true)]
 [Index(nameof(Slug), IsUnique = true)]
 public class Product

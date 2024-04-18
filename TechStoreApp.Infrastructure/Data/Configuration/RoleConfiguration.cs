@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TechStoreApp.Common;
+using static TechStoreApp.Common.SeedConstants.User;
 
 namespace TechStoreApp.Infrastructure.Data.Configuration;
 public class RoleConfiguration
@@ -17,7 +18,7 @@ public class RoleConfiguration
 	{
 		var role = new IdentityRole<Guid>()
 		{
-			Id = new Guid(DataConstants.User.AdminRoleId),
+			Id = new Guid(AdminRoleId),
 			Name = DataConstants.User.AdminRole
 		};
 

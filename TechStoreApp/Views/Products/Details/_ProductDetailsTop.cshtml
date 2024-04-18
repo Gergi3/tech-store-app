@@ -19,9 +19,11 @@
             <div class="col-xl-5 col-lg-6">
                 <div class="tp-product-details-wrapper">
                     <div class="tp-product-details-category tp-product-tag-2">
+                        |
                         @foreach (var categoryItem in Model.Categories)
                         {
                             <a href=@($"categories/{categoryItem.Slug}/products")>@categoryItem.Name</a>
+                            @:|
                         }
                     </div>
                     <h3 class="tp-product-details-title">@Model.Name</h3>

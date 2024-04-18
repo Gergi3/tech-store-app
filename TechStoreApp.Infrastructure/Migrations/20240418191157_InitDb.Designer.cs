@@ -12,8 +12,8 @@ using TechStoreApp.Data;
 namespace TechStoreApp.Infrastructure.Migrations
 {
     [DbContext(typeof(TechStoreDbContext))]
-    [Migration("20240416062921_AddImageUrlsToUserProductsCategories")]
-    partial class AddImageUrlsToUserProductsCategories
+    [Migration("20240418191157_InitDb")]
+    partial class InitDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -179,12 +179,6 @@ namespace TechStoreApp.Infrastructure.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("/img/profile-default.png");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");

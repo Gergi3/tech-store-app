@@ -12,15 +12,15 @@ using TechStoreApp.Data;
 namespace TechStoreApp.Infrastructure.Migrations
 {
     [DbContext(typeof(TechStoreDbContext))]
-    [Migration("20240408061756_AddQuantityToWishlist")]
-    partial class AddQuantityToWishlist
+    [Migration("20240418191300_AddUserSeeding")]
+    partial class AddUserSeeding
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("ProductVersion", "8.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -51,6 +51,13 @@ namespace TechStoreApp.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("2358dc72-4280-40da-8986-4cf0cb4988ea"),
+                            Name = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -137,6 +144,13 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("05cb6d59-1d3d-4759-bd33-2378d9d9e689"),
+                            RoleId = new Guid("2358dc72-4280-40da-8986-4cf0cb4988ea")
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -224,6 +238,105 @@ namespace TechStoreApp.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("05cb6d59-1d3d-4759-bd33-2378d9d9e689"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ff768869-d250-456d-9aa0-5ab8bf4136d6",
+                            Email = "admin@mail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "admin@mail.com",
+                            NormalizedUserName = "Administrator",
+                            PasswordHash = "AQAAAAIAAYagAAAAEInObkt/xMozP1p0TQqJU2teHfwM8o23PO2/XyuIzod0qmmXc/cC9wPhfNiYdOtdCw==",
+                            PhoneNumber = "0894357237",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "05cb6d59-1d3d-4759-bd33-2378d9d9e689",
+                            TwoFactorEnabled = false,
+                            UserName = "Administrator"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000001"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "55d1ac7d-6219-43d9-b42f-6bbbc3f8bfa0",
+                            Email = "reviewer1@mail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "REVIEWER1@MAIL.COM",
+                            NormalizedUserName = "EmilyJohnson",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPA35KkZYY8mRUIkEZRqwal6Nf/uD/CPv4Ut7z/PWvjYBbmG6Fo3GmGCo1bvicQ8dQ==",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "00000000-0000-0000-0000-000000000001",
+                            TwoFactorEnabled = false,
+                            UserName = "EmilyJohnson"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000002"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0c9c5272-4ac8-47ec-9828-0d4aa5b515ef",
+                            Email = "reviewer2@mail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "REVIEWER2@MAIL.COM",
+                            NormalizedUserName = "JacobSmith",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDmFdhNh592m576cotUOfgTgwGx9DtEBokKf5ZDsZM0iu93tGWaXnRqgesAzVamWPg==",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "00000000-0000-0000-0000-000000000002",
+                            TwoFactorEnabled = false,
+                            UserName = "JacobSmith"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000003"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "5eddbfdb-724f-4e6f-a95d-2e47d072df4d",
+                            Email = "reviewer3@mail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "REVIEWER3@MAIL.COM",
+                            NormalizedUserName = "SophiaBrown",
+                            PasswordHash = "AQAAAAIAAYagAAAAEP0X+oJWQQvPi69fOh+vxAM3xUWLRakmQS+rH7r7GV1GSc+yDrNnH5SIzO71f6zGMw==",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "00000000-0000-0000-0000-000000000003",
+                            TwoFactorEnabled = false,
+                            UserName = "SophiaBrown"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000004"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f29c3b4b-a206-4f57-bd57-042a4a95d188",
+                            Email = "reviewer4@mail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "REVIEWER4@MAIL.COM",
+                            NormalizedUserName = "EthanDavis",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOOASy9RVwTQCCQU8OiORB8sfTEQnK80SS//QROtn8cvLFlkPqd30HbWqB5jTbM1DA==",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "00000000-0000-0000-0000-000000000004",
+                            TwoFactorEnabled = false,
+                            UserName = "EthanDavis"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000005"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ea84a723-c5f7-4cbc-a113-ec6182f8ec6c",
+                            Email = "reviewer5@mail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "REVIEWER5@MAIL.COM",
+                            NormalizedUserName = "OliviaMartinez",
+                            PasswordHash = "AQAAAAIAAYagAAAAEId7P7jOEnIRT9e4Plc/JgDlJIYXHnMdjjD+/awzOu2Ix/2KNTOiS0FgXhW1/TN8xA==",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "00000000-0000-0000-0000-000000000005",
+                            TwoFactorEnabled = false,
+                            UserName = "OliviaMartinez"
+                        });
                 });
 
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Category", b =>
@@ -231,6 +344,12 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("/img/product-default.png");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -253,11 +372,111 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.ExtraInfo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Data")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ExtraInfos");
+                });
+
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrderNotes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("money");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.OrderProduct", b =>
+                {
+                    b.Property<Guid>("ProductsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("OrdersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductsId", "OrdersId");
+
+                    b.HasIndex("OrdersId");
+
+                    b.ToTable("OrderProduct");
+                });
+
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("/img/product-default.png");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -298,7 +517,36 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.ToTable("ProductCategory");
                 });
 
-            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Wishlist", b =>
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Review", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Stars")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductsId");
+
+                    b.HasIndex("UserId", "ProductsId")
+                        .IsUnique();
+
+                    b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Session", b =>
                 {
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
@@ -306,16 +554,19 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<int>("Quantity")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(1);
 
-                    b.HasKey("ProductId", "UserId");
+                    b.HasKey("ProductId", "UserId", "Status");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Wishlist");
+                    b.ToTable("Sessions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -369,6 +620,47 @@ namespace TechStoreApp.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.ExtraInfo", b =>
+                {
+                    b.HasOne("TechStoreApp.Infrastructure.Data.Entities.Product", "Product")
+                        .WithMany("ExtraInfos")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Order", b =>
+                {
+                    b.HasOne("TechStoreApp.Infrastructure.Data.Entities.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.OrderProduct", b =>
+                {
+                    b.HasOne("TechStoreApp.Infrastructure.Data.Entities.Order", "Order")
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("OrdersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechStoreApp.Infrastructure.Data.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.ProductCategory", b =>
                 {
                     b.HasOne("TechStoreApp.Infrastructure.Data.Entities.Category", "Category")
@@ -388,10 +680,29 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Wishlist", b =>
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Review", b =>
                 {
                     b.HasOne("TechStoreApp.Infrastructure.Data.Entities.Product", "Product")
-                        .WithMany("Wishlists")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechStoreApp.Infrastructure.Data.Entities.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Session", b =>
+                {
+                    b.HasOne("TechStoreApp.Infrastructure.Data.Entities.Product", "Product")
+                        .WithMany("Sessions")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -407,9 +718,18 @@ namespace TechStoreApp.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Order", b =>
+                {
+                    b.Navigation("OrderProducts");
+                });
+
             modelBuilder.Entity("TechStoreApp.Infrastructure.Data.Entities.Product", b =>
                 {
-                    b.Navigation("Wishlists");
+                    b.Navigation("ExtraInfos");
+
+                    b.Navigation("Reviews");
+
+                    b.Navigation("Sessions");
                 });
 #pragma warning restore 612, 618
         }

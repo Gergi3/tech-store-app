@@ -67,12 +67,13 @@
         </div>
         <div class="tp-product-content-2 pt-15">
             <div class="tp-product-tag-2">
-
+                |
                 @foreach (var category in Model.Categories)
                 {
                     <a href=@($"/categories/{category.Slug}/products")>
                         @category.Name
                     </a>
+                    @:|
                 }
             </div>
             <h3 class="tp-product-title-2">
