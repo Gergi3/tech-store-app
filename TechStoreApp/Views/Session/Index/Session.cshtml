@@ -5,11 +5,11 @@
     <div class="container">
         <div class="row">
             @{
-                var layoutClass = Model.Status == SessionStatus.InCart
-                ? "col-xl-9 col-lg-8"
+                var layoutClass = Model.Status == SessionStatus.InCart && Model.Items.Count > 0
+                ? "col-xl-9 col-lg-8 "
                 : "col-xxl-12";
             }
-            <div class=@layoutClass>
+            <div class="@layoutClass" id="cartProductList">
                 <div class="tp-cart-list mb-45 mr-30">
                     <table class="table">
                         <thead>
@@ -46,9 +46,9 @@
                     </div>
                 </div>
             </div>
-            @if (Model.Status == SessionStatus.InCart)
+            @if (Model.Status == SessionStatus.InCart && Model.Items.Count > 0)
             {
-                <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="col-xl-3 col-lg-4" id="checkoutCard">
                     <div class="tp-cart-checkout-wrapper">
                         <div class="tp-cart-checkout-top d-flex align-items-center justify-content-between">
                             <span class="tp-cart-checkout-top-title">Subtotal</span>

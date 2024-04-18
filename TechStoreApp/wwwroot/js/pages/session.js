@@ -11,6 +11,11 @@ $('.session-remove-form').on('submit', function (e) {
         .done(function (res) {
         if (res.status == 200 && res.isDeleted == true) {
             $(`.session-item[data-product-id=${productId}]`).remove();
+            if ($('.session-item').length <= 0) {
+                $('#checkoutCard').remove();
+                $('#cartProductList').removeClass();
+                $('#cartProductList').addClass('col-12');
+            }
             if (status == 'Wishlisted') {
                 changeHeaderCount(res.isDeleted, '#headerWishlistCount');
             }

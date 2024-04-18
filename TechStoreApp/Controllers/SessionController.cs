@@ -48,6 +48,12 @@ public class SessionController : BaseController
 	[Route("cart/checkout")]
 	public async Task<IActionResult> Checkout()
 	{
+		var count = await this._sessionService.Count(this.CurrentUserId, SessionStatus.InCart);
+		if (count <= 0)
+		{
+			return this.BadRequest();
+		};
+
 		return this.View();
 	}
 
@@ -60,6 +66,11 @@ public class SessionController : BaseController
 		{
 			return this.View();
 		}
+
+		var count = await this._sessionService.Count(this.CurrentUserId, SessionStatus.InCart);
+		if (count <= 0) {
+			return this.BadRequest();
+		};
 
 		await this._orderService.Create(orderParams, this.CurrentUserId);
 

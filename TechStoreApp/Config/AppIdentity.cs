@@ -34,6 +34,11 @@ public static class AppIdentity
 			})
 			.AddEntityFrameworkStores<TechStoreDbContext>();
 
+		services.ConfigureApplicationCookie(options =>
+		{
+			options.LoginPath = "/account/login";
+		});
+
 		return services;
 	}
 }
