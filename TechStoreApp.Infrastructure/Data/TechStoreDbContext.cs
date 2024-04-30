@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TechStoreApp.Infrastructure.Data;
 using TechStoreApp.Infrastructure.Data.Configuration;
 using TechStoreApp.Infrastructure.Data.Entities;
 
@@ -36,12 +37,12 @@ public class TechStoreDbContext
 		base.OnModelCreating(builder);
 	}
 
-	public DbSet<Category> Categories { get; set; }
-	public DbSet<Product> Products { get; set; }
-	public DbSet<ProductCategory> ProductCategory { get; set; }
-	public DbSet<Session> Sessions { get; set; }
-	public DbSet<ExtraInfo> ExtraInfos { get; set; }
-	public DbSet<Review> Reviews { get; set; }
-	public DbSet<Order> Orders { get; set; }
-	public DbSet<OrderProduct> OrderProduct { get; set; }
+	public virtual DbSet<Category> Categories { get; set; }
+	public virtual DbSet<Product> Products { get; set; }
+	public virtual DbSet<ProductCategory> ProductCategory { get; set; }
+	public virtual DbSet<Session> Sessions { get; set; }
+	public virtual DbSet<ExtraInfo> ExtraInfos { get; set; }
+	public virtual DbSet<Review> Reviews { get; set; }
+	public virtual DbSet<Order> Orders { get; set; }
+	public virtual DbSet<OrderProduct> OrderProduct { get; set; }
 }

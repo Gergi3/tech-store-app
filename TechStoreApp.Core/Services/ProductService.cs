@@ -11,18 +11,15 @@ namespace TechStoreApp.Core.Services;
 
 public class ProductService : IProductService
 {
-	private readonly ICategoryService _categoryService;
 	private readonly IRepository _repo;
 	private readonly IMapper _mapper;
 
 	public ProductService(
 		IRepository repo,
-		IMapper mapper,
-		ICategoryService categoryService)
+		IMapper mapper)
 	{
 		this._repo = repo;
 		this._mapper = mapper;
-		this._categoryService = categoryService;
 	}
 
 	public async Task<List<ProductDTO>> TopRated(

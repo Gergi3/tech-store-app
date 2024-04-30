@@ -7,7 +7,7 @@ namespace TechStoreApp.Infrastructure.Data.Common;
 
 public class Repository : IRepository
 {
-	protected DbContext Context { get; set; }
+	protected TechStoreDbContext Context { get; set; }
 
 	protected DbSet<T> DbSet<T>() where T : class
 	{

@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-using TechStoreApp.Infrastructure.Data.Configuration;
 using static TechStoreApp.Common.DataConstants.Category;
 
 namespace TechStoreApp.Infrastructure.Data.Entities;
@@ -25,7 +24,7 @@ public class Category
 	[Required]
 	public string ImageUrl { get; set; } = null!;
 
-	public EntityList<Product> Products { get; } = [];
+	public EntityList<Product> Products { get; set; } = [];
 
 	public override string ToString()
 	{

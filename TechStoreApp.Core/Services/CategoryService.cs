@@ -26,24 +26,28 @@ public class CategoryService : ICategoryService
 		int skip,
 		int take)
 	{
-		return await this._repo
-			.AllReadonly<Category>()
-			.Skip(skip)
-			.Take(take)
-			.ProjectTo<CategoryDTO>(this._mapper.ConfigurationProvider)
-			.ToListAsync();
+		var categoryDTOs = await this._repo
+					.AllReadonly<Category>()
+					.Skip(skip)
+					.Take(take)
+					.ProjectTo<CategoryDTO>(this._mapper.ConfigurationProvider)
+					.ToListAsync();
+
+		return categoryDTOs;
 	}
 
 	public async Task<List<CategoryDTO>> AllMostPopular(
 		int take)
 	{
-		return await this._repo
-			.AllReadonly<Category>()
-			.Include(c => c.Products)
-			.OrderByDescending(c => c.Products.Count)
-			.Take(take)
-			.ProjectTo<CategoryDTO>(this._mapper.ConfigurationProvider)
-			.ToListAsync();
+		var categoryDTOs = await this._repo
+					.AllReadonly<Category>()
+					.Include(c => c.Products)
+					.OrderByDescending(c => c.Products.Count)
+					.Take(take)
+					.ProjectTo<CategoryDTO>(this._mapper.ConfigurationProvider)
+					.ToListAsync();
+
+		return categoryDTOs;
 	}
 
 	public async Task<int> Count()
