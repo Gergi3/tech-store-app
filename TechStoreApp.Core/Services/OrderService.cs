@@ -58,7 +58,7 @@ public class OrderService : IOrderService
 		};
 
 		foreach (var item in sessionItems)
-		{
+			{
 			order.OrderProducts.Add(new OrderProduct()
 			{
 				Quantity = item.Quantity,

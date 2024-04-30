@@ -25,10 +25,10 @@ public class Category
 	[Required]
 	public string ImageUrl { get; set; } = null!;
 
-	public List<Product> Products { get; } = [];
+	public EntityList<Product> Products { get; } = [];
 
 	public override string ToString()
 	{
-		return this.Name.ToString();
+		return this.Name;
 	}
 }

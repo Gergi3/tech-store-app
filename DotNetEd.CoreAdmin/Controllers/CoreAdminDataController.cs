@@ -8,6 +8,7 @@ using DotNetEd.CoreAdmin.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DotNetEd.CoreAdmin.Controllers;
@@ -42,11 +43,17 @@ public class CoreAdminDataController : Controller
 
 					var dbSetValue = dbSetProperty.GetValue(dbContextObject);
 
-					var navProperties = dbContextObject.Model.FindEntityType(viewModel.EntityType).GetNavigations();
+					var entityType = dbContextObject.Model.FindEntityType(viewModel.EntityType);
+					var navProperties = entityType.GetNavigations();
+					var skipProperties = entityType.GetSkipNavigations();
 					foreach (var property in navProperties)
 					{
 						// Only display One to One relationships on the Grid
-						//if(property.GetCollectionAccessor() == null)    
+						//if(property.GetCollectionAccessor() == null)
+						query = query.Include(property.Name);
+					}
+					foreach (var property in skipProperties)
+					{
 						query = query.Include(property.Name);
 					}
 

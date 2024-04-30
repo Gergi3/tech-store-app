@@ -14,4 +14,6 @@ public class ProductCategory
 	[ForeignKey(nameof(CategoriesId))]
 	public virtual Category Category { get; set; } = null!;
 	public Guid CategoriesId { get; set; }
+
+
 }

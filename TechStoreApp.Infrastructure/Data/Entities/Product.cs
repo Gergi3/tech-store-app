@@ -2,7 +2,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using TechStoreApp.Common;
-using TechStoreApp.Infrastructure.Data.Configuration;
 using static TechStoreApp.Common.DataConstants.Product;
 
 namespace TechStoreApp.Infrastructure.Data.Entities;
@@ -32,15 +31,20 @@ public class Product
 	[Required]
 	public string ImageUrl { get; set; } = null!;
 
-	public List<Category> Categories { get; } = [];
+	public virtual EntityList<Category> Categories { get; } = [];
 
-	public List<Session> Sessions { get; } = [];
+	public virtual EntityList<Session> Sessions { get; } = [];
 
-	public List<ExtraInfo> ExtraInfos { get; set; } = [];
+	public virtual EntityList<ExtraInfo> ExtraInfos { get; set; } = [];
 
-	public List<Review> Reviews { get; set; } = [];
+	[Display(AutoGenerateField = false)]
+	public virtual EntityList<Review> Reviews { get; set; } = [];
 
-	public List<Order> Orders { get; set; } = [];
+	[Display(AutoGenerateField = false)]
+	public virtual EntityList<Order> Orders { get; set; } = [];
+
+	[Display(AutoGenerateField = false)]
+	public virtual EntityList<OrderProduct> OrderProducts { get; set; } = [];
 
 	public override string ToString()
 	{

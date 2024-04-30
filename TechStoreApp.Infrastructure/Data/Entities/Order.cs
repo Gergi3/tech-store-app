@@ -42,8 +42,10 @@ public class Order
 	public virtual AppUser User { get; set; } = null!;
 	public Guid UserId { get; set; }
 
-	public List<Product> Products { get; set; } = [];
-	public List<OrderProduct> OrderProducts { get; set; } = [];
+	public virtual EntityList<Product> Products { get; } = [];
+
+	[Display(AutoGenerateField = false)]
+	public virtual EntityList<OrderProduct> OrderProducts { get; set; } = [];
 
 	public override string ToString()
 	{

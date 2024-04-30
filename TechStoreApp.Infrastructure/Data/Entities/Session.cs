@@ -24,4 +24,9 @@ public class Session
 
 	[Required]
 	public SessionStatus Status { get; set; }
+
+	public override string ToString()
+	{
+		return $"{this.Status} - {this.Quantity} - {this.Product?.Name}";
+	}
 }
